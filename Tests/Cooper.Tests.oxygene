@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProductVersion>3.5</ProductVersion>
+    <ProjectGuid>{e8a585d8-dc6c-4bfd-aa63-4dd2283f1928}</ProjectGuid>
+    <OutputType>exe</OutputType>
+    <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+    <AllowLegacyCreate>False</AllowLegacyCreate>
+    <Name>Cooper.Tests</Name>
+    <RootNamespace>Cooper.Tests</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;</DefineConstants>
+    <CaptureConsoleOutput>False</CaptureConsoleOutput>
+    <StartMode>Project</StartMode>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <CpuType>anycpu</CpuType>
+    <RuntimeVersion>v25</RuntimeVersion>
+    <XmlDoc>False</XmlDoc>
+    <XmlDocWarningLevel>WarningOnPublicMembers</XmlDocWarningLevel>
+    <EnableUnmanagedDebugging>False</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release</OutputPath>
+    <GenerateDebugInfo>False</GenerateDebugInfo>
+    <EnableAsserts>False</EnableAsserts>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <CaptureConsoleOutput>False</CaptureConsoleOutput>
+    <StartMode>Project</StartMode>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <CpuType>anycpu</CpuType>
+    <RuntimeVersion>v25</RuntimeVersion>
+    <XmlDoc>False</XmlDoc>
+    <XmlDocWarningLevel>WarningOnPublicMembers</XmlDocWarningLevel>
+    <WarnOnCaseMismatch>True</WarnOnCaseMismatch>
+    <EnableUnmanagedDebugging>False</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="com.remobjects.elements.rtl.jar">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="rt.jar" />
+    <Reference Include="sugar.jar">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main\Java\Program.pas" />
+    <Compile Include="Sources\Asserts\Assert.pas" />
+    <Compile Include="Sources\Asserts\BooleanAssert.pas" />
+    <Compile Include="Sources\Asserts\DoubleAssert.pas" />
+    <Compile Include="Sources\Asserts\ExceptionAssert.pas" />
+    <Compile Include="Sources\Asserts\IntegerAssert.pas" />
+    <Compile Include="Sources\Asserts\Messages.pas" />
+    <Compile Include="Sources\Asserts\ObjectAssert.pas" />
+    <Compile Include="Sources\Asserts\SequenceAssert.pas" />
+    <Compile Include="Sources\Asserts\StringAssert.pas" />
+    <Compile Include="Sources\Discovery.pas" />
+    <Compile Include="Sources\InternalTests\EmptyTests.pas" />
+    <Compile Include="Sources\InternalTests\FailedTests.pas" />
+    <Compile Include="Sources\Runner\Runner.pas" />
+    <Compile Include="Sources\Runner\RunnerFailure.pas" />
+    <Compile Include="Sources\Runner\RunnerListener.pas" />
+    <Compile Include="Sources\Utils\CodeObject.pas" />
+    <Compile Include="Sources\Utils\ListenerCapture.pas" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Main\" />
+    <Folder Include="Properties\" />
+    <Folder Include="Main\Java\" />
+    <Folder Include="Sources\" />
+    <Folder Include="Sources\Asserts" />
+    <Folder Include="Sources\InternalTests" />
+    <Folder Include="Sources\Runner" />
+    <Folder Include="Sources\Utils" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Cooper.oxygene">
+      <Name>RemObjects.Elements.EUnit.Cooper</Name>
+      <Project>{b526c139-27d3-41e0-ba41-d858884841e4}</Project>
+      <Private>True</Private>
+      <HintPath>..\bin\Debug\Java\RemObjects.Elements.EUnit.jar</HintPath>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Oxygene\RemObjects.Oxygene.Cooper.targets" />
+  <PropertyGroup>
+    <PreBuildEvent />
+  </PropertyGroup>
+</Project>
