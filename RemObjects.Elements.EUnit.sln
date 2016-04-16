@@ -1,29 +1,29 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # RemObjects Fire
-Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "Cooper.Tests", "Tests\Cooper.Tests.oxygene", "{E8A585D8-DC6C-4BFD-AA63-4DD2283F1928}"
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "Cooper.Tests", "Tests\Cooper.Tests.elements", "{E8A585D8-DC6C-4BFD-AA63-4DD2283F1928}"
 EndProject
-Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "EUnit.Tests", "Tests\EUnit.Tests.oxygene", "{062AF122-311B-4667-8521-F401E4071128}"
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "EUnit.Tests", "Tests\EUnit.Tests.elements", "{062AF122-311B-4667-8521-F401E4071128}"
 EndProject
-Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "Nougat.Tests.OSX", "Tests\Nougat.Tests.OSX.oxygene", "{9992E91C-CCA6-4104-A667-CE6D3DF276A6}"
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "Nougat.Tests.OSX", "Tests\Nougat.Tests.OSX.elements", "{9992E91C-CCA6-4104-A667-CE6D3DF276A6}"
 EndProject
-Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "Nougat.Tests.iOS", "Tests\Nougat.Tests.iOS.oxygene", "{C527D1A4-A181-4592-97A4-F598AFA9127C}"
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "Nougat.Tests.iOS", "Tests\Nougat.Tests.iOS.elements", "{C527D1A4-A181-4592-97A4-F598AFA9127C}"
 EndProject
-Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (.NET)", "RemObjects.Elements.EUnit.Echoes.oxygene", "{785CB531-318D-4DEF-80DC-23976103E3BF}"
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (.NET)", "RemObjects.Elements.EUnit.Echoes.elements", "{785CB531-318D-4DEF-80DC-23976103E3BF}"
 EndProject
-Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Android)", "RemObjects.Elements.EUnit.Cooper.Android.oxygene", "{3D2BA357-4815-4E71-AEA3-3F5C3136F03B}"
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Android)", "RemObjects.Elements.EUnit.Cooper.Android.elements", "{3D2BA357-4815-4E71-AEA3-3F5C3136F03B}"
 EndProject
-Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Java)", "RemObjects.Elements.EUnit.Cooper.oxygene", "{B526C139-27D3-41E0-BA41-D858884841E4}"
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Java)", "RemObjects.Elements.EUnit.Cooper.elements", "{B526C139-27D3-41E0-BA41-D858884841E4}"
 EndProject
-Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (OS X)", "RemObjects.Elements.EUnit.Nougat.OSX.oxygene", "{18E41908-BE34-4C8C-9CD8-732C692D93A5}"
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (OS X)", "RemObjects.Elements.EUnit.Nougat.OSX.elements", "{18E41908-BE34-4C8C-9CD8-732C692D93A5}"
 EndProject
-Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (iOS)", "RemObjects.Elements.EUnit.Nougat.iOS.oxygene", "{BC3B72A8-41A6-46EB-9544-FE8EE56F5FD1}"
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (iOS)", "RemObjects.Elements.EUnit.Nougat.iOS.elements", "{BC3B72A8-41A6-46EB-9544-FE8EE56F5FD1}"
 EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (tvOS)", "RemObjects.Elements.EUnit.Nougat.tvOS.elements", "{F3700AC2-54C1-4404-914F-ED08CBBF01E9}"
 EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (watchOS)", "RemObjects.Elements.EUnit.Nougat.watchOS.elements", "{77D6CD89-863F-441A-A7B3-12E3EC49DBA3}"
 EndProject
-Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "cooper.tests.android", "Tests\Cooper.Tests.Android.oxygene", "{A0E4ED8C-EFB9-4F90-93FE-4C9A49052C40}"
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "cooper.tests.android", "Tests\Cooper.Tests.Android.elements", "{A0E4ED8C-EFB9-4F90-93FE-4C9A49052C40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
