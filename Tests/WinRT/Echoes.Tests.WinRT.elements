@@ -161,7 +161,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Echoes.WinRT.oxygene">
+    <ProjectReference Include="..\..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Echoes.WinRT.elements">
       <Name>RemObjects.Elements.EUnit.Echoes.WinRT</Name>
       <Project>{610fb4ed-d61b-46b1-814c-e9428317bfdd}</Project>
       <Private>True</Private>

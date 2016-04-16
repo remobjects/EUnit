@@ -78,7 +78,7 @@
     <Folder Include="Sources\Utils" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Cooper.oxygene">
+    <ProjectReference Include="..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Cooper.elements">
       <Name>RemObjects.Elements.EUnit.Cooper</Name>
       <Project>{b526c139-27d3-41e0-ba41-d858884841e4}</Project>
       <Private>True</Private>

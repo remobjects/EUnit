@@ -108,7 +108,7 @@
     <Compile Include="Sources\Utils\ListenerCapture.pas" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Cooper.Android.oxygene">
+    <ProjectReference Include="..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Cooper.Android.elements">
       <Name>RemObjects.Elements.EUnit.Cooper.Android</Name>
       <Project>{3d2ba357-4815-4e71-aea3-3f5c3136f03b}</Project>
       <Private>True</Private>

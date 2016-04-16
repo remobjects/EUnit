@@ -101,7 +101,7 @@
     <Folder Include="Resources\Launch Images\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Nougat.iOS.oxygene">
+    <ProjectReference Include="..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Nougat.iOS.elements">
       <Name>RemObjects.Elements.EUnit.Nougat.iOS</Name>
       <Project>{bc3b72a8-41a6-46eb-9544-fe8ee56f5fd1}</Project>
       <Private>True</Private>

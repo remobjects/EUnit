@@ -69,7 +69,7 @@
     <Folder Include="Sources\Utils" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Nougat.OSX.oxygene">
+    <ProjectReference Include="..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Nougat.OSX.elements">
       <Name>RemObjects.Elements.EUnit.Nougat.OSX</Name>
       <Project>{18e41908-be34-4c8c-9cd8-732c692d93a5}</Project>
       <Private>True</Private>

@@ -106,7 +106,7 @@
     <Folder Include="Sources\Utils" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Echoes.oxygene">
+    <ProjectReference Include="..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Echoes.elements">
       <Name>RemObjects.Elements.EUnit.Echoes</Name>
       <Project>{785cb531-318d-4def-80dc-23976103e3bf}</Project>
       <Private>True</Private>

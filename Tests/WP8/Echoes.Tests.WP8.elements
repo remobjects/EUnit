@@ -192,7 +192,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Echoes.WP8.oxygene">
+    <ProjectReference Include="..\..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Echoes.WP8.elements">
       <Name>RemObjects.Elements.EUnit.Echoes.WP8</Name>
       <Project>{b9df568f-2ba3-4c39-9004-c2084eaedad9}</Project>
       <Private>True</Private>
