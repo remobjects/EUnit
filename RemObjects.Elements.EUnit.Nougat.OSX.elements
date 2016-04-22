@@ -31,11 +31,11 @@
         <WarnOnCaseMismatch>True</WarnOnCaseMismatch>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="Foundation.fx"/>
-        <Reference Include="libSugar.fx"/>
-        <Reference Include="libxml2.fx"/>
-        <Reference Include="rtl.fx"/>
-        <Reference Include="libNougat.fx"/>
+        <Reference Include="Foundation"/>
+        <Reference Include="libSugar"/>
+        <Reference Include="libxml2"/>
+        <Reference Include="rtl"/>
+        <Reference Include="libNougat"/>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Sources\Asserts\Assert.pas"/>
@@ -139,7 +139,7 @@
         <Folder Include="Sources\Utils"/>
         <Folder Include="Sources\Reflections"/>
     </ItemGroup>
-    <Import Project="$(MSBuildExtensionsPath)/RemObjects Software/Oxygene/RemObjects.Oxygene.Nougat.targets"/>
+    <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Nougat.targets"/>
     <PropertyGroup>
         <PreBuildEvent/>
     </PropertyGroup>
