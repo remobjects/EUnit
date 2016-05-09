@@ -10,5 +10,11 @@ type
     method RunFinished(TestResult: ITestResult);
   end;
 
+  IEventListenerGUI = public interface
+    method PrepareGUI;
+    method RunGUI;
+    method FinishGUI;
+  end;
+
 implementation
 end.
