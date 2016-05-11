@@ -15,7 +15,6 @@ type
     method viewDidLoad(); override;
     begin
       title := 'EUnit';
-      NSLog('viewDidLoad');
     end;
     
   protected
