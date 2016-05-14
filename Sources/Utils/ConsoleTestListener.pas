@@ -22,8 +22,7 @@ type
     
     constructor (aEmitParseableMessages: Boolean := false);
     begin
-      //writeLn("EUNIT_PARSABLE_MESSAGES="+Environment.GetEnvironmentVariable("EUNIT_PARSABLE_MESSAGES"));
-      fEmitParseableMessages := aEmitParseableMessages or (length(Environment.GetEnvironmentVariable("EUNIT_PARSABLE_MESSAGES")) > 0);
+      fEmitParseableMessages := aEmitParseableMessages or (length(Environment.GetEnvironmentVariable(Runner.EUNIT_PARSABLE_MESSAGES)) > 0);
     end;
   end;
 

@@ -17,7 +17,7 @@ type
     method Run(Context: RunContext): ITestResult;
   public    
     method RunTests(Test: ITest): ITestResult;
-    method RunTests(Test: ITest) withListener(Listener: IEventListener): ITestResult;
+    method RunTests(Test: ITest) withListener(Listener: IEventListener := nil): ITestResult;
     method RunTestsAsync(Test: ITest) completionHandler(Handler: Action<ITestResult>);
     method RunTestsAsync(Test: ITest) completionHandler(Handler: Action<ITestResult>) withListener(Listener: IEventListener);
     method RunTestsAsync(Test: ITest) completionHandler(Handler: Action<ITestResult>) withListener(Listener: IEventListener) cancelationToken(Token: ICancelationToken);
@@ -30,9 +30,13 @@ begin
   exit RunTests(Test) withListener(nil);
 end;
 
-method Runner.RunTests(Test: ITest) withListener(Listener: IEventListener): ITestResult;
+method Runner.RunTests(Test: ITest) withListener(Listener: IEventListener := nil): ITestResult;
 begin
   ArgumentNilException.RaiseIfNil(Test, "Test");
+  
+  if not assigned(Listener) then
+    Listener := DefaultListener;
+  
   var Context := new RunContext(Test, Listener);
   
   if Listener is IEventListenerGUI then begin

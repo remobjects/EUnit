@@ -22,12 +22,7 @@ implementation
 
 method Assert.Fail(Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  if not assigned(Message) then
-    Message := AssertMessages.Unknown;
-  if assigned(aFile) and (aLine > 0) then
-    Message := String.Format("{0} ({1} line {2})", Message, Path.GetFileName(aFile), aLine);
-
-  raise new AssertException(Message, aFile, aLine, aClass, aMethod);
+  raise new AssertException(coalesce(Message, AssertMessages.Unknown), aFile, aLine, aClass, aMethod);
 end;
 
 method Assert.FailComparison(Actual: Object; Expected: Object; Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
