@@ -9,6 +9,7 @@ type
   ConsoleTestListener = public class (IEventListener)
   private
     Offset: Integer;
+    fEmitParseableMessages: Boolean;
     method StringOffset: String;
     method StateToString(State: TestState): String;
   protected
@@ -18,6 +19,12 @@ type
     method TestStarted(Test: ITest); virtual;
     method TestFinished(TestResult: ITestResult); virtual;
     method RunFinished(TestResult: ITestResult); virtual;
+    
+    constructor (aEmitParseableMessages: Boolean := false);
+    begin
+      //writeLn("EUNIT_PARSABLE_MESSAGES="+Environment.GetEnvironmentVariable("EUNIT_PARSABLE_MESSAGES"));
+      fEmitParseableMessages := aEmitParseableMessages or (length(Environment.GetEnvironmentVariable("EUNIT_PARSABLE_MESSAGES")) > 0);
+    end;
   end;
 
 implementation
@@ -40,13 +47,16 @@ begin
   if TestResult.Test.Kind <> TestKind.Testcase then
       dec(Offset, 2);
 
-  var Message: String;
-  if TestResult.State = TestState.Failed then
-    Message := String.Format("{0}{1} finished. State: Failed. Message: {2}", StringOffset, TestResult.Name, TestResult.Message)
-  else
-    Message := String.Format("{0}{1} finished. State: Succeded.", StringOffset, TestResult.Name);
-
-  Output(Message);
+  if fEmitParseableMessages then begin
+    Output(TestResult.ParsableMessage);
+  end
+  else begin
+    if TestResult.State = TestState.Failed then
+      Output(String.Format("{0}{1} finished. State: Failed. Message: {2}", StringOffset, TestResult.Name, TestResult.Message))
+    else
+      Output(String.Format("{0}{1} finished. State: Succeded.", StringOffset, TestResult.Name));
+  end;
+  
 end;
 
 method ConsoleTestListener.RunStarted(Test: ITest);

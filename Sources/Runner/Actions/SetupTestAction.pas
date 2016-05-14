@@ -20,10 +20,10 @@ begin
   try
     Context.Instance.SetupTest;
   except
-    on E: Exception do begin
-      var Node := new TestResultNode(Context.Test, TestState.Failed, "[Failed to setup test] " + HandleException(Context, E).Message);
+    on Ex: Exception do begin
+      var Node := new TestResultNode(Context.Test, TestState.Failed, "[Failed to setup test] " + HandleException(Context, Ex).Message, BaseException(Ex):ParsableMessage);
       for child in Context.Test.Children do
-        Node.Add(ForEach(child, item -> new TestResultNode(item, TestState.Untested, "Failed to setup test.")));
+        Node.Add(ForEach(child, item -> new TestResultNode(item, TestState.Untested, "Failed to setup test.", BaseException(Ex):ParsableMessage)));
 
       Context.CurrentResult := Node;
     end;

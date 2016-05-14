@@ -81,7 +81,7 @@ begin
   Context.Listener:TestStarted(Context.Test);
   
   if Context.Test.Skip then
-    result := new TestResultNode(Context.Test, TestState.Skipped, "Skipped")
+    result := new TestResultNode(Context.Test, TestState.Skipped, "Skipped", String.Format("TEST-SKIPPED,,,{0},Test Skipped", Context.Test.Name))
   else
     case Context.Test.Kind of
       TestKind.Suite: result := RunSuite(Context);
@@ -136,7 +136,7 @@ end;
 class method Runner.RunChildren(Context: RunContext): ITestResult;
 begin
   if Context.Test.Skip then
-    exit new TestResultNode(Context.Test, TestState.Skipped, "Skipped");
+    exit new TestResultNode(Context.Test, TestState.Skipped, "Skipped", String.Format("TEST-SKIPPED,,,{0},Test Skipped", Context.Test.Name));
 
   var Node := new TestResultNode(Context.Test);
   var IsFailed: Boolean := false;  

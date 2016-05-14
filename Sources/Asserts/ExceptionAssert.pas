@@ -10,16 +10,16 @@ type
   private
     method TypeToString(aType: NativeType): String;
   public
-    method Throws(Action: AssertAction; Message: String := nil);
-    method Throws(Action: AssertAction; OfType: NativeType; Message: String := nil);
-    method DoesNotThrows(Action: AssertAction; Message: String := nil);
+    method Throws(Action: AssertAction; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+    method Throws(Action: AssertAction; OfType: NativeType; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+    method DoesNotThrows(Action: AssertAction; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 
-    method Catch(Action: AssertAction; Message: String := nil): Exception;
+    method Catch(Action: AssertAction; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()): Exception;
   end;
 
 implementation
 
-class method Assert.TypeToString(aType: NativeType): String;
+method Assert.TypeToString(aType: NativeType): String;
 begin
   if aType = nil then
     exit nil;
@@ -27,32 +27,32 @@ begin
   exit new TypeReference(aType).Name;
 end;
 
-class method Assert.Throws(Action: AssertAction; Message: String := nil);
+method Assert.Throws(Action: AssertAction; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   var Ex := ExceptionHelper.CatchException(Action);
 
-  FailIf(Ex = nil, coalesce(Message, AssertMessages.NoException));
+  FailIf(Ex = nil, coalesce(Message, AssertMessages.NoException), aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.Throws(Action: AssertAction; OfType: NativeType; Message: String := nil);
+method Assert.Throws(Action: AssertAction; OfType: NativeType; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   var Ex := ExceptionHelper.CatchException(Action);
 
-  FailIf(Ex = nil, coalesce(Message, AssertMessages.NoException));
-  FailIfNot(typeOf(Ex) = OfType, TypeToString(typeOf(Ex)), TypeToString(OfType), coalesce(Message, AssertMessages.NotEqual));
+  FailIf(Ex = nil, coalesce(Message, AssertMessages.NoException), aFile, aLine, aClass, aMethod);
+  FailComparisonIfNot(typeOf(Ex) = OfType, TypeToString(typeOf(Ex)), TypeToString(OfType), coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.DoesNotThrows(Action: AssertAction; Message: String := nil);
+method Assert.DoesNotThrows(Action: AssertAction; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   var Ex := ExceptionHelper.CatchException(Action);
 
-  FailIf(Ex <> nil, TypeToString(typeOf(Ex)), nil, coalesce(Message, AssertMessages.UnexpectedException));
+  FailComparisonIf(Ex <> nil, TypeToString(typeOf(Ex)), nil, coalesce(Message, AssertMessages.UnexpectedException), aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.Catch(Action: AssertAction; Message: String := nil): Exception;
+method Assert.Catch(Action: AssertAction; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()): Exception;
 begin
   var Ex := ExceptionHelper.CatchException(Action);
-  FailIf(Ex = nil, coalesce(Message, AssertMessages.NoException));
+  FailIf(Ex = nil, coalesce(Message, AssertMessages.NoException), aFile, aLine, aClass, aMethod);
   exit Ex;
 end;
 

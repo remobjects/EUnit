@@ -8,43 +8,43 @@ uses
 type
   Assert = public partial static class {$IF NOUGAT}mapped to Object{$ENDIF}
   public
-    method AreEqual(Actual, Expected : Object; Message: String := nil);
-    method AreNotEqual(Actual, Expected: Object; Message: String := nil);
+    method AreEqual(Actual, Expected : Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+    method AreNotEqual(Actual, Expected: Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 
-    method IsNil(Actual: Object; Message: String := nil);
-    method IsNotNil(Actual: Object; Message: String := nil);
+    method IsNil(Actual: Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+    method IsNotNil(Actual: Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
   end;
 
 implementation
 
-class method Assert.AreEqual(Actual: Object; Expected: Object; Message: String := nil);
+method Assert.AreEqual(Actual: Object; Expected: Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   if Expected = nil then begin
-    IsNil(Actual);
+    IsNil(Actual, aFile, aLine, aClass, aMethod);
     exit;
   end;
 
-  FailIfNot(Expected.{$IF NOUGAT}isEqual{$ELSE}Equals{$ENDIF}(Actual), Actual, Expected, coalesce(Message, AssertMessages.NotEqual));
+  FailComparisonIfNot(Expected.{$IF NOUGAT}isEqual{$ELSE}Equals{$ENDIF}(Actual), Actual, Expected, coalesce(Message, AssertMessages.NotEqual));
 end;
 
-class method Assert.AreNotEqual(Actual: Object; Expected: Object; Message: String := nil);
+method Assert.AreNotEqual(Actual: Object; Expected: Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   if Expected = nil then begin
-    IsNotNil(Actual);
+    IsNotNil(Actual, aFile, aLine, aClass, aMethod);
     exit;
   end;
 
-  FailIf(Expected.{$IF NOUGAT}isEqual{$ELSE}Equals{$ENDIF}(Actual), Actual, Expected, coalesce(Message, AssertMessages.Equal));
+  FailComparisonIf(Expected.{$IF NOUGAT}isEqual{$ELSE}Equals{$ENDIF}(Actual), Actual, Expected, coalesce(Message, AssertMessages.Equal));
 end;
 
-class method Assert.IsNil(Actual: Object; Message: String := nil);
+method Assert.IsNil(Actual: Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  FailIfNot(Actual = nil, Actual, nil, coalesce(Message, AssertMessages.NotEqual));
+  FailComparisonIfNot(Actual = nil, Actual, nil, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.IsNotNil(Actual: Object; Message: String := nil);
+method Assert.IsNotNil(Actual: Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  FailIfNot(Actual <> nil, coalesce(Message, AssertMessages.ObjectIsNil));
+  FailIfNot(Actual <> nil, coalesce(Message, AssertMessages.ObjectIsNil), aFile, aLine, aClass, aMethod);
 end;
 
 end.

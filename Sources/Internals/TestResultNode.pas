@@ -12,7 +12,7 @@ type
     List: List<ITestResult> := new List<ITestResult>;
   public
     constructor(aTest: ITest);
-    constructor(aTest: ITest; aState: TestState; aMessage: String);
+    constructor(aTest: ITest; aState: TestState; aMessage: String; aParsableMessage: String);
 
     method &Add(Item: ITestResult);
     method SetResult(aState: TestState; aMessage: String);
@@ -26,13 +26,14 @@ type
     property DisplayName: String read write;
     property State: TestState read private write;
     property Message: String read private write;
+    property ParsableMessage: String read private write;
     property Test: ITest read write; readonly;
     property Children: sequence of ITestResult read List.ToArray;
   end;
 
 implementation
 
-constructor TestResultNode(aTest: ITest; aState: TestState; aMessage: String);
+constructor TestResultNode(aTest: ITest; aState: TestState; aMessage: String; aParsableMessage: String);
 begin
   ArgumentNilException.RaiseIfNil(aTest, "Test");
 
@@ -40,10 +41,11 @@ begin
   State := aState;
   DisplayName := aTest.Name;
 
-  if aMessage = nil then
+  if not assigned(aMessage) then
     aMessage := "";
 
   Message := aMessage;
+  ParsableMessage := aParsableMessage;
 end;
 
 method TestResultNode.Add(Item: ITestResult);
@@ -53,7 +55,7 @@ end;
 
 constructor TestResultNode(aTest: ITest);
 begin
-  constructor(aTest, TestState.Untested, "");
+  constructor(aTest, TestState.Untested, nil, nil);
 end;
 
 method TestResultNode.SetResult(aState: TestState; aMessage: String);
@@ -69,7 +71,7 @@ class method TestResultNode.HandleException(Test: ITest; Ex: Exception): TestRes
 begin
   ArgumentNilException.RaiseIfNil(Test, "Test");
 
-  exit new TestResultNode(Test, TestState.Failed, if Ex = nil then "Unknown error" else Ex.{$IF NOUGAT}description{$ELSE}Message{$ENDIF});
+  exit new TestResultNode(Test, TestState.Failed, if Ex = nil then "Unknown error" else Ex.{$IF NOUGAT}description{$ELSE}Message{$ENDIF}, BaseException(Ex):ParsableMessage);
 end;
 
 method TestResultNode.{$IF NOUGAT}description: Foundation.NSString{$ELSEIF COOPER}ToString: java.lang.String{$ELSEIF ECHOES}ToString: System.String{$ENDIF};

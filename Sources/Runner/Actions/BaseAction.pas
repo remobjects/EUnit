@@ -69,9 +69,9 @@ begin
     Message := "";
 
   if Ex is AssertException then
-    exit new TestResultNode(Context.Test, TestState.Failed, Message)
+    exit new TestResultNode(Context.Test, TestState.Failed, Message, BaseException(Ex):ParsableMessage)
   else
-    exit new TestResultNode(Context.Test, TestState.Failed, "["+ExceptionName+"]"+ if Message = "" then "" else ": " + Message);
+    exit new TestResultNode(Context.Test, TestState.Failed, "["+ExceptionName+"]"+ if Message = "" then "" else ": " + Message, BaseException(Ex):ParsableMessage);
 end;
 
 constructor BaseAction;
