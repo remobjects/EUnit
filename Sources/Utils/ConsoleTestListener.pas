@@ -66,18 +66,24 @@ end;
 
 method ConsoleTestListener.RunFinished(TestResult: ITestResult);
 begin
-  Output("======================================");
-  var S := new Summary(TestResult, item -> (item.Test.Kind = TestKind.Testcase));
-  Output(String.Format("{0} succeeded, {1} failed, {2} skipped, {3} untested", S.Succeeded, S.Failed, S.Skipped, S.Untested));
+  if fEmitParseableMessages then begin
+  end
+  else begin
+    Output("======================================");
+    var S := new Summary(TestResult, item -> (item.Test.Kind = TestKind.Testcase));
+    Output(String.Format("{0} succeeded, {1} failed, {2} skipped, {3} untested", S.Succeeded, S.Failed, S.Skipped, S.Untested));
+  end;
 end;
 
 method ConsoleTestListener.Output(Message: String);
 begin
-  {$IFNDEF NETFX_CORE}  
-  writeLn(Message); 
-  {$ELSE}  
-  System.Diagnostics.Debug.WriteLine(Message);
-  {$ENDIF}
+  if length(Message) > 0 then begin
+    {$IFNDEF NETFX_CORE}  
+    writeLn(Message); 
+    {$ELSE}  
+    System.Diagnostics.Debug.WriteLine(Message);
+    {$ENDIF}
+  end;
 end;
 
 method ConsoleTestListener.TestStarted(Test: ITest);
@@ -85,7 +91,8 @@ begin
   if (Test.Kind = TestKind.Testcase) or (Test.Skip) then
     exit;
   
-  Output(String.Format("{0}{1} started", StringOffset, Test.Name));
+  if not fEmitParseableMessages then
+    Output(String.Format("{0}{1} started", StringOffset, Test.Name));
   inc(Offset, 2);
 end;
 

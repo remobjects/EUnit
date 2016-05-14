@@ -17,7 +17,7 @@ begin
                           ArgumentNilException.RaiseIfNil(ctx.Instance, "Instance");
 
                           ctx.Method.Invoke(ctx.Instance);
-                          exit new TestResultNode(ctx.Test, TestState.Succeeded, nil, nil);
+                          exit new TestResultNode(ctx.Test, TestState.Succeeded, nil, "TEST-SUCCEEDED,,,"+ctx.Test.Name+",Test Succeeded.");
                        end);
 end;
 
