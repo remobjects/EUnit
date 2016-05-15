@@ -6,7 +6,7 @@
         <OutputType>exe</OutputType>
         <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
         <AllowLegacyCreate>False</AllowLegacyCreate>
-        <Name>Cooper.Tests</Name>
+        <Name>EUnit.Tests.Cooper.Plain</Name>
         <RootNamespace>Cooper.Tests</RootNamespace>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

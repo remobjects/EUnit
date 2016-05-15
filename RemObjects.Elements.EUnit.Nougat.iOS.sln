@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# RemObjects Fire
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "EUnitIOSTestApplication", "..\..\..\Documents\EUnitIOSTestApplication\EUnitIOSTestApplication.elements", "{227935BE-4649-4522-ABE6-46AB028673AC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BC3B72A8-41A6-46EB-9544-FE8EE56F5FD1} = {BC3B72A8-41A6-46EB-9544-FE8EE56F5FD1}
+	EndProjectSection
+EndProject
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (iOS)", "RemObjects.Elements.EUnit.Nougat.iOS.elements", "{BC3B72A8-41A6-46EB-9544-FE8EE56F5FD1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AnyCPU = Debug|AnyCPU
+		Release|AnyCPU = Release|AnyCPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{227935BE-4649-4522-ABE6-46AB028673AC}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
+		{227935BE-4649-4522-ABE6-46AB028673AC}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
+		{227935BE-4649-4522-ABE6-46AB028673AC}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
+		{227935BE-4649-4522-ABE6-46AB028673AC}.Release|AnyCPU.Build.0 = Release|AnyCPU
+		{BC3B72A8-41A6-46EB-9544-FE8EE56F5FD1}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
+		{BC3B72A8-41A6-46EB-9544-FE8EE56F5FD1}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
+		{BC3B72A8-41A6-46EB-9544-FE8EE56F5FD1}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
+		{BC3B72A8-41A6-46EB-9544-FE8EE56F5FD1}.Release|AnyCPU.Build.0 = Release|AnyCPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

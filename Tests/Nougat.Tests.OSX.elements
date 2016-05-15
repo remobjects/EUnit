@@ -13,7 +13,7 @@
         <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
         <SDK>OS X</SDK>
         <EntitlementsFile>Entitlements.entitlements</EntitlementsFile>
-        <Name>Nougat.Tests.OSX</Name>
+        <Name>EUnit.Tests.Nougat.OSX</Name>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <Optimize>False</Optimize>

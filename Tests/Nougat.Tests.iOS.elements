@@ -14,7 +14,7 @@
         <SDK>iOS</SDK>
         <CreateAppBundle>True</CreateAppBundle>
         <InfoPListFile>.\Resources\Info.plist</InfoPListFile>
-        <Name>Nougat.Tests.iOS</Name>
+        <Name>EUnit.Tests.Nougat.iOS</Name>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <Optimize>False</Optimize>

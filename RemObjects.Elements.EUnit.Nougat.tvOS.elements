@@ -117,6 +117,7 @@
         <Compile Include="Sources\Writers\ConsoleWriter.pas"/>
         <Compile Include="Sources\Writers\StringWriter.pas"/>
         <Compile Include="Sources\Writers\Summary.pas"/>
+        <Compile Include="Sources\Utils\DefaultListener.pas"/>
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Properties\"/>

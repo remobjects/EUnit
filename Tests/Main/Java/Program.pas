@@ -3,7 +3,7 @@
 interface
 
 uses
-  remobjects.Elements.eunit,
+  RemObjects.Elements.EUnit,
   java.util;
 
 type
