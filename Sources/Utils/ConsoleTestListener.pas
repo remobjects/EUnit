@@ -19,6 +19,8 @@ type
     method TestStarted(Test: ITest); virtual;
     method TestFinished(TestResult: ITestResult); virtual;
     method RunFinished(TestResult: ITestResult); virtual;
+
+    property UseAnsiColorOutput: Boolean;
     
     constructor (aEmitParseableMessages: Boolean := false);
     begin
@@ -50,10 +52,20 @@ begin
     Output(TestResult.ParsableMessage);
   end
   else begin
+    var Failed := "Failed";
+    var Succeeded := "Succeeded";
+
+    if UseAnsiColorOutput then begin
+      Failed := #27"[1m"#27"[31mFailed"#27"[0m";
+      Succeeded := #27"[32mSucceded"#27"[0m";
+    end;
+
+    var Message: String;
     if TestResult.State = TestState.Failed then
-      Output(String.Format("{0}{1} finished. State: Failed. Message: {2}", StringOffset, TestResult.Name, TestResult.Message))
+      Message := String.Format("{0}{1} finished. State: {2}. Message: {3}", StringOffset, TestResult.Name, Failed, TestResult.Message)
     else
-      Output(String.Format("{0}{1} finished. State: Succeded.", StringOffset, TestResult.Name));
+      Message := String.Format("{0}{1} finished. State: {2}.", StringOffset, TestResult.Name, Succeeded);
+    Output(Message);
   end;
   
 end;
