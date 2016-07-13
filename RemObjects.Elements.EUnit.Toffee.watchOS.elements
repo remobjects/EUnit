@@ -52,8 +52,8 @@
         <Compile Include="Sources\Discovery\BaseDiscovery.pas"/>
         <Compile Include="Sources\Discovery\Discovery.pas"/>
         <Compile Include="Sources\Discovery\InstanceDiscovery.pas"/>
-        <Compile Include="Sources\Discovery\Nougat\ModuleDiscovery.pas"/>
-        <Compile Include="Sources\Discovery\Nougat\NougatDiscovery.pas"/>
+        <Compile Include="Sources\Discovery\Toffee\ModuleDiscovery.pas"/>
+        <Compile Include="Sources\Discovery\Toffee\ToffeeDiscovery.pas"/>
         <Compile Include="Sources\Discovery\TypeDiscovery.pas"/>
         <Compile Include="Sources\Discovery\Validation\IValidator.pas"/>
         <Compile Include="Sources\Discovery\Validation\Validator.pas"/>
@@ -123,7 +123,7 @@
         <Folder Include="Properties\"/>
         <Folder Include="Sources"/>
         <Folder Include="Sources\Asserts\Helpers"/>
-        <Folder Include="Sources\Discovery\Nougat"/>
+        <Folder Include="Sources\Discovery\Toffee"/>
         <Folder Include="Sources\Discovery\Validation\"/>
         <Folder Include="Sources\Discovery\Validators\"/>
         <Folder Include="Sources\Interfaces"/>
@@ -141,7 +141,7 @@
         <Folder Include="Sources\Utils"/>
         <Folder Include="Sources\Reflections"/>
     </ItemGroup>
-    <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Nougat.targets"/>
+    <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Toffee.targets"/>
     <PropertyGroup>
         <PreBuildEvent/>
     </PropertyGroup>

@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
     <PropertyGroup>
         <RootNamespace>RemObjects.Elements.EUnit</RootNamespace>
-        <ProjectGuid>{18e41908-be34-4c8c-9cd8-732c692d93a5}</ProjectGuid>
+        <ProjectGuid>{F3700AC2-54C1-4404-914F-ED08CBBF01E9}</ProjectGuid>
         <OutputType>StaticLibrary</OutputType>
         <AssemblyName>EUnit</AssemblyName>
         <AllowGlobals>False</AllowGlobals>
@@ -11,9 +11,9 @@
         <AllowLegacyCreate>False</AllowLegacyCreate>
         <AllowUnsafeCode>False</AllowUnsafeCode>
         <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
-        <SDK>OS X</SDK>
+        <SDK>tvOS</SDK>
         <CreateHeaderFile>True</CreateHeaderFile>
-        <Name>RemObjects.Elements.EUnit (OS X)</Name>
+        <Name>RemObjects.Elements.EUnit (tvOS)</Name>
         <GenerateDebugInfo>True</GenerateDebugInfo>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -24,16 +24,17 @@
         <XmlDocWarningLevel>WarningOnPublicMembers</XmlDocWarningLevel>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <Optimize>true</Optimize>
-        <OutputPath>.\bin\Release</OutputPath>
-        <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+        <OutputPath>bin\Release\</OutputPath>
         <CaptureConsoleOutput>False</CaptureConsoleOutput>
         <WarnOnCaseMismatch>True</WarnOnCaseMismatch>
+        <GenerateBitcode>True</GenerateBitcode>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="CoreGraphics"/>
         <Reference Include="Foundation"/>
         <Reference Include="libSugar"/>
         <Reference Include="libxml2"/>
+        <Reference Include="UIKit"/>
         <Reference Include="rtl"/>
         <Reference Include="libToffee"/>
     </ItemGroup>
@@ -51,8 +52,8 @@
         <Compile Include="Sources\Discovery\BaseDiscovery.pas"/>
         <Compile Include="Sources\Discovery\Discovery.pas"/>
         <Compile Include="Sources\Discovery\InstanceDiscovery.pas"/>
-        <Compile Include="Sources\Discovery\Nougat\ModuleDiscovery.pas"/>
-        <Compile Include="Sources\Discovery\Nougat\NougatDiscovery.pas"/>
+        <Compile Include="Sources\Discovery\Toffee\ModuleDiscovery.pas"/>
+        <Compile Include="Sources\Discovery\Toffee\ToffeeDiscovery.pas"/>
         <Compile Include="Sources\Discovery\TypeDiscovery.pas"/>
         <Compile Include="Sources\Discovery\Validation\IValidator.pas"/>
         <Compile Include="Sources\Discovery\Validation\Validator.pas"/>
@@ -122,7 +123,7 @@
         <Folder Include="Properties\"/>
         <Folder Include="Sources"/>
         <Folder Include="Sources\Asserts\Helpers"/>
-        <Folder Include="Sources\Discovery\Nougat"/>
+        <Folder Include="Sources\Discovery\Toffee"/>
         <Folder Include="Sources\Discovery\Validation\"/>
         <Folder Include="Sources\Discovery\Validators\"/>
         <Folder Include="Sources\Interfaces"/>
@@ -140,7 +141,7 @@
         <Folder Include="Sources\Utils"/>
         <Folder Include="Sources\Reflections"/>
     </ItemGroup>
-    <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Nougat.targets"/>
+    <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Toffee.targets"/>
     <PropertyGroup>
         <PreBuildEvent/>
     </PropertyGroup>

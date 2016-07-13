@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
     <PropertyGroup>
-        <RootNamespace>Nougat.Tests.OSX</RootNamespace>
-        <ProjectGuid>{9992e91c-cca6-4104-a667-ce6d3df276a6}</ProjectGuid>
+        <RootNamespace>Toffee.Tests.iOS</RootNamespace>
+        <ProjectGuid>{c527d1a4-a181-4592-97a4-f598afa9127c}</ProjectGuid>
         <OutputType>executable</OutputType>
-        <AssemblyName>Nougat.Tests.OSX</AssemblyName>
+        <AssemblyName>Toffee.Tests.iOS</AssemblyName>
         <AllowGlobals>False</AllowGlobals>
         <AllowLegacyWith>False</AllowLegacyWith>
         <AllowLegacyOutParams>False</AllowLegacyOutParams>
         <AllowLegacyCreate>False</AllowLegacyCreate>
         <AllowUnsafeCode>False</AllowUnsafeCode>
         <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
-        <SDK>OS X</SDK>
-        <EntitlementsFile>Entitlements.entitlements</EntitlementsFile>
-        <Name>EUnit.Tests.Nougat.OSX</Name>
+        <SDK>iOS</SDK>
+        <CreateAppBundle>True</CreateAppBundle>
+        <InfoPListFile>.\Resources\Info.plist</InfoPListFile>
+        <Name>EUnit.Tests.Toffee.iOS</Name>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <Optimize>False</Optimize>
@@ -30,16 +31,19 @@
         <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
         <CaptureConsoleOutput>False</CaptureConsoleOutput>
         <WarnOnCaseMismatch>True</WarnOnCaseMismatch>
+        <CreateIPA>True</CreateIPA>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="CoreGraphics"/>
         <Reference Include="Foundation"/>
         <Reference Include="libSugar"/>
         <Reference Include="libxml2"/>
+        <Reference Include="UIKit"/>
         <Reference Include="rtl"/>
-        <Reference Include="libNougat"/>
+        <Reference Include="libToffee"/>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Main\OSX\Program.pas"/>
+        <Compile Include="Main\iOS\Program.pas"/>
         <Compile Include="Sources\Asserts\Assert.pas"/>
         <Compile Include="Sources\Asserts\BooleanAssert.pas"/>
         <Compile Include="Sources\Asserts\DoubleAssert.pas"/>
@@ -59,23 +63,51 @@
         <Compile Include="Sources\Utils\ListenerCapture.pas"/>
     </ItemGroup>
     <ItemGroup>
+        <Content Include="Resources\Info.plist"/>
+        <AppResource Include="Resources\App Icons\App-29.png"/>
+        <AppResource Include="Resources\App Icons\App-40.png"/>
+        <AppResource Include="Resources\App Icons\App-48.png"/>
+        <AppResource Include="Resources\App Icons\App-57.png"/>
+        <AppResource Include="Resources\App Icons\App-58.png"/>
+        <AppResource Include="Resources\App Icons\App-72.png"/>
+        <AppResource Include="Resources\App Icons\App-76.png"/>
+        <AppResource Include="Resources\App Icons\App-80.png"/>
+        <AppResource Include="Resources\App Icons\App-96.png"/>
+        <AppResource Include="Resources\App Icons\App-114.png"/>
+        <AppResource Include="Resources\App Icons\App-120.png"/>
+        <AppResource Include="Resources\App Icons\App-144.png"/>
+        <AppResource Include="Resources\App Icons\App-152.png"/>
+        <None Include="Resources\App Icons\App-512.png"/>
+        <None Include="Resources\App Icons\App-1024.png"/>
+        <AppResource Include="Resources\Launch Images\Default.png"/>
+        <AppResource Include="Resources\Launch Images\Default@2x.png"/>
+        <AppResource Include="Resources\Launch Images\Default-568h@2x.png"/>
+        <AppResource Include="Resources\Launch Images\Default-Portrait.png"/>
+        <AppResource Include="Resources\Launch Images\Default-Portrait@2x.png"/>
+        <AppResource Include="Resources\Launch Images\Default-Landscape.png"/>
+        <AppResource Include="Resources\Launch Images\Default-Landscape@2x.png"/>
+    </ItemGroup>
+    <ItemGroup>
         <Folder Include="Main\"/>
         <Folder Include="Properties\"/>
-        <Folder Include="Main\OSX\"/>
+        <Folder Include="Main\iOS\"/>
         <Folder Include="Sources\"/>
         <Folder Include="Sources\Asserts"/>
         <Folder Include="Sources\InternalTests"/>
         <Folder Include="Sources\Runner"/>
         <Folder Include="Sources\Utils"/>
+        <Folder Include="Resources\"/>
+        <Folder Include="Resources\App Icons\"/>
+        <Folder Include="Resources\Launch Images\"/>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Nougat.OSX.elements">
-            <Name>RemObjects.Elements.EUnit.Nougat.OSX</Name>
-            <Project>{18e41908-be34-4c8c-9cd8-732c692d93a5}</Project>
-            <HintPath>..\bin\Debug\OS X\libEUnit.fx</HintPath>
+        <ProjectReference Include="..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Toffee.iOS.elements">
+            <Name>RemObjects.Elements.EUnit.Toffee.iOS</Name>
+            <Project>{bc3b72a8-41a6-46eb-9544-fe8ee56f5fd1}</Project>
+            <HintPath>..\bin\Debug\iOS Simulator\libEUnit.fx</HintPath>
         </ProjectReference>
     </ItemGroup>
-    <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Nougat.targets"/>
+    <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Toffee.targets"/>
     <PropertyGroup>
         <PreBuildEvent/>
     </PropertyGroup>
