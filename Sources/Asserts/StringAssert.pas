@@ -31,7 +31,7 @@ begin
     FailComparison(Actual, Expected, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
 
   if IgnoreCase then
-    FailComparisonIfNot(Expected.EqualsIgnoreCase(Actual), Actual, Expected, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod)
+    FailComparisonIfNot(Expected.EqualsIgnoringCase(Actual), Actual, Expected, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod)
   else
     FailComparisonIfNot(Expected.Equals(Actual), Actual, Expected, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
 end;
@@ -45,7 +45,7 @@ begin
     exit;
 
   if IgnoreCase then
-    FailComparisonIf(Expected.EqualsIgnoreCase(Actual), Actual, Expected, coalesce(Message, AssertMessages.Equal), aFile, aLine, aClass, aMethod)
+    FailComparisonIf(Expected.EqualsIgnoringCase(Actual), Actual, Expected, coalesce(Message, AssertMessages.Equal), aFile, aLine, aClass, aMethod)
   else
     FailComparisonIf(Expected.Equals(Actual), Actual, Expected, coalesce(Message, AssertMessages.Equal), aFile, aLine, aClass, aMethod);
 end;
