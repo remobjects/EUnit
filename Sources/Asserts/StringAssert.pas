@@ -31,7 +31,7 @@ begin
     Fail(Actual, Expected, coalesce(Message, AssertMessages.NotEqual));
 
   if IgnoreCase then
-    FailIfNot(Expected.EqualsIgnoreCase(Actual), Actual, Expected, coalesce(Message, AssertMessages.NotEqual))
+    FailIfNot(Expected.EqualsIgnoringCase(Actual), Actual, Expected, coalesce(Message, AssertMessages.NotEqual))
   else
     FailIfNot(Expected.Equals(Actual), Actual, Expected, coalesce(Message, AssertMessages.NotEqual));
 end;
@@ -45,7 +45,7 @@ begin
     exit;
 
   if IgnoreCase then
-    FailIf(Expected.EqualsIgnoreCase(Actual), Actual, Expected, coalesce(Message, AssertMessages.Equal))
+    FailIf(Expected.EqualsIgnoringCase(Actual), Actual, Expected, coalesce(Message, AssertMessages.Equal))
   else
     FailIf(Expected.Equals(Actual), Actual, Expected, coalesce(Message, AssertMessages.Equal));
 end;
