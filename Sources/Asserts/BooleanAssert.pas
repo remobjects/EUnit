@@ -6,7 +6,7 @@ uses
   Sugar;
 
 type
-  Assert = public partial static class {$IF NOUGAT}mapped to Object{$ENDIF}
+  Assert = public partial static class
   private
     method BoolToString(Value: Boolean): String;
   public

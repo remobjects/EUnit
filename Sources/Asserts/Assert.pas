@@ -7,7 +7,7 @@ uses
   Sugar.IO;
 
 type
-  Assert = public partial static class {$IF NOUGAT}mapped to Object{$ENDIF}
+  Assert = public partial static class
   private
     method FailIf(Condition: Boolean; Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
     method FailIfNot(Condition: Boolean; Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());

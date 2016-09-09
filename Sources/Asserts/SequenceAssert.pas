@@ -3,7 +3,7 @@
 interface
 
 type
-  Assert = public partial static class {$IF NOUGAT}mapped to Object{$ENDIF}
+  Assert = public partial static class
   public
     method AreEqual<T>(Actual, Expected : sequence of T; IgnoreOrder: Boolean := false; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); {$IF NOUGAT}where T is class;{$ENDIF}
     method AreNotEqual<T>(Actual, Expected: sequence of T; IgnoreOrder: Boolean := false; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); {$IF NOUGAT}where T is class;{$ENDIF}

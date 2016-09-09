@@ -6,7 +6,7 @@ uses
   RemObjects.Elements.EUnit.Reflections;
 
 type 
-  Assert = public partial static class {$IF NOUGAT}mapped to Object{$ENDIF}
+  Assert = public partial static class
   private
     method TypeToString(aType: NativeType): String;
   public
