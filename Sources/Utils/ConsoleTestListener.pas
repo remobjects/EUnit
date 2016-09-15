@@ -3,7 +3,8 @@
 interface
 
 uses
-  Sugar;
+  Sugar,
+  Sugar.Linq;
 
 type
   ConsoleTestListener = public class (IEventListener)
@@ -24,7 +25,11 @@ type
     
     constructor (aEmitParseableMessages: Boolean := false);
     begin
-      fEmitParseableMessages := aEmitParseableMessages or (length(Environment.GetEnvironmentVariable(Runner.EUNIT_PARSABLE_MESSAGES)) > 0);
+      var lHasParsableMessageEnvironmentVar := length(Environment.GetEnvironmentVariable(Runner.EUNIT_PARSABLE_MESSAGES)) > 0;
+      {$IF COCOA}
+      var lHasParsableMessageCommandlineSwitch := assigned(Foundation.NSProcessInfo.processInfo.arguments.Where(s -> s = "--"+Runner.EUNIT_PARSABLE_MESSAGES).FirstOrDefault);
+      {$ENDIF}
+      fEmitParseableMessages := aEmitParseableMessages or lHasParsableMessageEnvironmentVar {$IF COCOA}or lHasParsableMessageCommandlineSwitch{$ENDIF};
     end;
   end;
 
