@@ -3,64 +3,67 @@
 interface
 
 type
-  Assert = public partial static class {$IF NOUGAT}mapped to Object{$ENDIF}
+  Assert = public partial static class
   public
-    method AreEqual<T>(Actual, Expected : sequence of T; IgnoreOrder: Boolean := false; Message: String := nil); {$IF NOUGAT}where T is class;{$ENDIF}
-    method AreNotEqual<T>(Actual, Expected: sequence of T; IgnoreOrder: Boolean := false; Message: String := nil); {$IF NOUGAT}where T is class;{$ENDIF}
+    method AreEqual<T>(Actual, Expected : sequence of T; IgnoreOrder: Boolean := false; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); {$IF NOUGAT}where T is class;{$ENDIF}
+    method AreNotEqual<T>(Actual, Expected: sequence of T; IgnoreOrder: Boolean := false; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); {$IF NOUGAT}where T is class;{$ENDIF}
 
-    method Contains<T>(Item: T; InSequence: sequence of T; Message: String := nil); {$IF NOUGAT}where T is class;{$ENDIF} 
-    method DoesNotContains<T>(Item: T; InSequence: sequence of T; Message: String := nil); {$IF NOUGAT}where T is class;{$ENDIF}
+    method Contains<T>(Item: T; InSequence: sequence of T; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); {$IF NOUGAT}where T is class;{$ENDIF} 
+    method DoesNotContains<T>(Item: T; InSequence: sequence of T; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); {$IF NOUGAT}where T is class;{$ENDIF}
 
-    method IsEmpty<T>(Actual: sequence of T; Message: String := nil); {$IF NOUGAT}where T is class;{$ENDIF}
-    method IsNotEmpty<T>(Actual: sequence of T; Message: String := nil); {$IF NOUGAT}where T is class;{$ENDIF}
+    method IsEmpty<T>(Actual: sequence of T; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); {$IF NOUGAT}where T is class;{$ENDIF}
+    method IsNotEmpty<T>(Actual: sequence of T; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); {$IF NOUGAT}where T is class;{$ENDIF}
   end;
 
 implementation
 
-class method Assert.AreEqual<T>(Actual: sequence of T; Expected: sequence of T; IgnoreOrder: Boolean; Message: String := nil);
+method Assert.AreEqual<T>(Actual: sequence of T; Expected: sequence of T; IgnoreOrder: Boolean; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   var Error := if IgnoreOrder then SequenceHelper.Same(Actual, Expected) else SequenceHelper.Equals(Actual, Expected);
 
-  FailIfNot(Error = nil, coalesce(Message, Error));
+  FailIfNot(Error = nil, coalesce(Message, Error), aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.AreNotEqual<T>(Actual: sequence of T; Expected: sequence of T; IgnoreOrder: Boolean; Message: String := nil);
+method Assert.AreNotEqual<T>(Actual: sequence of T; Expected: sequence of T; IgnoreOrder: Boolean; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  var Error := if IgnoreOrder then SequenceHelper.Same(Actual, Expected) else SequenceHelper.Equals(Actual, Expected);
+  var Error := if IgnoreOrder then
+    SequenceHelper.Same(Actual, Expected)
+  else
+    SequenceHelper.Equals(Actual, Expected);
 
-  FailIf(Error = nil, coalesce(Message, AssertMessages.SequenceEquals));
+  FailIf(Error = nil, coalesce(Message, AssertMessages.SequenceEquals), aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.Contains<T>(Item: T; InSequence: sequence of T; Message: String := nil);
+method Assert.Contains<T>(Item: T; InSequence: sequence of T; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  ArgumentNilException.RaiseIfNil(InSequence, "InSequence"); 
+  ArgumentNilException.RaiseIfNil(InSequence, "InSequence", aFile, aLine, aClass, aMethod); 
   var Error := SequenceHelper.Contains(Item, InSequence);
 
-  FailIfNot(Error = nil, Item, "Sequence", coalesce(Message, AssertMessages.DoesNotContains));
+  FailComparisonIfNot(Error = nil, Item, "Sequence", coalesce(Message, AssertMessages.DoesNotContains), aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.DoesNotContains<T>(Item: T; InSequence: sequence of T; Message: String := nil);
+method Assert.DoesNotContains<T>(Item: T; InSequence: sequence of T; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  ArgumentNilException.RaiseIfNil(InSequence, "InSequence"); 
+  ArgumentNilException.RaiseIfNil(InSequence, "InSequence", aFile, aLine, aClass, aMethod); 
   var Error := SequenceHelper.Contains(Item, InSequence);
 
-  FailIf(Error = nil, Item, "Sequence", coalesce(Message, AssertMessages.UnexpectedContains));
+  FailComparisonIf(Error = nil, Item, "Sequence", coalesce(Message, AssertMessages.UnexpectedContains), aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.IsEmpty<T>(Actual: sequence of T; Message: String := nil);
+method Assert.IsEmpty<T>(Actual: sequence of T; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  ArgumentNilException.RaiseIfNil(Actual, "Actual"); 
+  ArgumentNilException.RaiseIfNil(Actual, "Actual", aFile, aLine, aClass, aMethod); 
 
   var Count := SequenceHelper.Count(Actual);
-  FailIfNot(Count = 0, Count, "Sequence", coalesce(Message, AssertMessages.IsNotEmpty));
+  FailComparisonIfNot(Count = 0, Count, "Sequence", coalesce(Message, AssertMessages.IsNotEmpty), aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.IsNotEmpty<T>(Actual: sequence of T; Message: String := nil);
+method Assert.IsNotEmpty<T>(Actual: sequence of T; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  ArgumentNilException.RaiseIfNil(Actual, "Actual"); 
+  ArgumentNilException.RaiseIfNil(Actual, "Actual", aFile, aLine, aClass, aMethod); 
 
   var Count := SequenceHelper.Count(Actual);
-  FailIf(Count = 0, Count, "Sequence", coalesce(Message, AssertMessages.IsEmpty));
+  FailComparisonIf(Count = 0, Count, "Sequence", coalesce(Message, AssertMessages.IsEmpty), aFile, aLine, aClass, aMethod);
 end;
 
 end.

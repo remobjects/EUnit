@@ -17,7 +17,7 @@ type
     method Run(Context: RunContext): ITestResult;
   public    
     method RunTests(Test: ITest): ITestResult;
-    method RunTests(Test: ITest) withListener(Listener: IEventListener): ITestResult;
+    method RunTests(Test: ITest) withListener(Listener: IEventListener := nil): ITestResult;
     method RunTestsAsync(Test: ITest) completionHandler(Handler: Action<ITestResult>);
     method RunTestsAsync(Test: ITest) completionHandler(Handler: Action<ITestResult>) withListener(Listener: IEventListener);
     method RunTestsAsync(Test: ITest) completionHandler(Handler: Action<ITestResult>) withListener(Listener: IEventListener) cancelationToken(Token: ICancelationToken);
@@ -30,13 +30,23 @@ begin
   exit RunTests(Test) withListener(nil);
 end;
 
-method Runner.RunTests(Test: ITest) withListener(Listener: IEventListener): ITestResult;
+method Runner.RunTests(Test: ITest) withListener(Listener: IEventListener := nil): ITestResult;
 begin
   ArgumentNilException.RaiseIfNil(Test, "Test");
+  
+  if not assigned(Listener) then
+    Listener := DefaultListener;
+  
   var Context := new RunContext(Test, Listener);
-  Listener:RunStarted(Test);
-  result := Run(Context);
-  Listener:RunFinished(result);
+  
+  if Listener is IEventListenerGUI then begin
+    RunTestsAsync(Test) completionHandler(nil) withListener(Listener);
+  end
+  else begin
+    Listener:RunStarted(Test);
+    result := Run(Context);
+    Listener:RunFinished(result);
+  end;
 end;
 
 method Runner.RunTestsAsync(Test: ITest) completionHandler(Handler: Action<ITestResult>);
@@ -52,16 +62,21 @@ end;
 method Runner.RunTestsAsync(Test: ITest) completionHandler(Handler: Action<ITestResult>) withListener(Listener: IEventListener) cancelationToken(Token: ICancelationToken);
 begin
   ArgumentNilException.RaiseIfNil(Test, "Test");
-  ArgumentNilException.RaiseIfNil(Handler, "Handler");
 
+  if Listener is IEventListenerGUI then
+    (Listener as IEventListenerGUI).PrepareGUI();
   async begin
     var Context := new RunContext(Test, Listener, Token);
     Listener:RunStarted(Test);
     var Results := Run(Context);
     Listener:RunFinished(Results);
-    if assigned(Results) then
+    if assigned(Handler) then
       Handler(Results);
+    if Listener is IEventListenerGUI then
+      (Listener as IEventListenerGUI).FinishGUI();
   end;
+  if Listener is IEventListenerGUI then
+    (Listener as IEventListenerGUI).RunGUI();
 end;
 
 class method Runner.Run(Context: RunContext): ITestResult;
@@ -70,7 +85,7 @@ begin
   Context.Listener:TestStarted(Context.Test);
   
   if Context.Test.Skip then
-    result := new TestResultNode(Context.Test, TestState.Skipped, "Skipped")
+    result := new TestResultNode(Context.Test, TestState.Skipped, "Skipped", String.Format("TEST-SKIPPED,,,{0},Test Skipped", Context.Test.Name))
   else
     case Context.Test.Kind of
       TestKind.Suite: result := RunSuite(Context);
@@ -125,7 +140,7 @@ end;
 class method Runner.RunChildren(Context: RunContext): ITestResult;
 begin
   if Context.Test.Skip then
-    exit new TestResultNode(Context.Test, TestState.Skipped, "Skipped");
+    exit new TestResultNode(Context.Test, TestState.Skipped, "Skipped", String.Format("TEST-SKIPPED,,,{0},Test Skipped", Context.Test.Name));
 
   var Node := new TestResultNode(Context.Test);
   var IsFailed: Boolean := false;  

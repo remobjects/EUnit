@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
     <PropertyGroup>
-        <RootNamespace>Nougat.Tests.iOS</RootNamespace>
+        <RootNamespace>Toffee.Tests.iOS</RootNamespace>
         <ProjectGuid>{c527d1a4-a181-4592-97a4-f598afa9127c}</ProjectGuid>
         <OutputType>executable</OutputType>
-        <AssemblyName>Nougat.Tests.iOS</AssemblyName>
+        <AssemblyName>Toffee.Tests.iOS</AssemblyName>
         <AllowGlobals>False</AllowGlobals>
         <AllowLegacyWith>False</AllowLegacyWith>
         <AllowLegacyOutParams>False</AllowLegacyOutParams>
@@ -14,7 +14,7 @@
         <SDK>iOS</SDK>
         <CreateAppBundle>True</CreateAppBundle>
         <InfoPListFile>.\Resources\Info.plist</InfoPListFile>
-        <Name>Nougat.Tests.iOS</Name>
+        <Name>EUnit.Tests.Toffee.iOS</Name>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <Optimize>False</Optimize>
@@ -40,7 +40,7 @@
         <Reference Include="libxml2"/>
         <Reference Include="UIKit"/>
         <Reference Include="rtl"/>
-        <Reference Include="libNougat"/>
+        <Reference Include="libToffee"/>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Main\iOS\Program.pas"/>
@@ -101,13 +101,13 @@
         <Folder Include="Resources\Launch Images\"/>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Nougat.iOS.elements">
-            <Name>RemObjects.Elements.EUnit.Nougat.iOS</Name>
+        <ProjectReference Include="..\..\RemObjects.Elements.EUnit\RemObjects.Elements.EUnit.Toffee.iOS.elements">
+            <Name>RemObjects.Elements.EUnit.Toffee.iOS</Name>
             <Project>{bc3b72a8-41a6-46eb-9544-fe8ee56f5fd1}</Project>
             <HintPath>..\bin\Debug\iOS Simulator\libEUnit.fx</HintPath>
         </ProjectReference>
     </ItemGroup>
-    <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Nougat.targets"/>
+    <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Toffee.targets"/>
     <PropertyGroup>
         <PreBuildEvent/>
     </PropertyGroup>

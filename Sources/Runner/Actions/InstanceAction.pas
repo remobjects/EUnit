@@ -16,7 +16,7 @@ implementation
 method InstanceAction.DoExecute(Context: RunContext);
 begin
   if Context.Instance = nil then begin
-    Context.CurrentResult := new TestResultNode(Context.Test, TestState.Failed, "Instance is missing. Unable to perform action.");
+    Context.CurrentResult := new TestResultNode(Context.Test, TestState.Failed, "Instance is missing. Unable to perform action.", nil);
     exit;
   end;
 end;

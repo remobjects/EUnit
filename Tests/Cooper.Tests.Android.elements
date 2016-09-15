@@ -6,7 +6,7 @@
         <OutputType>Library</OutputType>
         <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
         <AllowLegacyCreate>False</AllowLegacyCreate>
-        <Name>cooper.tests.android</Name>
+        <Name>EUnit.Tests.Cooper.Android</Name>
         <RootNamespace>cooper.tests.android</RootNamespace>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

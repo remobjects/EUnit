@@ -3,58 +3,58 @@
 interface
 
 uses
-  Sugar;
+  Sugar,
+  Sugar.IO;
 
 type
-  Assert = public partial static class {$IF NOUGAT}mapped to Object{$ENDIF}
+  Assert = public partial static class
   private
-    method Fail(Actual, Expected: Object; Message: String := nil);
-    method FailIf(Condition: Boolean; Message: String);
-    method FailIf(Condition: Boolean; Actual, Expected : Object; Message: String := nil);
-    method FailIfNot(Condition: Boolean; Message: String);
-    method FailIfNot(Condition: Boolean; Actual, Expected : Object; Message: String := nil);
+    method FailIf(Condition: Boolean; Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+    method FailIfNot(Condition: Boolean; Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+    method FailComparison(Actual, Expected: Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+    method FailComparisonIf(Condition: Boolean; Actual, Expected : Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+    method FailComparisonIfNot(Condition: Boolean; Actual, Expected : Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
   public
-    method Fail(Message: String);
+    method Fail(Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
   end;
 
 implementation
 
-class method Assert.Fail(Message: String);
+method Assert.Fail(Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  if Message = nil then
-    Message := AssertMessages.Unknown;
-
-  raise new AssertException(Message);
+  raise new AssertException(coalesce(Message, AssertMessages.Unknown), aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.Fail(Actual: Object; Expected: Object; Message: String);
+method Assert.FailComparison(Actual: Object; Expected: Object; Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  if Message = nil then
-    Message := AssertMessages.Unknown;
+  if not assigned(Message) then
+    Message := AssertMessages.Unknown2;
 
-  Fail(String.Format(Message, coalesce(Actual, "(nil)"), coalesce(Expected, "(nil)")));
+  Fail(String.Format(Message, coalesce(Actual, "(nil)"), coalesce(Expected, "(nil)")), aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.FailIf(Condition: Boolean; Message: String);
+method Assert.FailIf(Condition: Boolean; Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   if Condition then
-    Fail(Message);
+    Fail(Message, aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.FailIf(Condition: Boolean; Actual: Object; Expected: Object; Message: String := nil);
+method Assert.FailIfNot(Condition: Boolean; Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+begin
+  if not Condition then
+  Fail(Message, aFile, aLine, aClass, aMethod);
+end;
+
+method Assert.FailComparisonIf(Condition: Boolean; Actual: Object; Expected: Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   if Condition then
-    Fail(Actual, Expected, Message);
+    FailComparison(Actual, Expected, Message, aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.FailIfNot(Condition: Boolean; Message: String);
+method Assert.FailComparisonIfNot(Condition: Boolean; Actual: Object; Expected: Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  FailIf(not Condition, Message);
-end;
-
-class method Assert.FailIfNot(Condition: Boolean; Actual: Object; Expected: Object; Message: String := nil);
-begin
-  FailIf(not Condition, Actual, Expected, Message);
+  if not Condition then
+    FailComparison(Actual, Expected, Message, aFile, aLine, aClass, aMethod);
 end;
 
 end.

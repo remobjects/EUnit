@@ -6,92 +6,92 @@ uses
   Sugar;
 
 type
-  Assert = public partial static class {$IF NOUGAT}mapped to Object{$ENDIF}
+  Assert = public partial static class
   public
-    method AreEqual(Actual, Expected : String; IgnoreCase: Boolean := false; Message: String := nil);
-    method AreNotEqual(Actual, Expected: String; IgnoreCase: Boolean := false; Message: String := nil);    
-    method Contains(SubString, InString: String; Message: String := nil);
-    method DoesNotContains(SubString, InString: String; Message: String := nil);
+    method AreEqual(Actual, Expected : String; IgnoreCase: Boolean := false; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+    method AreNotEqual(Actual, Expected: String; IgnoreCase: Boolean := false; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());    
+    method Contains(SubString, InString: String; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+    method DoesNotContains(SubString, InString: String; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 
-    method StartsWith(Prefix, SourceString: String; Message: String := nil);
-    method EndsWith(Suffix, SourceString: String; Message: String := nil);
+    method StartsWith(Prefix, SourceString: String; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+    method EndsWith(Suffix, SourceString: String; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 
-    method IsEmpty(Actual: String; Message: String := nil);
-    method IsNotEmpty(Actual: String; Message: String := nil);
+    method IsEmpty(Actual: String; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+    method IsNotEmpty(Actual: String; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
   end;
 
 implementation
 
-class method Assert.AreEqual(Actual: String; Expected: String; IgnoreCase: Boolean := false; Message: String := nil);
+method Assert.AreEqual(Actual: String; Expected: String; IgnoreCase: Boolean := false; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   if (Expected = nil) and (Actual = nil) then
     exit;
 
   if (Expected = nil) and (Actual <> nil) then
-    Fail(Actual, Expected, coalesce(Message, AssertMessages.NotEqual));
+    FailComparison(Actual, Expected, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
 
   if IgnoreCase then
-    FailIfNot(Expected.EqualsIgnoringCase(Actual), Actual, Expected, coalesce(Message, AssertMessages.NotEqual))
+    FailComparisonIfNot(Expected.EqualsIgnoringCase(Actual), Actual, Expected, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod)
   else
-    FailIfNot(Expected.Equals(Actual), Actual, Expected, coalesce(Message, AssertMessages.NotEqual));
+    FailComparisonIfNot(Expected.Equals(Actual), Actual, Expected, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.AreNotEqual(Actual: String; Expected: String; IgnoreCase: Boolean := false; Message: String := nil);
+method Assert.AreNotEqual(Actual: String; Expected: String; IgnoreCase: Boolean := false; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   if (Expected = nil) and (Actual = nil) then
-    Fail(Actual, Expected, coalesce(Message, AssertMessages.Equal));
+    FailComparison(Actual, Expected, coalesce(Message, AssertMessages.Equal), aFile, aLine, aClass, aMethod);
 
   if (Expected = nil) and (Actual <> nil) then
     exit;
 
   if IgnoreCase then
-    FailIf(Expected.EqualsIgnoringCase(Actual), Actual, Expected, coalesce(Message, AssertMessages.Equal))
+    FailComparisonIf(Expected.EqualsIgnoringCase(Actual), Actual, Expected, coalesce(Message, AssertMessages.Equal), aFile, aLine, aClass, aMethod)
   else
-    FailIf(Expected.Equals(Actual), Actual, Expected, coalesce(Message, AssertMessages.Equal));
+    FailComparisonIf(Expected.Equals(Actual), Actual, Expected, coalesce(Message, AssertMessages.Equal), aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.Contains(SubString: String; InString: String; Message: String := nil);
+method Assert.Contains(SubString: String; InString: String; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   ArgumentNilException.RaiseIfNil(InString, "InString");
   ArgumentNilException.RaiseIfNil(SubString, "SubString");
 
-  FailIfNot(InString.Contains(SubString), SubString, "String", coalesce(Message, AssertMessages.DoesNotContains));
+  FailComparisonIfNot(InString.Contains(SubString), SubString, "String", coalesce(Message, AssertMessages.DoesNotContains), aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.DoesNotContains(SubString: String; InString: String; Message: String := nil);
+method Assert.DoesNotContains(SubString: String; InString: String; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   ArgumentNilException.RaiseIfNil(InString, "InString");
   ArgumentNilException.RaiseIfNil(SubString, "SubString");
 
-  FailIf(InString.Contains(SubString), SubString, "String", coalesce(Message, AssertMessages.UnexpectedContains));
+  FailComparisonIf(InString.Contains(SubString), SubString, "String", coalesce(Message, AssertMessages.UnexpectedContains), aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.StartsWith(Prefix: String; SourceString: String; Message: String := nil);
+method Assert.StartsWith(Prefix: String; SourceString: String; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   ArgumentNilException.RaiseIfNil(Prefix, "Prefix"); 
   ArgumentNilException.RaiseIfNil(SourceString, "SourceString"); 
 
-  FailIfNot(SourceString.StartsWith(Prefix), Prefix, SourceString, coalesce(Message, AssertMessages.StringPrefixMissing));
+  FailComparisonIfNot(SourceString.StartsWith(Prefix), Prefix, SourceString, coalesce(Message, AssertMessages.StringPrefixMissing), aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.EndsWith(Suffix: String; SourceString: String; Message: String := nil);
+method Assert.EndsWith(Suffix: String; SourceString: String; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   ArgumentNilException.RaiseIfNil(Suffix, "Suffix"); 
   ArgumentNilException.RaiseIfNil(SourceString, "SourceString"); 
 
-  FailIfNot(SourceString.EndsWith(Suffix), Suffix, SourceString, coalesce(Message, AssertMessages.StringSufixMissing));
+  FailComparisonIfNot(SourceString.EndsWith(Suffix), Suffix, SourceString, coalesce(Message, AssertMessages.StringSufixMissing));
 end;
 
-class method Assert.IsEmpty(Actual: String; Message: String := nil);
+method Assert.IsEmpty(Actual: String; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   ArgumentNilException.RaiseIfNil(Actual, "Actual");
-  FailIfNot(Actual.Length = 0, Actual, "String", coalesce(Message, AssertMessages.IsNotEmpty));
+  FailComparisonIfNot(Actual.Length = 0, Actual, "String", coalesce(Message, AssertMessages.IsNotEmpty), aFile, aLine, aClass, aMethod);
 end;
 
-class method Assert.IsNotEmpty(Actual: String; Message: String := nil);
+  method Assert.IsNotEmpty(Actual: String; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   ArgumentNilException.RaiseIfNil(Actual, "Actual");
-  FailIfNot(Actual.Length <> 0, Actual, "String", coalesce(Message, AssertMessages.IsEmpty));
+  FailComparisonIfNot(Actual.Length <> 0, Actual, "String", coalesce(Message, AssertMessages.IsEmpty), aFile, aLine, aClass, aMethod);
 end;
 
 end.

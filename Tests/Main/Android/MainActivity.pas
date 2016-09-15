@@ -5,7 +5,7 @@ interface
 uses
   java.util,
   android.app,
-  RemObjects.Elements.eunit,
+  RemObjects.Elements.EUnit,
   android.content,
   android.os,
   android.util,
