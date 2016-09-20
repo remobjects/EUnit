@@ -123,7 +123,7 @@ type
     method RunGUI;
     begin
       TableViewTestListenerAppDelegate.Listener := self;
-      UIApplicationMain(0, nil, nil, nameOf(TableViewTestListenerAppDelegate))
+      //UIApplicationMain(0, nil, nil, nameOf(TableViewTestListenerAppDelegate))
     end;
     
     method FinishGUI;
@@ -135,6 +135,7 @@ type
     
   end;
   
+  [UIApplicationMain, IBObject]
   TableViewTestListenerAppDelegate = public class
 
     property window: UIWindow;
