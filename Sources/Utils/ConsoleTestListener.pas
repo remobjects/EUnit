@@ -22,7 +22,7 @@ type
 
     property UseAnsiColorOutput: Boolean;
     class property EmitParseableMessages: Boolean; readonly;
-    class property EmitParseableSucccessMessages: Boolean; readonly;
+    class property EmitParseableSuccessMessages: Boolean; readonly;
     
     class constructor;
     begin
@@ -31,7 +31,7 @@ type
       var lHasParsableMessageCommandlineSwitch := assigned(Foundation.NSProcessInfo.processInfo.arguments.Where(s -> s = "--"+Runner.EUNIT_PARSABLE_MESSAGES).FirstOrDefault);
       {$ENDIF}
       EmitParseableMessages := lHasParsableMessageEnvironmentVar {$IF COCOA}or lHasParsableMessageCommandlineSwitch{$ENDIF};
-      EmitParseableSucccessMessages := false; // for now
+      EmitParseableSuccessMessages := false; // for now
     end;
     
   end;
