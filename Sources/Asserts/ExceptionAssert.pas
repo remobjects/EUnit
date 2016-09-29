@@ -38,7 +38,7 @@ method Assert.Throws(Action: AssertAction; OfType: NativeType; Message: String :
 begin
   var Ex := ExceptionHelper.CatchException(Action);
 
-  FailIf(Ex = nil, coalesce(Message, AssertMessages.NoException), aFile, aLine, aClass, aMethod);
+  FailIf(Ex = nil, coalesce(Message, AssertMessages.NoException), aFile, aLine, aClass, aMethod, false);
   FailComparisonIfNot(typeOf(Ex) = OfType, TypeToString(typeOf(Ex)), TypeToString(OfType), coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
 end;
 

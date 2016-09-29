@@ -11,9 +11,8 @@ type
 
     class method GetDefaultListener: IEventListener;
     begin
-      //if length(Environment.GetEnvironmentVariable(EUNIT_PARSABLE_MESSAGES)) > 0 then // E399 No overloaded method "length" with 1 parameter on type "not nullable Class"
-      if RemObjects.Elements.System.length(Environment.GetEnvironmentVariable(EUNIT_PARSABLE_MESSAGES)) > 0 then
-        exit new ConsoleTestListener(true);
+      if ConsoleTestListener.EmitParseableMessages then
+        exit new ConsoleTestListener();
         
       {$IF IOS}
       result := new TableViewTestListener();

@@ -10,7 +10,6 @@ type
   ConsoleTestListener = public class (IEventListener)
   private
     Offset: Integer;
-    fEmitParseableMessages: Boolean;
     method StringOffset: String;
     method StateToString(State: TestState): String;
   protected
@@ -22,15 +21,19 @@ type
     method RunFinished(TestResult: ITestResult); virtual;
 
     property UseAnsiColorOutput: Boolean;
+    class property EmitParseableMessages: Boolean; readonly;
+    class property EmitParseableSucccessMessages: Boolean; readonly;
     
-    constructor (aEmitParseableMessages: Boolean := false);
+    class constructor;
     begin
       var lHasParsableMessageEnvironmentVar := length(Environment.GetEnvironmentVariable(Runner.EUNIT_PARSABLE_MESSAGES)) > 0;
       {$IF COCOA}
       var lHasParsableMessageCommandlineSwitch := assigned(Foundation.NSProcessInfo.processInfo.arguments.Where(s -> s = "--"+Runner.EUNIT_PARSABLE_MESSAGES).FirstOrDefault);
       {$ENDIF}
-      fEmitParseableMessages := aEmitParseableMessages or lHasParsableMessageEnvironmentVar {$IF COCOA}or lHasParsableMessageCommandlineSwitch{$ENDIF};
+      EmitParseableMessages := lHasParsableMessageEnvironmentVar {$IF COCOA}or lHasParsableMessageCommandlineSwitch{$ENDIF};
+      EmitParseableSucccessMessages := false; // for now
     end;
+    
   end;
 
 implementation
@@ -53,7 +56,7 @@ begin
   if TestResult.Test.Kind <> TestKind.Testcase then
       dec(Offset, 2);
 
-  if fEmitParseableMessages then begin
+  if EmitParseableMessages then begin
     Output(TestResult.ParsableMessage);
   end
   else begin
@@ -82,7 +85,7 @@ end;
 
 method ConsoleTestListener.RunFinished(TestResult: ITestResult);
 begin
-  if fEmitParseableMessages then begin
+  if EmitParseableMessages then begin
   end
   else begin
     Output("======================================");
@@ -107,7 +110,7 @@ begin
   if (Test.Kind = TestKind.Testcase) or (Test.Skip) then
     exit;
   
-  if not fEmitParseableMessages then
+  if not EmitParseableMessages then
     Output(String.Format("{0}{1} started", StringOffset, Test.Name));
   inc(Offset, 2);
 end;
