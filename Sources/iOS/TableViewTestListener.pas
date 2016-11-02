@@ -19,7 +19,7 @@ type
     
   protected
 
-    method numberOfSectionsInTableView(tableView: UITableView): Integer;
+    method numberOfSectionsInTableView(tableView: UITableView): NSInteger;
     begin
       result := 1;
     end;
