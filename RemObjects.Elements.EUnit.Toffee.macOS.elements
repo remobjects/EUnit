@@ -15,6 +15,7 @@
         <CreateHeaderFile>True</CreateHeaderFile>
         <Name>RemObjects.Elements.EUnit (macOS)</Name>
         <GenerateDebugInfo>True</GenerateDebugInfo>
+        <MangleTypeNames>True</MangleTypeNames>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <Optimize>False</Optimize>
