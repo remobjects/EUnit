@@ -20,7 +20,7 @@ implementation
 method Assert.AreEqual(Actual: Object; Expected: Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   if Expected = nil then begin
-    IsNil(Actual, aFile, aLine, aClass, aMethod);
+    IsNil(Actual, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
     exit;
   end;
 
@@ -30,7 +30,7 @@ end;
 method Assert.AreNotEqual(Actual: Object; Expected: Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   if Expected = nil then begin
-    IsNotNil(Actual, aFile, aLine, aClass, aMethod);
+    IsNotNil(Actual, coalesce(Message, AssertMessages.Equal), aFile, aLine, aClass, aMethod);
     exit;
   end;
 
