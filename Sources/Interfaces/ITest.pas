@@ -3,8 +3,7 @@
 interface
 
 uses
-  RemObjects.Elements.EUnit.Reflections,
-  Sugar;
+  RemObjects.Elements.EUnit.Reflections;
 
 type
   ITest = public interface

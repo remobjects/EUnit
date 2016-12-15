@@ -2,10 +2,6 @@
 
 interface
 
-uses
-  Sugar,
-  Sugar.IO;
-
 type
   Assert = public partial static class
   private

@@ -2,10 +2,6 @@
 
 interface
 
-uses
-  Sugar,
-  Sugar.Collections;
-
 type
   TestResultNode = assembly class (ITestResult)
   private

@@ -3,9 +3,7 @@
 interface
 
 uses
-  RemObjects.Elements.EUnit.Reflections,
-  Sugar,
-  Sugar.Collections;
+  RemObjects.Elements.EUnit.Reflections;
 
 type
   Runner = public static class

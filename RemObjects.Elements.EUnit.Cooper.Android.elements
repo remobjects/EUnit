@@ -9,6 +9,7 @@
         <Name>RemObjects.Elements.EUnit (Android)</Name>
         <RootNamespace>RemObjects.Elements.EUnit</RootNamespace>
         <AssemblyName>RemObjects.Elements.EUnit</AssemblyName>
+        <DefaultUses>remobjects.elements.rtl</DefaultUses>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <Optimize>False</Optimize>
@@ -43,7 +44,9 @@
     <ItemGroup>
         <Reference Include="android"/>
         <Reference Include="cooper"/>
-        <Reference Include="sugar"/>
+        <Reference Include="elements">
+            <Private>True</Private>
+        </Reference>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Sources\Asserts\Assert.pas"/>

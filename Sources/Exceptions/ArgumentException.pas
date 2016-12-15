@@ -2,9 +2,6 @@
 
 interface
 
-uses
-  Sugar;
-
 type
   ArgumentException = public class (BaseException)
   public

@@ -2,9 +2,6 @@
 
 interface
 
-uses
-  Sugar;
-
 type
   Runner_DefaultListener = public extension class(Runner)
   private

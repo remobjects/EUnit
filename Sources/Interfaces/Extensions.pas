@@ -2,9 +2,6 @@
 
 interface
 
-uses
-  Sugar.Collections;
-
 extension method ITestResult.ToSequence: sequence of ITestResult;
 extension method ITestResult.Where(Predicate: Predicate<ITestResult>): sequence of ITestResult;
 extension method sequence of ITestResult.First(Predicate: Predicate<ITestResult>): ITestResult;
@@ -15,7 +12,7 @@ implementation
 
 extension method ITestResult.ToSequence: sequence of ITestResult;
 var
-  List: Sugar.Collections.List<ITestResult> := new Sugar.Collections.List<ITestResult>;
+  List: List<ITestResult> := new List<ITestResult>;
 
   method Update(Item: ITestResult);
   begin
@@ -32,7 +29,7 @@ end;
 extension method ITestResult.Where(Predicate: Predicate<ITestResult>): sequence of ITestResult;
 begin
   ArgumentNilException.RaiseIfNil(Predicate, "Predicate");
-  var List := new Sugar.Collections.List<ITestResult>;
+  var List := new List<ITestResult>;
 
   for item in self.ToSequence do
     if Predicate(item) then

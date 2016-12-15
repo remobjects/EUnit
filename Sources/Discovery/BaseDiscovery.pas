@@ -2,10 +2,6 @@
 
 interface
 
-uses
-  Sugar,
-  Sugar.Collections;
-
 type
   BaseDiscovery = assembly abstract class (IDiscovery)  
   protected

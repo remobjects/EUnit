@@ -14,6 +14,7 @@
         <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
         <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
         <Name>RemObjects.Elements.EUnit (.NET)</Name>
+        <DefaultUses>RemObjects.Elements.RTL</DefaultUses>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <Optimize>False</Optimize>
@@ -48,11 +49,13 @@
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="mscorlib"/>
-        <Reference Include="Sugar"/>
         <Reference Include="System"/>
         <Reference Include="System.Data"/>
         <Reference Include="System.Core">
             <RequiredTargetFramework>3.5</RequiredTargetFramework>
+        </Reference>
+        <Reference Include="Elements">
+            <Private>True</Private>
         </Reference>
     </ItemGroup>
     <ItemGroup>

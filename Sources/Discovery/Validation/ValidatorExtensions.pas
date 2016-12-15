@@ -3,8 +3,7 @@
 interface
 
 uses
-  RemObjects.Elements.EUnit,
-  Sugar.Collections;
+  RemObjects.Elements.EUnit;
 
 extension method IValidator<T>.And(Other: IValidator<T>): IValidator<T>;
 extension method IValidator<T>.AndNot(Other: IValidator<T>): IValidator<T>;

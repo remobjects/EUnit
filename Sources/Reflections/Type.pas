@@ -4,8 +4,7 @@ interface
 
 uses
   {$IF NETFX_CORE}System.Reflection,{$ENDIF}
-  Sugar,
-  Sugar.Collections,
+  RemObjects.Elements.RTL,
   RemObjects.Elements.EUnit;
 
 type

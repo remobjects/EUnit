@@ -3,7 +3,6 @@
 interface
 
 uses
-  Sugar.Collections,
   java.util.jar,
   RemObjects.Elements.EUnit.Reflections;
 
@@ -54,7 +53,7 @@ begin
     var Item := Res.nextElement;
     var DecodedPath  := java.net.URLDecoder.decode(Item.Path, "utf-8");
     var Path := DecodedPath.replaceFirst("[.]jar[!].*", ".jar").replaceFirst("file:", "");
-    List.AddRange(ListClasses(Path, PackageName));
+    List.Add(ListClasses(Path, PackageName));
   end;
 
   exit List.ToArray;

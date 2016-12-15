@@ -3,7 +3,6 @@
 interface
 
 uses
-  Sugar,
   RemObjects.Elements.EUnit.Reflections,
   RemObjects.Elements.EUnit.Validation;
 
@@ -40,7 +39,7 @@ begin
   fValidator := fValidator.AndNot(item -> Item.Name.Equals("SetupTest") or Item.Name.Equals("TeardownTest") or
      Item.Name.Equals("Setup") or Item.Name.Equals("Teardown"));
   //Prefix
-  fValidator := fValidator.AndNot(item -> Sugar.String(Item.Name).StartsWith("."));
+  fValidator := fValidator.AndNot(item -> Item.Name.StartsWith("."));
 end;
 
 end.

@@ -1,9 +1,5 @@
 ﻿namespace RemObjects.Elements.EUnit;
 
-uses
-  Sugar,
-  Sugar.IO;
-
 type
   BaseException = public class({$IF NOUGAT}Foundation.NSException{$ELSE}Exception{$ENDIF})
   public
@@ -14,7 +10,7 @@ type
       if assigned(aFile) and (aLine > 0) then
         lPlainMessage := String.Format("{0} ({1} line {2})", lPlainMessage, Path.GetFileName(aFile), aLine);
       {$IF NOUGAT}
-      inherited initWithName('SugarTestException') reason(lPlainMessage) userInfo(nil);
+      inherited initWithName('EUnitTestException') reason(lPlainMessage) userInfo(nil);
       {$ELSE}
       inherited constructor(lPlainMessage);
       {$ENDIF}

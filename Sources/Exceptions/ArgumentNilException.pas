@@ -2,9 +2,6 @@
 
 interface
 
-uses
-  Sugar;
-
 type
   ArgumentNilException = public class (ArgumentException)
   public

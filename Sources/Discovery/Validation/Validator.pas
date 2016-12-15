@@ -3,9 +3,7 @@
 interface
 
 uses
-  RemObjects.Elements.EUnit,
-  Sugar,
-  Sugar.Collections;
+  RemObjects.Elements.EUnit;
 
 type
   Validator<T> = public class (IValidator<T>)

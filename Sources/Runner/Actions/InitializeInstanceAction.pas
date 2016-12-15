@@ -3,7 +3,7 @@
 interface
 
 uses
-  Sugar,
+  RemObjects.Elements.RTL,
   RemObjects.Elements.EUnit.Reflections;
 
 type

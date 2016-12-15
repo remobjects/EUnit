@@ -2,10 +2,6 @@
 
 interface
 
-uses
-  Sugar,
-  Sugar.Collections;
-
 type
   SequenceHelper = public static class
   public

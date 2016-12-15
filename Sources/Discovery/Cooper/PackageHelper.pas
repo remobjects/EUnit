@@ -3,9 +3,7 @@
 interface
 
 uses
-  java.util.jar,
-  Sugar,
-  Sugar.collections;
+  java.util.jar;
 
 type
   PackageHelper = assembly static class
@@ -49,7 +47,7 @@ begin
     var Item := Res.nextElement;
     var DecodedPath  := java.net.URLDecoder.decode(Item.Path, "utf-8");
     var Path := DecodedPath.replaceFirst("[.]jar[!].*", ".jar").replaceFirst("file:", "");
-    List.AddRange(ListClasses(Path, PackageName));
+    List.Add(ListClasses(Path, PackageName));
   end;
 
   exit List;
@@ -70,7 +68,7 @@ begin
     var lPackage := Packages[i];
 
     if lPackage.ImplementationVendor <> "Oracle Corporation" then
-      lTypes.AddRange(LoadClasses(lPackage));
+      lTypes.Add(LoadClasses(lPackage));
   end;    
 
   exit lTypes;

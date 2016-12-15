@@ -2,9 +2,6 @@
 
 interface
 
-uses
-  Sugar.Collections;
-
 type
   Summary = assembly class
   private

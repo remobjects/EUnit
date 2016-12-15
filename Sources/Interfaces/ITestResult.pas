@@ -2,9 +2,6 @@
 
 interface
 
-uses
-  Sugar;
-
 type
   ITestResult = public interface
     property Id: String read;

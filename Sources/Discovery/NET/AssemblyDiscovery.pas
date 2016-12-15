@@ -2,9 +2,6 @@
 
 interface
 
-uses
-  Sugar.Collections;
-
 type
   AssemblyDiscovery = assembly class (BaseDiscovery)
   private
@@ -32,7 +29,7 @@ begin
       exit;
 
     var TypeDiscovery := new TypeDiscovery(asm.GetTypes);
-    result.AddRange(TypeDiscovery.Filter);
+    result.Add(TypeDiscovery.Filter);
   end;
 end;
 

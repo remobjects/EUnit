@@ -4,9 +4,7 @@ interface
 
 uses
   RemObjects.Elements.EUnit.Reflections,
-  RemObjects.Elements.EUnit.Validation,
-  Sugar,
-  Sugar.Collections;
+  RemObjects.Elements.EUnit.Validation;
 
 type
   TypeDiscovery = assembly class (BaseDiscovery)

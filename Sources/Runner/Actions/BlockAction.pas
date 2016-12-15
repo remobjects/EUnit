@@ -3,7 +3,7 @@
 interface
 
 uses
-  Sugar.Collections;
+  RemObjects.Elements.RTL;
 
 type
   BlockAction = assembly class (BaseAction)

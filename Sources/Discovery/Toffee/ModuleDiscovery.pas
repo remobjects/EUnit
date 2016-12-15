@@ -3,8 +3,7 @@
 interface
 
 uses
-  RemObjects.Elements.EUnit.Reflections,
-  Sugar.Collections;
+  RemObjects.Elements.EUnit.Reflections;
 
 type
   ModuleDiscovery = assembly class (BaseDiscovery)
@@ -36,7 +35,7 @@ begin
       if Super = Test.class then begin
         var Instance := Foundation.NSClassFromString(class_getName(lClass)).alloc.init;
         var Abc := new InstanceDiscovery([Instance]);
-        result.AddRange(Abc.Filter);
+        result.Add(Abc.Filter);
         break;
       end;
 

@@ -2,9 +2,6 @@
 
 interface
 
-uses
-  Sugar.Collections;
-
 type
   IDiscovery = public interface
     method Discover: ITest;

@@ -2,9 +2,6 @@
 
 interface
 
-uses
-  Sugar.Collections;
-
 type
   TestSuiteNode = assembly class (TestNode)
   private

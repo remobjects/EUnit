@@ -3,8 +3,7 @@
 interface
 
 uses
-  System.Reflection,
-  Sugar.Collections;
+  System.Reflection;
 
 type
   Discovery = public partial static class

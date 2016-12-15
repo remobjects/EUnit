@@ -4,8 +4,7 @@ interface
 
 uses
   {$IF NETFX_CORE}System.Reflection,{$ENDIF}
-  RemObjects.Elements.EUnit.Reflections,
-  Sugar.Collections;
+  RemObjects.Elements.EUnit.Reflections;
 
 type
   Discovery = public partial static class

@@ -3,7 +3,6 @@
 interface
 
 uses
-  Sugar.Collections,
   android.content,
   RemObjects.Elements.EUnit.Reflections;
 

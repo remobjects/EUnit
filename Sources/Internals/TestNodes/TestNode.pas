@@ -3,8 +3,7 @@
 interface
 
 uses
-  RemObjects.Elements.EUnit.Reflections,
-  Sugar;
+  RemObjects.Elements.EUnit.Reflections;
 
 type
   TestNode = assembly abstract class (ITest)

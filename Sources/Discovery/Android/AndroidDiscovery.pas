@@ -2,9 +2,6 @@
 
 interface
 
-uses
-  Sugar.Collections;
-
 type
   Discovery = public partial static class
   public

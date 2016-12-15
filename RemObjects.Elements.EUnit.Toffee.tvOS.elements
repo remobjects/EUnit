@@ -16,6 +16,7 @@
         <Name>RemObjects.Elements.EUnit (tvOS)</Name>
         <GenerateDebugInfo>True</GenerateDebugInfo>
         <MangleTypeNames>True</MangleTypeNames>
+        <DefaultUses>RemObjects.Elements.RTL;RemObjects.Elements.RTL.Linq</DefaultUses>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <Optimize>False</Optimize>
@@ -33,11 +34,10 @@
     <ItemGroup>
         <Reference Include="CoreGraphics"/>
         <Reference Include="Foundation"/>
-        <Reference Include="libSugar"/>
-        <Reference Include="libxml2"/>
         <Reference Include="UIKit"/>
         <Reference Include="rtl"/>
         <Reference Include="libToffee"/>
+        <Reference Include="libElements"/>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Sources\Asserts\Assert.pas"/>

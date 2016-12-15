@@ -2,9 +2,6 @@
 
 interface
 
-uses
-  Sugar;
-
 type  
   Hasher = public static class
   assembly
