@@ -21,6 +21,7 @@
     <Name>RemObjects.Elements.EUnit.WP8</Name>
     <AllowLegacyCreate>False</AllowLegacyCreate>
     <AllowLegacyOutParams>False</AllowLegacyOutParams>
+    <DefaultUses>Sugar.*<DefaultUses>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <GeneratePDB>True</GeneratePDB>
