@@ -221,7 +221,7 @@
     <Folder Include="Sources\Utils" />
     <Folder Include="Sources\Reflections" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Oxygene\RemObjects.Oxygene.Echoes.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Echoes.targets" />
   <PropertyGroup>
     <PreBuildEvent>rmdir /s /q $(ProjectDir)\Obj</PreBuildEvent>
   </PropertyGroup>

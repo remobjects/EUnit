@@ -214,7 +214,7 @@
     <Folder Include="Sources\Reflections" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Oxygene\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\RemObjects.Oxygene.Echoes.$(TargetFrameworkIdentifier).targets" />
+  <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\RemObjects.Elements.Echoes.$(TargetFrameworkIdentifier).targets" />
   <PropertyGroup>
     <PreBuildEvent>rmdir /s /q $(ProjectDir)\Obj</PreBuildEvent>
   </PropertyGroup>

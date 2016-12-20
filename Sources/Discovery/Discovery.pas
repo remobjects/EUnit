@@ -27,13 +27,23 @@ implementation
 class method Discovery.FromObject(Value: Object): ITest;
 begin
   ArgumentNilException.RaiseIfNil(Value, "Value");
+  {$IFDEF COCOA}
+  var r: NSArray<Object> := [Value];
+  exit new InstanceDiscovery(r).Discover;
+  {$ELSE}
   exit new InstanceDiscovery([Value]).Discover;
+  {$ENDIF}
 end;
 
 class method Discovery.FromObjectAsync(Value: Object; OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken);
 begin
   ArgumentNilException.RaiseIfNil(Value, "Value");
+  {$IFDEF COCOA}
+  var r: NSArray<Object> := [Value];
+  new InstanceDiscovery(r).DiscoverAsync(OnCompleted, Token);
+  {$ELSE}
   new InstanceDiscovery([Value]).DiscoverAsync(OnCompleted, Token);
+  {$ENDIF}
 end;
 
 class method Discovery.FromObjects(Value: sequence of Object): ITest;
