@@ -1,10 +1,18 @@
 ﻿namespace RemObjects.Elements.EUnit;
 
-interface
-
 type
-  NativeMethod = {$IF COOPER}java.lang.reflect.Method{$ELSEIF ECHOES}System.Reflection.MethodInfo{$ELSEIF NOUGAT}rtl.Method{$ENDIF};
-  NativeType = {$IF COOPER}java.lang.Class{$ELSEIF ECHOES}System.Type{$ELSEIF NOUGAT}&Class{$ENDIF};
+  {$IF COOPER}
+  NativeMethod = java.lang.reflect.Method;
+  NativeType = java.lang.Class;
+  {$ELSEIF ECHOES}
+  NativeMethod = System.Reflection.MethodInfo;
+  NativeType = System.Type;
+  {$ELSEIF ISLAND}
+  NativeMethod = Object;
+  NativeType = RemObjects.Elements.System.Type;
+  {$ELSEIF TOFFEE}
+  NativeMethod = rtl.Method;
+  NativeType = &Class;
+  {$ENDIF}
 
-implementation
 end.

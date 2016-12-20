@@ -4,7 +4,6 @@ interface
 
 uses
   {$IF NETFX_CORE}System.Reflection,{$ENDIF}
-  RemObjects.Elements.RTL,
   RemObjects.Elements.EUnit;
 
 type
@@ -21,7 +20,8 @@ type
     method EqualsTo(OtherType: TypeReference): Boolean;
     method CreateInstance: Object;
 
-    method {$IF NOUGAT}description: Foundation.NSString{$ELSEIF COOPER}ToString: java.lang.String{$ELSEIF ECHOES}ToString: System.String{$ENDIF}; override;
+    [ToString]
+    method ToString: String; override;
 
     property Name: String read GetName;
     property NativeType: NativeType read Native;
@@ -121,7 +121,7 @@ begin
   {$ENDIF}
 end;
 
-method TypeReference.{$IF NOUGAT}description: Foundation.NSString{$ELSEIF COOPER}ToString: java.lang.String{$ELSEIF ECHOES}ToString: System.String{$ENDIF};
+method TypeReference.ToString: String;
 begin
   exit "Type: " + Name;
 end;

@@ -13,7 +13,8 @@ type
     method &Add(Item: ITestResult);
     method SetResult(aState: TestState; aMessage: String);
 
-    method {$IF NOUGAT}description: Foundation.NSString{$ELSEIF COOPER}ToString: java.lang.String{$ELSEIF ECHOES}ToString: System.String{$ENDIF}; override;
+    [ToString]
+    method ToString: String; override;
 
     class method HandleException(Test: ITest; Ex: Exception): TestResultNode;
 
@@ -70,7 +71,7 @@ begin
   exit new TestResultNode(Test, TestState.Failed, if Ex = nil then "Unknown error" else Ex.{$IF NOUGAT}description{$ELSE}Message{$ENDIF}, BaseException(Ex):ParsableMessage);
 end;
 
-method TestResultNode.{$IF NOUGAT}description: Foundation.NSString{$ELSEIF COOPER}ToString: java.lang.String{$ELSEIF ECHOES}ToString: System.String{$ENDIF};
+method TestResultNode.ToString: String;
 begin
   exit String.Format("[{0}] {1} Kind: {2} Message: {3}", Id, Name, case State of
       TestState.Failed: "Failed";

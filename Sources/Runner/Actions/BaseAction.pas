@@ -62,7 +62,7 @@ begin
   else if Ex is System.AggregateException then
     Ex := System.AggregateException(Ex).InnerException;
   {$ENDIF}
-  var Message: String := Ex.{$IF NOUGAT}reason{$ELSE}Message{$ENDIF};
+  var Message: String := Ex.Message;
   var ExceptionName: String := {$IF COOPER}Ex.Class.SimpleName{$ELSEIF ECHOES}Ex.GetType.Name{$ELSEIF NOUGAT}Foundation.NSString.stringWithUTF8String(class_getName(Ex.class)){$ENDIF};
   
   if Message = nil then

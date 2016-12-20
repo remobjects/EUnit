@@ -2,9 +2,6 @@
 
 interface
 
-uses
-  RemObjects.Elements.RTL;
-
 type
   BlockAction = assembly class (BaseAction)
   private

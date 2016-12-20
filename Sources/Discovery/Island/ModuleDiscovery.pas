@@ -18,7 +18,7 @@ method ModuleDiscovery.Filter: List<ITest>;
 begin
   result := new List<ITest>;
 
-  var Count := objc_getClassList(nil, 0);
+  {var Count := objc_getClassList(nil, 0);
   if Count <= 0 then
     exit;
 
@@ -41,7 +41,7 @@ begin
 
       Super := class_getSuperclass(Super);
     end;
-  end;
+  end;}
 end;
 
 constructor ModuleDiscovery;

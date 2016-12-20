@@ -19,7 +19,9 @@ type
     constructor(aType: TypeReference; &Method: NativeMethod);
 
     method Invoke(anInstance: Object);
-    method {$IF NOUGAT}description: Foundation.NSString{$ELSEIF COOPER}ToString: java.lang.String{$ELSEIF ECHOES}ToString: System.String{$ENDIF}; override;
+    
+    [ToString]
+    method ToString: String; override;
 
     property Name: String read GetName;
     property IsOverriden: Boolean read write; readonly;
@@ -131,7 +133,7 @@ begin
   {$ENDIF}
 end;
 
-method MethodReference.{$IF NOUGAT}description: Foundation.NSString{$ELSEIF COOPER}ToString: java.lang.String{$ELSEIF ECHOES}ToString: System.String{$ENDIF};
+method MethodReference.ToString: String;
 begin
   exit "Method: " + Name;
 end;

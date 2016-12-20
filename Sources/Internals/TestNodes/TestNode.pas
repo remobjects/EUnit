@@ -10,7 +10,8 @@ type
   public
     constructor(aName: String);
 
-    method {$IF NOUGAT}description: Foundation.NSString{$ELSEIF COOPER}ToString: java.lang.String{$ELSEIF ECHOES}ToString: System.String{$ENDIF}; override;
+    [ToString]
+    method ToString: String; override;
 
     property Id: String read protected write;
     property Name: String read write; readonly;
@@ -33,7 +34,7 @@ begin
   Id := IdGenerator.ForName(aName);
 end;
 
-method TestNode.{$IF NOUGAT}description: Foundation.NSString{$ELSEIF COOPER}ToString: java.lang.String{$ELSEIF ECHOES}ToString: System.String{$ENDIF};
+method TestNode.ToString: String;
 begin
   exit String.Format("[{0}] {1} Kind: {2}", Id, Name, case Kind of
       TestKind.Suite: "Suite";

@@ -14,7 +14,7 @@
         <Name>RemObjects.Elements.EUnit (Island/Linux)</Name>
         <GenerateDebugInfo>True</GenerateDebugInfo>
         <MangleTypeNames>True</MangleTypeNames>
-        <DefaultUses>RemObjects.Elements.RTL;RemObjects.Elements.RTL.Linq</DefaultUses>
+        <DefaultUses>RemObjects.Elements.RTL</DefaultUses>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <Optimize>False</Optimize>
