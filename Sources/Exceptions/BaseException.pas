@@ -14,7 +14,7 @@ type
       {$ELSE}
       inherited constructor(lPlainMessage);
       {$ENDIF}
-      ParsableMessage := String.Format("TEST-FAILED,{0},{1},{2}.{3},{4}", aFile, if aLine > 0 then aLine else "", aClass:Trim, aMethod:Trim, aMessage);
+      ParsableMessage := String.Format("TEST-FAILED,{0},{1},{2}.{3},{4}", aFile, if aLine > 0 then aLine else "", aClass:Trim, aMethod:Trim, aMessage.Replace(#10,"\n").Replace(#13,"\r"));
     end;
     
     {$IF NOUGAT}
