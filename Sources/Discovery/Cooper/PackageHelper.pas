@@ -39,7 +39,7 @@ method PackageHelper.LoadClasses(PackageName: String): List<NativeType>;
 begin
   PackageName := PackageName.replace(".", "/");
 
-  var Loader := Thread.currentThread.ContextClassLoader;
+  var Loader := java.lang.Thread.currentThread.ContextClassLoader;
   var Res := Loader.getResources(PackageName);
   var List := new List<NativeType>;
 
