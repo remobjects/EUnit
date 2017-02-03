@@ -25,7 +25,7 @@ method BaseAction.Execute(Context: RunContext);
 begin
   try
     ArgumentNilException.RaiseIfNil(Context, "Context");
-  
+
     if Prev <> nil then
       Prev.Execute(Context);
 
@@ -63,8 +63,8 @@ begin
     Ex := System.AggregateException(Ex).InnerException;
   {$ENDIF}
   var Message: String := Ex.Message;
-  var ExceptionName: String := {$IF COOPER}Ex.Class.SimpleName{$ELSEIF ECHOES}Ex.GetType.Name{$ELSEIF NOUGAT}Foundation.NSString.stringWithUTF8String(class_getName(Ex.class)){$ENDIF};
-  
+  var ExceptionName: String := {$IF COOPER}Ex.Class.SimpleName{$ELSEIF ECHOES}Ex.GetType.Name{$ELSEIF ISLAND}typeOf(Ex).Name{$ELSEIF NOUGAT}Foundation.NSString.stringWithUTF8String(class_getName(Ex.class)){$ENDIF};
+
   if Message = nil then
     Message := "";
 

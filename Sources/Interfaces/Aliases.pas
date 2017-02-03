@@ -8,7 +8,7 @@ type
   NativeMethod = System.Reflection.MethodInfo;
   NativeType = System.Type;
   {$ELSEIF ISLAND}
-  NativeMethod = Object;
+  NativeMethod = RemObjects.Elements.System.MethodInfo;
   NativeType = RemObjects.Elements.System.Type;
   {$ELSEIF TOFFEE}
   NativeMethod = rtl.Method;

@@ -17,31 +17,25 @@ implementation
 method ModuleDiscovery.Filter: List<ITest>;
 begin
   result := new List<ITest>;
+  var lTestType := typeOf(Test);
+  for c in RemObjects.Elements.System.Type.AllTypes do begin
+    if c.Flags = IslandTypeFlags.Class then begin
 
-  {var Count := objc_getClassList(nil, 0);
-  if Count <= 0 then
-    exit;
+      var lSuper := c.BaseType;
+      while lSuper.Valid do begin
 
-  var Classes := new unretained &Class[Count];
-  Count := objc_getClassList(Classes, Count);
+        //inherits from Testcase
+        if lTestType.Equals(lSuper) then begin
+          var Instance := c.Instantiate();
+          var Abc := new InstanceDiscovery([Instance]);
+          result.Add(Abc.Filter);
+          break;
+        end;
 
-  for i: Integer := 0 to Count - 1 do begin
-    var lClass: unretained &Class := Classes[i];
-    var Super: &Class := class_getSuperclass(lClass);
-
-    while Super <> nil do begin
-
-      //inherits from Testcase
-      if Super = Test.class then begin
-        var Instance := Foundation.NSClassFromString(class_getName(lClass)).alloc.init;
-        var Abc := new InstanceDiscovery([Instance]);
-        result.Add(Abc.Filter);
-        break;
+        lSuper := lSuper.BaseType;
       end;
-
-      Super := class_getSuperclass(Super);
     end;
-  end;}
+  end;
 end;
 
 constructor ModuleDiscovery;
