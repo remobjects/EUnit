@@ -13,12 +13,14 @@ type
     method RunClass(Context: RunContext): ITestResult;
     method RunSuite(Context: RunContext): ITestResult;
     method Run(Context: RunContext): ITestResult;
-  public    
+  public
     method RunTests(Test: ITest): ITestResult;
     method RunTests(Test: ITest) withListener(Listener: IEventListener := nil): ITestResult;
+    {$IF NOT ISLAND}
     method RunTestsAsync(Test: ITest) completionHandler(Handler: Action<ITestResult>);
     method RunTestsAsync(Test: ITest) completionHandler(Handler: Action<ITestResult>) withListener(Listener: IEventListener);
     method RunTestsAsync(Test: ITest) completionHandler(Handler: Action<ITestResult>) withListener(Listener: IEventListener) cancelationToken(Token: ICancelationToken);
+    {$ENDIF}
   end;
 
 implementation
@@ -31,22 +33,26 @@ end;
 method Runner.RunTests(Test: ITest) withListener(Listener: IEventListener := nil): ITestResult;
 begin
   ArgumentNilException.RaiseIfNil(Test, "Test");
-  
+
   if not assigned(Listener) then
     Listener := DefaultListener;
-  
+
   var Context := new RunContext(Test, Listener);
-  
+
+  {$IF NOT ISLAND}
   if Listener is IEventListenerGUI then begin
     RunTestsAsync(Test) completionHandler(nil) withListener(Listener);
   end
-  else begin
+  else
+  {$ENDIF}
+  begin
     Listener:RunStarted(Test);
     result := Run(Context);
     Listener:RunFinished(result);
   end;
 end;
 
+{$IF NOT ISLAND}
 method Runner.RunTestsAsync(Test: ITest) completionHandler(Handler: Action<ITestResult>);
 begin
   RunTestsAsync(Test) completionHandler(Handler) withListener(nil) cancelationToken(nil);
@@ -76,12 +82,13 @@ begin
   if Listener is IEventListenerGUI then
     (Listener as IEventListenerGUI).RunGUI();
 end;
+{$ENDIF}
 
 class method Runner.Run(Context: RunContext): ITestResult;
 begin
   ArgumentNilException.RaiseIfNil(Context, "Context");
   Context.Listener:TestStarted(Context.Test);
-  
+
   if Context.Test.Skip then
     result := new TestResultNode(Context.Test, TestState.Skipped, "Skipped", String.Format("TEST-SKIPPED,,,{0},Test Skipped", Context.Test.Name))
   else
@@ -95,7 +102,7 @@ begin
 end;
 
 class method Runner.RunTestcase(Context: RunContext): ITestResult;
-begin  
+begin
   var InitInstance: Boolean := Context.Type = nil;
 
   var Actions: BaseAction := new InitializeMethodAction().Then(
@@ -119,10 +126,10 @@ begin
 end;
 
 class method Runner.RunClass(Context: RunContext): ITestResult;
-begin  
+begin
   var Actions := new InitializeTypeAction()
                  .Then(new InitializeInstanceAction())
-                 .Then(new TryFinallyAction(new SetupTestAction, 
+                 .Then(new TryFinallyAction(new SetupTestAction,
                        new ResultAction(ctx -> RunChildren(ctx)),
                        new TeardownTestAction));
 
@@ -141,7 +148,7 @@ begin
     exit new TestResultNode(Context.Test, TestState.Skipped, "Skipped", String.Format("TEST-SKIPPED,,,{0},Test Skipped", Context.Test.Name));
 
   var Node := new TestResultNode(Context.Test);
-  var IsFailed: Boolean := false;  
+  var IsFailed: Boolean := false;
 
   for Item in Context.Test.Children do begin
     var ItemContext := new RunContext withContext(Item, Context);

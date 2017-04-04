@@ -22,7 +22,7 @@ begin
     if c.Flags = IslandTypeFlags.Class then begin
 
       var lSuper := c.BaseType;
-      while lSuper.Valid do begin
+      while assigned(lSuper) do begin
 
         //inherits from Testcase
         if lTestType.Equals(lSuper) then begin

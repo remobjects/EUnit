@@ -13,11 +13,12 @@ type
     method FromObjects(Value: sequence of Object): ITest;
     method FromType(Value: NativeType): ITest;
     method FromTypes(Value: sequence of NativeType): ITest;
+    {$IF NOT ISLAND}
     method FromObjectAsync(Value: Object; OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken := nil);
     method FromObjectsAsync(Value: sequence of Object; OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken := nil);
     method FromTypeAsync(Value: NativeType; OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken := nil);
     method FromTypesAsync(Value: sequence of NativeType; OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken := nil);
-
+    {$ENDIF}
     method DiscoverTests({$IF ANDROID}Instance: android.content.Context{$ENDIF}): ITest;
     method DiscoverTestsAsync({$IF ANDROID}Instance: android.content.Context;{$ENDIF} OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken := nil): ITest;
   end;
@@ -35,6 +36,7 @@ begin
   {$ENDIF}
 end;
 
+{$IF NOT ISLAND}
 class method Discovery.FromObjectAsync(Value: Object; OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken);
 begin
   ArgumentNilException.RaiseIfNil(Value, "Value");
@@ -45,16 +47,19 @@ begin
   new InstanceDiscovery([Value]).DiscoverAsync(OnCompleted, Token);
   {$ENDIF}
 end;
+{$ENDIF}
 
 class method Discovery.FromObjects(Value: sequence of Object): ITest;
 begin
   exit new InstanceDiscovery(Value).Discover;
 end;
 
+{$IF NOT ISLAND}
 class method Discovery.FromObjectsAsync(Value: sequence of Object; OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken);
 begin
   new InstanceDiscovery(Value).DiscoverAsync(OnCompleted, Token);
 end;
+{$ENDIF}
 
 class method Discovery.FromType(Value: NativeType): ITest;
 begin
@@ -62,21 +67,25 @@ begin
   exit new TypeDiscovery([Value]).Discover;
 end;
 
+{$IF NOT ISLAND}
 class method Discovery.FromTypeAsync(Value: NativeType; OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken);
 begin
   ArgumentNilException.RaiseIfNil(Value, "Value");
   new TypeDiscovery([Value]).DiscoverAsync(OnCompleted, Token);
 end;
+{$ENDIF}
 
 class method Discovery.FromTypes(Value: sequence of NativeType): ITest;
 begin
   exit new TypeDiscovery(Value).Discover;
 end;
 
+{$IF NOT ISLAND}
 class method Discovery.FromTypesAsync(Value: sequence of NativeType; OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken);
 begin
   new TypeDiscovery(Value).DiscoverAsync(OnCompleted, Token);
 end;
+{$ENDIF}
 
 class method Discovery.DiscoverTests({$IF ANDROID}Instance: android.content.Context{$ENDIF}): ITest;
 begin

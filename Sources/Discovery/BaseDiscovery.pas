@@ -3,13 +3,15 @@
 interface
 
 type
-  BaseDiscovery = assembly abstract class (IDiscovery)  
+  BaseDiscovery = assembly abstract class (IDiscovery)
   protected
     method AppendList(Node: ITest; List: List<ITest>);
     property Token: ICancelationToken read write;
   public
     method Discover: ITest; virtual;
+    {$IF NOT ISLAND}
     method DiscoverAsync(OnCompleted: Action<IAsyncResult<ITest>>; aToken: ICancelationToken := nil); virtual;
+    {$ENDIF}
     method Filter: List<ITest>; virtual; abstract;
   end;
 
@@ -38,6 +40,7 @@ begin
     SuiteNode.Add(item);
 end;
 
+{$IF NOT ISLAND}
 method BaseDiscovery.DiscoverAsync(OnCompleted: Action<IAsyncResult<ITest>>; aToken: ICancelationToken);
 begin
   ArgumentNilException.RaiseIfNil(OnCompleted, "OnCompleted");
@@ -46,7 +49,7 @@ begin
   async begin
     try
       var RetVal := Discover;
-      
+
       if Token:Canceled then
         exit;
 
@@ -57,5 +60,6 @@ begin
     end;
   end;
 end;
+{$ENDIF}
 
 end.
