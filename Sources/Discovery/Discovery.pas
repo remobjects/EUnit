@@ -20,7 +20,9 @@ type
     method FromTypesAsync(Value: sequence of NativeType; OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken := nil);
     {$ENDIF}
     method DiscoverTests({$IF ANDROID}Instance: android.content.Context{$ENDIF}): ITest;
+    {$IF NOT ISLAND}
     method DiscoverTestsAsync({$IF ANDROID}Instance: android.content.Context;{$ENDIF} OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken := nil): ITest;
+    {$ENDIF}
   end;
 
 implementation
@@ -99,11 +101,12 @@ begin
   exit Discovery.FromAssembly(typeOf(Windows.UI.Xaml.Application.Current).GetTypeInfo.Assembly);
   {$ELSEIF ECHOES}
   exit Discovery.FromAppDomain(AppDomain.CurrentDomain);
-  {$ELSEIF NOUGAT}
+  {$ELSEIF ISLAND OR TOFFEE}
   exit Discovery.FromModule;
   {$ENDIF}
 end;
 
+{$IF NOT ISLAND}
 class method Discovery.DiscoverTestsAsync({$IF ANDROID}Instance: android.content.Context;{$ENDIF} OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken): ITest;
 begin
   {$IF ANDROID}
@@ -116,9 +119,10 @@ begin
   Discovery.FromAssemblyAsync(typeOf(Windows.UI.Xaml.Application.Current).GetTypeInfo.Assembly, OnCompleted, Token);
   {$ELSEIF ECHOES}
   Discovery.FromAppDomainAsync(AppDomain.CurrentDomain, OnCompleted, Token);
-  {$ELSEIF NOUGAT}
+  {$ELSEIF ISLAND OR TOFFEE}
   Discovery.FromModuleAsync(OnCompleted, Token);
   {$ENDIF}
 end;
+{$ENDIF}
 
 end.
