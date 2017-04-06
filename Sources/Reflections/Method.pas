@@ -19,7 +19,7 @@ type
     constructor(aType: TypeReference; &Method: NativeMethod);
 
     method Invoke(anInstance: Object);
-    
+
     [ToString]
     method ToString: String; override;
 
@@ -42,7 +42,7 @@ begin
     raise new ArgumentNilException("Method");
 
   Native := &Method;
-  self.Type := aType;  
+  self.Type := aType;
   {$IF COOPER}
   IsOverriden := Native.DeclaringClass <> aType.NativeType;
 
@@ -62,6 +62,8 @@ begin
   IsOverriden := not aType.EqualsTo(new TypeReference(&Method.GetRuntimeBaseDefinition.DeclaringType));
   {$ELSEIF ECHOES}
   IsOverriden := not aType.EqualsTo(new TypeReference(&Method.GetBaseDefinition.DeclaringType));
+  {$ELSEIF ISLAND}
+  IsOverriden := (&Method.Flags and MethodFlags.Override) ≠ 0;
   {$ELSEIF NOUGAT}
   var Super := class_getSuperclass(aType.NativeType);
   var MethodSelector := method_getName(Native);
@@ -83,7 +85,7 @@ method MethodReference.GetName: String;
 begin
   {$IF COOPER}
   exit Native.Name;
-  {$ELSEIF ECHOES}
+  {$ELSEIF ECHOES OR ISLAND}
   exit Native.Name;
   {$ELSEIF NOUGAT}
   exit Foundation.NSString.stringWithUTF8String(sel_getName(method_getName(self.Native)));
@@ -93,9 +95,11 @@ end;
 method MethodReference.GetHasParameters: Boolean;
 begin
   {$IF COOPER}
-  exit Native.getParameterTypes.length <> 0;
+  exit Native.getParameterTypes.length ≠ 0;
   {$ELSEIF ECHOES}
-  exit Native.GetParameters.Length <> 0;
+  exit Native.GetParameters.Length ≠ 0;
+  {$ELSEIF ISLAND}
+  exit Native.Arguments.Count ≠ 0;
   {$ELSEIF NOUGAT}
   exit method_getNumberOfArguments(self.Native) > 2;
   {$ENDIF}
@@ -104,14 +108,16 @@ end;
 method MethodReference.GetIsVoid: Boolean;
 begin
   {$IF COOPER}
-  exit Native.ReturnType.Name.Equals("void");
+  result := Native.ReturnType.Name.Equals("void");
   {$ELSEIF ECHOES}
-  exit Native.ReturnType.Name.Equals("Void");
+  result := Native.ReturnType.Name.Equals("Void");
+  {$ELSEIF ISLAND}
+  result := not assigned(Native.Type);
   {$ELSEIF NOUGAT}
-  var MethodSelector := method_getName(self.Native);  
+  var MethodSelector := method_getName(self.Native);
   var Signature := self.Type.NativeType.instanceMethodSignatureForSelector(MethodSelector);
 
-  exit Signature.methodReturnLength = 0;
+  result := Signature.methodReturnLength = 0;
   {$ENDIF}
 end;
 
@@ -123,6 +129,10 @@ begin
   Native.invoke(anInstance, nil);
   {$ELSEIF ECHOES}
   Native.Invoke(anInstance, nil);
+  {$ELSEIF ISLAND}
+  //Native.Invoke(anInstance, nil);
+  writeLn("invoke!");
+  raise new Exception("Not implemented for Island yet, sorry.");
   {$ELSEIF NOUGAT}
   var MethodSelector := method_getName(self.Native);
   var Signature := anInstance.methodSignatureForSelector(MethodSelector);
@@ -144,7 +154,7 @@ begin
   var lMethods := InType.getMethods;
   var lParams := aMethod.getParameterTypes;
 
-  for lMethod in lMethods do 
+  for lMethod in lMethods do
     if (lMethod.Name = aMethod.Name) and (lMethod.ReturnType = aMethod.ReturnType) then begin
       var lMethodParams := lMethod.getParameterTypes;
 
