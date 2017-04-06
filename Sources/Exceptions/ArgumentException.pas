@@ -13,7 +13,7 @@ implementation
 
 constructor ArgumentException(anArgument: String; Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  inherited constructor(Message);
+  inherited constructor(Message, aFile, aLine, aClass, aMethod);
   Argument := anArgument;
 end;
 
