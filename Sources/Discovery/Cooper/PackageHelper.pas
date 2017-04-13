@@ -9,7 +9,7 @@ type
   PackageHelper = assembly static class
   private
     class method ListClasses(Path: String; PackageName: String): List<NativeType>;
-  public    
+  public
     class method LoadClasses(PackageName: String): List<NativeType>;
     class method LoadClasses(Package: Package): List<NativeType>;
     class method LoadAllClasses: List<NativeType>;
@@ -69,7 +69,7 @@ begin
 
     if lPackage.ImplementationVendor <> "Oracle Corporation" then
       lTypes.Add(LoadClasses(lPackage));
-  end;    
+  end;
 
   exit lTypes;
 end;

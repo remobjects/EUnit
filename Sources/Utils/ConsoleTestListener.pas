@@ -19,7 +19,7 @@ type
     property UseAnsiColorOutput: Boolean;
     class property EmitParseableMessages: Boolean; readonly;
     class property EmitParseableSuccessMessages: Boolean; readonly;
-    
+
     class constructor;
     begin
       var lHasParsableMessageEnvironmentVar := length(Environment.EnvironmentVariable[Runner.EUNIT_PARSABLE_MESSAGES]) > 0;
@@ -29,7 +29,7 @@ type
       EmitParseableMessages := lHasParsableMessageEnvironmentVar {$IF COCOA}or lHasParsableMessageCommandlineSwitch{$ENDIF};
       EmitParseableSuccessMessages := false; // for now
     end;
-    
+
   end;
 
 implementation
@@ -71,7 +71,7 @@ begin
       Message := String.Format("{0}{1} finished. State: {2}.", StringOffset, TestResult.Name, Succeeded);
     Output(Message);
   end;
-  
+
 end;
 
 method ConsoleTestListener.RunStarted(Test: ITest);
@@ -93,9 +93,9 @@ end;
 method ConsoleTestListener.Output(Message: String);
 begin
   if length(Message) > 0 then begin
-    {$IFNDEF NETFX_CORE}  
-    writeLn(Message); 
-    {$ELSE}  
+    {$IFNDEF NETFX_CORE}
+    writeLn(Message);
+    {$ELSE}
     System.Diagnostics.Debug.WriteLine(Message);
     {$ENDIF}
   end;
@@ -105,7 +105,7 @@ method ConsoleTestListener.TestStarted(Test: ITest);
 begin
   if (Test.Kind = TestKind.Testcase) or (Test.Skip) then
     exit;
-  
+
   if not EmitParseableMessages then
     Output(String.Format("{0}{1} started", StringOffset, Test.Name));
   inc(Offset, 2);

@@ -6,7 +6,7 @@ type
   Assert = public partial static class
   public
     method AreEqual(Actual, Expected : String; IgnoreCase: Boolean := false; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
-    method AreNotEqual(Actual, Expected: String; IgnoreCase: Boolean := false; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());    
+    method AreNotEqual(Actual, Expected: String; IgnoreCase: Boolean := false; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
     method Contains(SubString, InString: String; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
     method DoesNotContains(SubString, InString: String; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 
@@ -65,16 +65,16 @@ end;
 
 method Assert.StartsWith(Prefix: String; SourceString: String; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  ArgumentNilException.RaiseIfNil(Prefix, "Prefix"); 
-  ArgumentNilException.RaiseIfNil(SourceString, "SourceString"); 
+  ArgumentNilException.RaiseIfNil(Prefix, "Prefix");
+  ArgumentNilException.RaiseIfNil(SourceString, "SourceString");
 
   FailComparisonIfNot(SourceString.StartsWith(Prefix), Prefix, SourceString, coalesce(Message, AssertMessages.StringPrefixMissing), aFile, aLine, aClass, aMethod);
 end;
 
 method Assert.EndsWith(Suffix: String; SourceString: String; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  ArgumentNilException.RaiseIfNil(Suffix, "Suffix"); 
-  ArgumentNilException.RaiseIfNil(SourceString, "SourceString"); 
+  ArgumentNilException.RaiseIfNil(Suffix, "Suffix");
+  ArgumentNilException.RaiseIfNil(SourceString, "SourceString");
 
   FailComparisonIfNot(SourceString.EndsWith(Suffix), Suffix, SourceString, coalesce(Message, AssertMessages.StringSufixMissing));
 end;

@@ -2,7 +2,7 @@
 
 interface
 
-type  
+type
   Hasher = public static class
   assembly
     const FNVPrime: UInt64 = $100000001b3;
@@ -33,7 +33,7 @@ class method Hasher.HashString(Value: String): UInt64;
 begin
   if Value = nil then
     raise new ArgumentNilException("Value");
-  
+
   exit HashBytes(Encoding.UTF8.GetBytes(Value));
 end;
 

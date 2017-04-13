@@ -6,38 +6,38 @@ uses
 type
   TestsTableViewController = public class(UITableViewController)
   public
-  
+
     method reloadTests();
     begin
       tableView.reloadData()
     end;
-        
+
     method viewDidLoad(); override;
     begin
       title := 'EUnit';
     end;
-    
+
   protected
 
     method numberOfSectionsInTableView(tableView: UITableView): NSInteger;
     begin
       result := 1;
     end;
-    
+
     method tableView(tableView: UITableView) numberOfRowsInSection(section: Integer): Integer;
     begin
       result := TableViewTestListenerAppDelegate.Listener.tests.count;
     end;
-    
+
     method tableView(tableView: UITableView) cellForRowAtIndexPath(indexPath: NSIndexPath): UITableViewCell;
     begin
       var CellIdentifier := "RootViewControllerCell";
-    
+
       result := tableView.dequeueReusableCellWithIdentifier(CellIdentifier);
       if not assigned(result) then begin
         result := new UITableViewCell withStyle(UITableViewCellStyle.UITableViewCellStyleValue1) reuseIdentifier(CellIdentifier);
       end;
-      
+
       var lTest := TableViewTestListenerAppDelegate.Listener.tests[indexPath.row];
 
       result.textLabel.text := lTest.Name;
@@ -71,51 +71,51 @@ type
           result.detailTextLabel.text := "Unknown";
           result.backgroundColor := UIColor.whiteColor;
         end;
-        
+
       end;
-    
+
       // Configure the individual cell...
     end;
-    
-    
+
+
   end;
-  
+
   TableViewTestListener = public class (IEventListener, IEventListenerGUI)
   public
-  
+
     property tests := new NSMutableArray<ITest>();
     property testResults := new NSMutableDictionary<String, ITestResult>();
     property runningTest: nullable ITest;
-  
+
   private
-  
+
     { IEventListener }
-  
+
     method RunStarted(Test: ITest); virtual;
     begin
       //TableViewTestListenerAppDelegate.TableViewController:title := 'EUnit — Running Rests';
     end;
-    
+
     method TestStarted(Test: ITest); virtual;
     begin
       tests.addObject(Test);
       runningTest := Test;
       dispatch_async(dispatch_get_main_queue(), () -> TableViewTestListenerAppDelegate.tableViewController:reloadTests());
     end;
-    
+
     method TestFinished(TestResult: ITestResult); virtual;
     begin
       runningTest := nil;
       testResults[TestResult.Test.Id] := TestResult;
       dispatch_async(dispatch_get_main_queue(), () -> TableViewTestListenerAppDelegate.tableViewController:reloadTests());
     end;
-    
+
     method RunFinished(TestResult: ITestResult); virtual;
     begin
     end;
-    
+
     { IEventListenerGUI }
-    
+
     method PrepareGUI;
     begin
     end;
@@ -125,16 +125,16 @@ type
       TableViewTestListenerAppDelegate.Listener := self;
       UIApplicationMain(0, nil, nil, nameOf(TableViewTestListenerAppDelegate))
     end;
-    
+
     method FinishGUI;
     begin
       dispatch_async(dispatch_get_main_queue(), () -> begin
         TableViewTestListenerAppDelegate.TableViewController:title := 'EUnit — Done'
       end);
     end;
-    
+
   end;
-  
+
   [IBObject]
   TableViewTestListenerAppDelegate = public class
 
@@ -150,7 +150,7 @@ type
       window.makeKeyAndVisible();
       result := true;
     end;
-    
+
   end;
 
 end.

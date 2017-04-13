@@ -9,7 +9,7 @@ type
   protected
     method DoExecute(Context: RunContext); override;
   public
-    constructor(Action: Action<RunContext>);    
+    constructor(Action: Action<RunContext>);
     constructor(Action: Action<RunContext>; RunAlways: Boolean);
   end;
 

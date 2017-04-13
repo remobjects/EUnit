@@ -17,7 +17,7 @@ type
     property TestCount: Integer read private write;
     property SuiteCount: Integer read private write;
     property TestcaseCount: Integer read private write;
-  end; 
+  end;
 
 implementation
 

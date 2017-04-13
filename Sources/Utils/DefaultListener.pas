@@ -10,14 +10,14 @@ type
     begin
       if ConsoleTestListener.EmitParseableMessages then
         exit new ConsoleTestListener();
-        
+
       {$IF IOS}
       result := new TableViewTestListener();
       {$ELSE}
       result := new ConsoleTestListener();
       {$ENDIF}
     end;
-  
+
   public
 
     const EUNIT_PARSABLE_MESSAGES = "EUNIT_PARSABLE_MESSAGES";

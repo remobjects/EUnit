@@ -17,10 +17,10 @@ type
     property Token: ICancelationToken read write;
     property Listener: IEventListener read write;
 
-    property Instance: Test read write;    
+    property Instance: Test read write;
     property &Type: TypeReference read write;
     property &Method: MethodReference read write;
-    property CurrentResult: ITestResult read write;    
+    property CurrentResult: ITestResult read write;
   end;
 
 implementation

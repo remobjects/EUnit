@@ -21,7 +21,7 @@ begin
   ArgumentNilException.RaiseIfNil(&Try, "Try");
   ArgumentNilException.RaiseIfNil(&Block, "Block");
   ArgumentNilException.RaiseIfNil(&Finally, "Finally");
-  
+
   inherited constructor(false);
   fTry := &Try;
   fBlock := &Block;

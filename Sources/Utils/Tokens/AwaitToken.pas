@@ -6,7 +6,7 @@ type
   AwaitToken = assembly class (IAwaitToken)
   private
     fLock: ExceptionLock; readonly;
-  public   
+  public
     constructor;
 
     method Run(Action: AssertAction);

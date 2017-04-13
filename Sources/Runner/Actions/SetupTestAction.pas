@@ -13,7 +13,7 @@ implementation
 method SetupTestAction.DoExecute(Context: RunContext);
 begin
   inherited DoExecute(Context);
-  
+
   if Context.CurrentResult:State = TestState.Failed then
     exit;
 

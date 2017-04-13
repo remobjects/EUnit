@@ -13,7 +13,7 @@ type
     property &Result: T read write; readonly;
 
     class method Failed<T>(anException: Exception): AsyncResult<T>;
-    class method Completed<T>(aResult: T): AsyncResult<T>;    
+    class method Completed<T>(aResult: T): AsyncResult<T>;
   end;
 
 implementation

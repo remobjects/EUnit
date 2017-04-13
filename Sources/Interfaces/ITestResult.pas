@@ -13,6 +13,6 @@ type
     property Test: ITest read;
     property Children: sequence of ITestResult read;
   end;
-  
+
 implementation
 end.

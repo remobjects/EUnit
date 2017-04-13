@@ -12,8 +12,8 @@ implementation
 
 method ConsoleWriter.OutputToConsole;
 begin
-  {$IFNDEF NETFX_CORE}  
-  writeLn(self.Output); 
+  {$IFNDEF NETFX_CORE}
+  writeLn(self.Output);
   {$ELSE}
   System.Diagnostics.Debug.WriteLine(self.Output);
   {$ENDIF}

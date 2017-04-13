@@ -7,7 +7,7 @@ type
   public
     const Unknown = 'Unknown failure';
     const Unknown2 = 'Unknown failure, expected "{1}" but got "{0}", ';
-    
+
     const NoException = 'Action does not throw an exception';
     const UnexpectedException = 'Unexpected exception: "{0}"';
 
@@ -21,7 +21,7 @@ type
 
     const StringPrefixMissing = 'String "{1}" does not starts with "{0}"';
     const StringSufixMissing = 'String "{1}" does not ends with "{0}"';
-    
+
     const UnexpectedContains = '{1} contains unexpected element: "{0}"';
     const DoesNotContains = '{1} does not contains element: "{0}"';
 

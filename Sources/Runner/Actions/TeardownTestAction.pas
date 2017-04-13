@@ -20,7 +20,7 @@ begin
     on Ex: Exception do begin
       var Current := Context.CurrentResult;
       var Node := new TestResultNode(Context.Test, TestState.Failed, "[Failed to finalize test] " + HandleException(Context, Ex).Message, BaseException(Ex):ParsableMessage);
-      
+
       if Current <> nil then
         for child in Current.Children do
           Node.Add(child);

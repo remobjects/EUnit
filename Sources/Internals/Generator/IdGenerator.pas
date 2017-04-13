@@ -30,7 +30,7 @@ end;
 
 class method IdGenerator.ForTestcase(Value: ITest): String;
 begin
-  ArgumentNilException.RaiseIfNil(Value, "Value");  
+  ArgumentNilException.RaiseIfNil(Value, "Value");
   var TypeRef := new TypeReference(Value.Type);
   exit ForName(TypeRef.Name + "." + new MethodReference(TypeRef, Value.Method).Name);
 end;

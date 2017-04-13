@@ -11,7 +11,7 @@ type
   protected
     method DoExecute(Context: RunContext); override;
   public
-    constructor(Action: Func<RunContext>);    
+    constructor(Action: Func<RunContext>);
     constructor(Action: Func<RunContext>; RunAlways: Boolean);
   end;
 

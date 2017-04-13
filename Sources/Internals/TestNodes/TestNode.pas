@@ -15,8 +15,8 @@ type
 
     property Id: String read protected write;
     property Name: String read write; readonly;
-    property DisplayName: String read write; 
-    property Kind: TestKind read; virtual; abstract; 
+    property DisplayName: String read write;
+    property Kind: TestKind read; virtual; abstract;
     property &Skip: Boolean read write;
     property &Type: NativeType read nil; virtual;
     property &Method: NativeMethod read nil; virtual;

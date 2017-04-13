@@ -5,7 +5,7 @@ interface
 uses
   RemObjects.Elements.EUnit.Reflections;
 
-type 
+type
   Assert = public partial static class
   private
     method TypeToString(aType: NativeType): String;

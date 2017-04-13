@@ -32,7 +32,7 @@ begin
     exit String.Format(AssertMessages.SequenceLengthDiffers, ExpectedList.Count, ActualList.Count);
 
   for i: Integer := 0 to ExpectedList.Count - 1 do begin
-    var Item := ExpectedList[i];    
+    var Item := ExpectedList[i];
     if ((Item = nil) and (ActualList[i] <> nil)) or ((Item <> nil) and (not Item.Equals(ActualList[i]))) then
       exit String.Format(AssertMessages.SequenceElementMissing, Item);
   end;
@@ -46,7 +46,7 @@ begin
     exit nil;
 
   if (Expected = nil) and (Actual <> nil) then
-    exit AssertMessages.SequenceUnexpected; 
+    exit AssertMessages.SequenceUnexpected;
 
   if (Actual = nil) and (Expected <> nil) then
     exit AssertMessages.SequenceExpected;

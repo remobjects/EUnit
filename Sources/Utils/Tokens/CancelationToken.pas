@@ -5,9 +5,9 @@ interface
 type
   CancelationToken = assembly class (ICancelationToken)
   private
-    fCanceled: Boolean;    
+    fCanceled: Boolean;
   public
-    constructor;   
+    constructor;
 
     method Cancel;
     property Canceled: Boolean read fCanceled;
