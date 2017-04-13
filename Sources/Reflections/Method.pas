@@ -121,6 +121,11 @@ begin
   {$ENDIF}
 end;
 
+{$IF ISLAND}
+type
+  ParamlessInstanceMethod = method(aSelf: OBject);
+{$ENDIF}
+
 method MethodReference.Invoke(anInstance: Object);
 begin
   ArgumentNilException.RaiseIfNil(anInstance, "anInstance");
@@ -130,9 +135,7 @@ begin
   {$ELSEIF ECHOES}
   Native.Invoke(anInstance, nil);
   {$ELSEIF ISLAND}
-  //Native.Invoke(anInstance, nil);
-  writeLn("invoke!");
-  raise new Exception("Not implemented for Island yet, sorry.");
+  ParamlessInstanceMethod(Native.Pointer)(anInstance);
   {$ELSEIF NOUGAT}
   var MethodSelector := method_getName(self.Native);
   var Signature := anInstance.methodSignatureForSelector(MethodSelector);

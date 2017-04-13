@@ -19,8 +19,8 @@ begin
   result := new List<ITest>;
   var lTestType := typeOf(Test);
   for c in RemObjects.Elements.System.Type.AllTypes do begin
-    if c.Flags = IslandTypeFlags.Class then begin
-
+    //if (c.Flags and IslandTypeFlags.Class) ≠ 0 then begin // 77579: Island: cannot use 'in' in flags
+    if (c.Flags = 16) then begin
       var lSuper := c.BaseType;
       while assigned(lSuper) do begin
 

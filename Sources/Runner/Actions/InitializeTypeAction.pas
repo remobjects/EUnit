@@ -23,8 +23,8 @@ begin
 
   var lType := new TypeReference(Context.Test.Type);
 
-  if not TypeValidators.Validator.IsValid(lType) then
-    raise new RunnerException(String.Format("Class <{0}> is not a valid test class", lType.Name));
+  //if not TypeValidators.Validator.IsValid(lType) then
+  //  raise new RunnerException(String.Format("Class <{0}> is not a valid test class", lType.Name));
 
   Context.Type := lType;
 end;

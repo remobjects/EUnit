@@ -31,7 +31,7 @@ begin
   result := new List<ITest>;
 
   for item in Items do begin
-    
+
     if Token:Canceled then
       exit;
 
@@ -45,12 +45,12 @@ end;
 method TypeDiscovery.ProcessType(Item: NativeType): ITest;
 begin
   if Item = nil then
-    exit nil; 
+    exit nil;
 
   var lType := new TypeReference(Item);
 
-  if not TypeValidators.Validator.IsValid(lType) then
-    exit nil;
+  //if not TypeValidators.Validator.IsValid(lType) then
+  //  exit nil;
 
   var Node := new TestClassNode(lType);
 

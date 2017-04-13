@@ -8,9 +8,9 @@ uses
 
 type
   TypeReference = public class
-  private    
+  private
     Native: NativeType;
-    method GetName: String;    
+    method GetName: String;
     method GetIsAbstract: Boolean;
   public
     constructor(&Type: NativeType);
@@ -30,7 +30,7 @@ type
 
 implementation
 
-constructor TypeReference(&Type: NativeType); 
+constructor TypeReference(&Type: NativeType);
 begin
   if &Type = nil then
     raise new ArgumentNilException("Type");
@@ -42,7 +42,7 @@ method TypeReference.DescendsFrom(OtherType: TypeReference): Boolean;
 begin
   if OtherType = nil then
     exit false;
-  
+
   {$IF COOPER}
   exit OtherType.Native.isAssignableFrom(Native) and (not EqualsTo(OtherType));
   {$ELSEIF NETFX_CORE}
@@ -79,12 +79,13 @@ begin
   var lMethods := Native.GetMethods(System.Reflection.BindingFlags.Public or System.Reflection.BindingFlags.Instance);
   for lMethod in lMethods do
     result.Add(new MethodReference(self, lMethod));
+  {$ELSEIF ISLAND}
+  for each lMethod in Native.Methods do
+    result.Add(new MethodReference(self, lMethod));
   {$ELSEIF NOUGAT}
   var lMethodsCount: UInt32 := 0;
   self.Native.description(); //workaround for #70325
   var lMethods := class_copyMethodList(self.Native, var lMethodsCount);
-  
-
   for i: Integer := 0 to lMethodsCount - 1 do
     result.Add(new MethodReference(self, lMethods[i]));
   {$ENDIF}
@@ -95,6 +96,8 @@ begin
   {$IF COOPER}
   exit Native.SimpleName;
   {$ELSEIF ECHOES}
+  exit Native.Name;
+  {$ELSEIF ISLAND}
   exit Native.Name;
   {$ELSEIF NOUGAT}
   exit Foundation.NSString.stringWithUTF8String(class_getName(self.Native));
@@ -116,6 +119,8 @@ begin
   exit ctor.newInstance(nil);
   {$ELSEIF ECHOES}
   exit Activator.CreateInstance(Native);
+  {$ELSEIF ISLAND}
+  exit Native.Instantiate();
   {$ELSEIF NOUGAT}
   exit Foundation.NSClassFromString(class_getName(self.Native)).alloc.init;
   {$ENDIF}
@@ -132,9 +137,11 @@ begin
   exit java.lang.reflect.Modifier.isAbstract(Native.GetModifiers);
   {$ELSEIF NETFX_CORE}
   exit Native.GetTypeInfo.IsAbstract;
-  {$ELSEIF ECHOES}  
+  {$ELSEIF ECHOES}
   exit Native.IsAbstract;
-  {$ELSEIF NOUGAT}  
+  {$ELSEIF ISLAND}
+  exit false;//TypeDefFlags.Abstract in Native.Flags; // 77579: Island: cannot use 'in' in flags
+  {$ELSEIF NOUGAT}
   exit false;
   {$ENDIF}
 end;
