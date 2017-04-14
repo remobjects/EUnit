@@ -5,6 +5,8 @@ Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (
 EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Android)", "RemObjects.Elements.EUnit.Cooper.Android.elements", "{3D2BA357-4815-4E71-AEA3-3F5C3136F03B}"
 EndProject
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Island/Android)", "RemObjects.Elements.EUnit.Island.Android.elements", "{1E0A5BBA-9471-42C9-BEA1-D6660BD12988}"
+EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Island/Linux)", "RemObjects.Elements.EUnit.Island.Linux.elements", "{0CAD688B-CD37-4FC1-B3DD-039BE70440A2}"
 EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Island/Windows)", "RemObjects.Elements.EUnit.Island.Windows.elements", "{ACCD623B-6611-48BD-9892-4E65CEDB23B1}"
@@ -33,6 +35,10 @@ Global
 		{3D2BA357-4815-4E71-AEA3-3F5C3136F03B}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
 		{3D2BA357-4815-4E71-AEA3-3F5C3136F03B}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
 		{3D2BA357-4815-4E71-AEA3-3F5C3136F03B}.Release|AnyCPU.Build.0 = Release|AnyCPU
+		{1E0A5BBA-9471-42C9-BEA1-D6660BD12988}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
+		{1E0A5BBA-9471-42C9-BEA1-D6660BD12988}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
+		{1E0A5BBA-9471-42C9-BEA1-D6660BD12988}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
+		{1E0A5BBA-9471-42C9-BEA1-D6660BD12988}.Release|AnyCPU.Build.0 = Release|AnyCPU
 		{0CAD688B-CD37-4FC1-B3DD-039BE70440A2}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
 		{0CAD688B-CD37-4FC1-B3DD-039BE70440A2}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
 		{0CAD688B-CD37-4FC1-B3DD-039BE70440A2}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
