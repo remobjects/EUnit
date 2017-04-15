@@ -49,8 +49,10 @@ begin
 
   var lType := new TypeReference(Item);
 
-  //if not TypeValidators.Validator.IsValid(lType) then
-  //  exit nil;
+  {$IF NOT ISLAND AND NOT TOFFEE}
+  if not TypeValidators.Validator.IsValid(lType) then
+    exit nil;
+  {$ENDIF}
 
   var Node := new TestClassNode(lType);
 
