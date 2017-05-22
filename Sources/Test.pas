@@ -3,6 +3,7 @@
 interface
 
 type
+  {$IF ISLAND}[Used(Inherit := true)]{$ENDIF}
   Test = public class
   public
     method SetupTest; virtual; empty;
