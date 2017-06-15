@@ -21,7 +21,7 @@ begin
     exit;
   end;
 
-  FailComparisonIfNot(Expected.{$IF NOUGAT}isEqual{$ELSE}Equals{$ENDIF}(Actual), Actual, Expected, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
+  FailComparisonIfNot({$IF NOUGAT}Expected.isEqual(Actual){$ELSE}Expected.Equals(Actual){$ENDIF}, Actual, Expected, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
 end;
 
 method Assert.AreNotEqual(Actual: Object; Expected: Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
@@ -31,7 +31,7 @@ begin
     exit;
   end;
 
-  FailComparisonIf(Expected.{$IF NOUGAT}isEqual{$ELSE}Equals{$ENDIF}(Actual), Actual, Expected, coalesce(Message, AssertMessages.Equal), aFile, aLine, aClass, aMethod);
+  FailComparisonIf({$IF NOUGAT}Expected.isEqual(Actual){$ELSE}Expected.Equals(Actual){$ENDIF}, Actual, Expected, coalesce(Message, AssertMessages.Equal), aFile, aLine, aClass, aMethod);
 end;
 
 method Assert.IsNil(Actual: Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());

@@ -19,9 +19,14 @@ type
     method FromTypeAsync(Value: NativeType; OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken := nil);
     method FromTypesAsync(Value: sequence of NativeType; OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken := nil);
     {$ENDIF}
-    method DiscoverTests({$IF COOPER AND ANDROID}Instance: android.content.Context{$ENDIF}): ITest;
+    {$IF COOPER AND ANDROID}
+    method DiscoverTests(Instance: android.content.Context): ITest;
+    method DiscoverTestsAsync(Instance: android.content.Context; OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken := nil): ITest;
+    {$ELSE}
+    method DiscoverTests(): ITest;
     {$IF NOT ISLAND}
-    method DiscoverTestsAsync({$IF COOPER AND ANDROID}Instance: android.content.Context;{$ENDIF} OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken := nil): ITest;
+    method DiscoverTestsAsync(OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken := nil): ITest;
+    {$ENDIF}
     {$ENDIF}
   end;
 
@@ -89,11 +94,21 @@ begin
 end;
 {$ENDIF}
 
-class method Discovery.DiscoverTests({$IF COOPER AND ANDROID}Instance: android.content.Context{$ENDIF}): ITest;
+{$IF COOPER AND ANDROID}
+class method Discovery.DiscoverTestsAsync(Instance: android.content.Context; OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken): ITest;
 begin
-  {$IF COOPER AND ANDROID}
+  Discovery.FromContextAsync(Instance, OnCompleted, Token);
+end;
+
+class method Discovery.DiscoverTests(Instance: android.content.Context): ITest;
+begin
   exit Discovery.FromContext(Instance);
-  {$ELSEIF COOPER}
+end;
+
+{$ELSE}
+class method Discovery.DiscoverTests(): ITest;
+begin
+  {$IF COOPER}
   exit Discovery.FromTypes(PackageHelper.LoadAllClasses);
   {$ELSEIF WINDOWS_PHONE}
   exit Discovery.FromAppDomain(AppDomain.CurrentDomain);
@@ -107,11 +122,9 @@ begin
 end;
 
 {$IF NOT ISLAND}
-class method Discovery.DiscoverTestsAsync({$IF COOPER AND ANDROID}Instance: android.content.Context;{$ENDIF} OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken): ITest;
+class method Discovery.DiscoverTestsAsync(OnCompleted: Action<IAsyncResult<ITest>>; Token: ICancelationToken): ITest;
 begin
-  {$IF COOPER AND ANDROID}
-  Discovery.FromContextAsync(Instance, OnCompleted, Token);
-  {$ELSEIF COOPER}
+  {$IF COOPER}
   Discovery.FromTypesAsync(PackageHelper.LoadAllClasses, OnCompleted, Token);
   {$ELSEIF WINDOWS_PHONE}
   Discovery.FromAppDomainAsync(AppDomain.CurrentDomain, OnCompleted, Token);
@@ -124,5 +137,10 @@ begin
   {$ENDIF}
 end;
 {$ENDIF}
+
+{$ENDIF}
+
+
+
 
 end.

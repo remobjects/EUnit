@@ -98,8 +98,10 @@ begin
     if item = Foundation.NSNull.null then
       result.Add(nil)
     else
-    {$ENDIF}
       result.Add(item);
+    {$ELSE}
+      result.Add(item);
+    {$ENDIF}
 end;
 
 end.

@@ -68,7 +68,7 @@ class method TestResultNode.HandleException(Test: ITest; Ex: Exception): TestRes
 begin
   ArgumentNilException.RaiseIfNil(Test, "Test");
 
-  exit new TestResultNode(Test, TestState.Failed, if Ex = nil then "Unknown error" else Ex.{$IF NOUGAT}description{$ELSE}Message{$ENDIF}, BaseException(Ex):ParsableMessage);
+  exit new TestResultNode(Test, TestState.Failed, if Ex = nil then "Unknown error" else {$IF NOUGAT}Ex.description{$ELSE}Ex.Message{$ENDIF}, BaseException(Ex):ParsableMessage);
 end;
 
 method TestResultNode.ToString: String;

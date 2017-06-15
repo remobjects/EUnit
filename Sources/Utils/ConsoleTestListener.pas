@@ -26,7 +26,7 @@ type
       {$IF COCOA}
       var lHasParsableMessageCommandlineSwitch := assigned(Foundation.NSProcessInfo.processInfo.arguments.Where(s -> s = "--"+Runner.EUNIT_PARSABLE_MESSAGES).FirstOrDefault);
       {$ENDIF}
-      EmitParseableMessages := lHasParsableMessageEnvironmentVar {$IF COCOA}or lHasParsableMessageCommandlineSwitch{$ENDIF};
+      EmitParseableMessages := lHasParsableMessageEnvironmentVar or {$IF COCOA}lHasParsableMessageCommandlineSwitch{$ELSE}false{$ENDIF};
       EmitParseableSuccessMessages := false; // for now
     end;
 

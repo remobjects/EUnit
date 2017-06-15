@@ -44,12 +44,18 @@ begin
     RunTestsAsync(Test) completionHandler(nil) withListener(Listener);
   end
   else
-  {$ENDIF}
   begin
     Listener:RunStarted(Test);
     result := Run(Context);
     Listener:RunFinished(result);
   end;
+{$ELSE}
+  begin
+    Listener:RunStarted(Test);
+    result := Run(Context);
+    Listener:RunFinished(result);
+  end;
+  {$ENDIF}
 end;
 
 {$IF NOT ISLAND}
