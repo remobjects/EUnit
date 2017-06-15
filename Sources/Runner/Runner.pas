@@ -49,7 +49,7 @@ begin
     result := Run(Context);
     Listener:RunFinished(result);
   end;
-{$ELSE}
+  {$ELSE}
   begin
     Listener:RunStarted(Test);
     result := Run(Context);
