@@ -2,17 +2,17 @@
 
 type
   {$IF COOPER}
-  NativeMethod = java.lang.reflect.Method;
-  NativeType = java.lang.Class;
+  NativeMethod = public java.lang.reflect.Method;
+  NativeType = public java.lang.Class;
   {$ELSEIF ECHOES}
-  NativeMethod = System.Reflection.MethodInfo;
-  NativeType = System.Type;
+  NativeMethod = public System.Reflection.MethodInfo;
+  NativeType = public System.Type;
   {$ELSEIF ISLAND}
-  NativeMethod = RemObjects.Elements.System.MethodInfo;
-  NativeType = RemObjects.Elements.System.Type;
+  NativeMethod = public RemObjects.Elements.System.MethodInfo;
+  NativeType = public RemObjects.Elements.System.Type;
   {$ELSEIF TOFFEE}
-  NativeMethod = rtl.Method;
-  NativeType = &Class;
+  NativeMethod = public rtl.Method;
+  NativeType = public &Class;
   {$ENDIF}
 
 end.
