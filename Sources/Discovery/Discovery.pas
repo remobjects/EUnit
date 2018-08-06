@@ -36,7 +36,7 @@ class method Discovery.FromObject(Value: Object): ITest;
 begin
   ArgumentNilException.RaiseIfNil(Value, "Value");
   {$IFDEF COCOA}
-  var r: NSArray<Object> := [Value];
+  var r: Foundation.NSArray<Object> := [Value];
   exit new InstanceDiscovery(r).Discover;
   {$ELSE}
   exit new InstanceDiscovery([Value]).Discover;
@@ -48,7 +48,7 @@ class method Discovery.FromObjectAsync(Value: Object; OnCompleted: Action<IAsync
 begin
   ArgumentNilException.RaiseIfNil(Value, "Value");
   {$IFDEF COCOA}
-  var r: NSArray<Object> := [Value];
+  var r: Foundation.NSArray<Object> := [Value];
   new InstanceDiscovery(r).DiscoverAsync(OnCompleted, Token);
   {$ELSE}
   new InstanceDiscovery([Value]).DiscoverAsync(OnCompleted, Token);
