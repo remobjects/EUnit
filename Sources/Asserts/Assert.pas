@@ -25,9 +25,9 @@ end;
 method Assert.FailComparison(Actual: Object; Expected: Object; Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   if not assigned(Message) then
-    Message := AssertMessages.Unknown2;
+    Message := String.Format(AssertMessages.Unknown2, coalesce(Actual, "(nil)"), coalesce(Expected, "(nil)"));
 
-  Fail(String.Format(Message, coalesce(Actual, "(nil)"), coalesce(Expected, "(nil)")), aFile, aLine, aClass, aMethod);
+  Fail(Message, aFile, aLine, aClass, aMethod);
 end;
 
 method Assert.FailIf(Condition: Boolean; Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName(); aEmitSuccess: Boolean := true);
