@@ -25,7 +25,9 @@ end;
 method Assert.FailComparison(Actual: Object; Expected: Object; Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   if not assigned(Message) then
-    Message := String.Format(AssertMessages.Unknown2, coalesce(Actual, "(nil)"), coalesce(Expected, "(nil)"));
+    Message := String.Format(AssertMessages.Unknown2, coalesce(Actual, "(nil)"), coalesce(Expected, "(nil)"))
+  else if Message.StartsWith("EUNIT_REPLACE:") then
+    Message := String.Format(Message.Substring(14), coalesce(Actual, "(nil)"), coalesce(Expected, "(nil)"));
 
   Fail(Message, aFile, aLine, aClass, aMethod);
 end;

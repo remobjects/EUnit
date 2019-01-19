@@ -33,12 +33,12 @@ end;
 
 method Assert.IsTrue(Actual: Boolean; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  FailComparisonIfNot(Actual, BoolToString(Actual), Consts.TrueString, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
+  FailComparisonIfNot(Actual, BoolToString(Actual), Consts.TrueString, coalesce(Message, AssertMessages.NotTrue), aFile, aLine, aClass, aMethod);
 end;
 
 method Assert.IsFalse(Actual: Boolean; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  FailComparisonIf(Actual, BoolToString(Actual), Consts.FalseString, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
+  FailComparisonIf(Actual, BoolToString(Actual), Consts.FalseString, coalesce(Message, AssertMessages.NotFalse), aFile, aLine, aClass, aMethod);
 end;
 
 end.
