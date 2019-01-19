@@ -25,8 +25,10 @@ type
       var lHasParsableMessageEnvironmentVar := length(Environment.EnvironmentVariable[Runner.EUNIT_PARSABLE_MESSAGES]) > 0;
       {$IF COCOA}
       var lHasParsableMessageCommandlineSwitch := assigned(Foundation.NSProcessInfo.processInfo.arguments.Where(s -> s = "--"+Runner.EUNIT_PARSABLE_MESSAGES).FirstOrDefault);
+      {$ELSEIF ECHOES}
+      var lHasParsableMessageCommandlineSwitch := System.Environment.CommandLine.Contains("--"+Runner.EUNIT_PARSABLE_MESSAGES);
       {$ENDIF}
-      EmitParseableMessages := lHasParsableMessageEnvironmentVar or {$IF COCOA}lHasParsableMessageCommandlineSwitch{$ELSE}false{$ENDIF};
+      EmitParseableMessages := lHasParsableMessageEnvironmentVar or {$IF COCOA OR ECHOES}lHasParsableMessageCommandlineSwitch{$ELSE}false{$ENDIF};
       EmitParseableSuccessMessages := false; // for now
     end;
 
