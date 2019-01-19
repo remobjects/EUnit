@@ -36,10 +36,10 @@ begin
   //Void
   fValidator := fValidator.AndNot(item -> item.HasParameters);
   //Name
-  fValidator := fValidator.AndNot(item -> Item.Name.Equals("SetupTest") or Item.Name.Equals("TeardownTest") or
-     Item.Name.Equals("Setup") or Item.Name.Equals("Teardown"));
+  fValidator := fValidator.AndNot(item -> item.Name.Equals("SetupTest") or item.Name.Equals("TeardownTest") or
+     item.Name.Equals("Setup") or item.Name.Equals("Teardown"));
   //Prefix
-  fValidator := fValidator.AndNot(item -> Item.Name.StartsWith("."));
+  fValidator := fValidator.AndNot(item -> item.Name.StartsWith("."));
 end;
 
 end.
