@@ -21,6 +21,14 @@ type
     property &Type: TypeReference read write;
     property &Method: MethodReference read write;
     property CurrentResult: ITestResult read write;
+
+    method AddIntermediateTestResult(aState: TestState; aMessage: String; aParsableMessage: String);
+    begin
+      new TestResultNode(Test, aState, aMessage, aParsableMessage);
+      writeLn("xxx "+aParsableMessage);
+    end;
+
+    class property CurrentContext: RunContext read assembly write;
   end;
 
 implementation

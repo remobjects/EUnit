@@ -25,6 +25,7 @@ method BaseAction.Execute(Context: RunContext);
 begin
   try
     ArgumentNilException.RaiseIfNil(Context, "Context");
+    RunContext.CurrentContext := Context;
 
     if Prev <> nil then
       Prev.Execute(Context);
