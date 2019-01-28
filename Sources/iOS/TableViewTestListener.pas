@@ -26,7 +26,7 @@ type
 
     method tableView(tableView: UITableView) numberOfRowsInSection(section: Integer): Integer;
     begin
-      result := TableViewTestListenerAppDelegate.Listener.tests.count;
+      result := TableViewTestListenerAppDelegate.listener.tests.count;
     end;
 
     method tableView(tableView: UITableView) cellForRowAtIndexPath(indexPath: NSIndexPath): UITableViewCell;
@@ -38,15 +38,15 @@ type
         result := new UITableViewCell withStyle(UITableViewCellStyle.UITableViewCellStyleValue1) reuseIdentifier(CellIdentifier);
       end;
 
-      var lTest := TableViewTestListenerAppDelegate.Listener.tests[indexPath.row];
+      var lTest := TableViewTestListenerAppDelegate.listener.tests[indexPath.row];
 
       result.textLabel.text := lTest.Name;
-      if lTest = TableViewTestListenerAppDelegate.Listener.runningTest then begin
+      if lTest = TableViewTestListenerAppDelegate.listener.runningTest then begin
         result.detailTextLabel.text := "Testing...";
         result.backgroundColor := UIColor.blueColor.colorWithAlphaComponent(0.25);
       end
       else begin
-        var lTestResult := TableViewTestListenerAppDelegate.Listener.testResults[lTest.Id];
+        var lTestResult := TableViewTestListenerAppDelegate.listener.testResults[lTest.Id];
         if assigned(lTestResult) then begin
           case lTestResult.State of
             TestState.Failed: begin
@@ -122,14 +122,14 @@ type
 
     method RunGUI;
     begin
-      TableViewTestListenerAppDelegate.Listener := self;
+      TableViewTestListenerAppDelegate.listener := self;
       UIApplicationMain(0, nil, nil, nameOf(TableViewTestListenerAppDelegate))
     end;
 
     method FinishGUI;
     begin
       dispatch_async(dispatch_get_main_queue(), () -> begin
-        TableViewTestListenerAppDelegate.TableViewController:title := 'EUnit — Done'
+        TableViewTestListenerAppDelegate.tableViewController:title := 'EUnit — Done'
       end);
     end;
 

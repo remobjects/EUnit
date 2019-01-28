@@ -11,7 +11,7 @@
     <AllowLegacyCreate>False</AllowLegacyCreate>
     <AllowUnsafeCode>False</AllowUnsafeCode>
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
-    <Name>RemObjects.Elements.EUnit (Island/Darwin)</Name>
+    <Name>RemObjects.Elements.EUnit (Island/Darwin/macOS)</Name>
     <GenerateDebugInfo>True</GenerateDebugInfo>
     <MangleTypeNames>True</MangleTypeNames>
     <DefaultUses>RemObjects.Elements.RTL</DefaultUses>
@@ -43,7 +43,5 @@
   <ItemGroup>
     <Compile Include="Sources\Discovery\Island\IslandDiscovery.pas" />
     <Compile Include="Sources\Discovery\Island\IslandModuleDiscovery.pas" />
-    <Compile Include="Sources\Discovery\Toffee\CocoaModuleDiscovery.pas" />
-    <Compile Include="Sources\Discovery\Toffee\ToffeeDiscovery.pas" />
   </ItemGroup>
 </Project>

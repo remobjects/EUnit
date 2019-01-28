@@ -32,13 +32,6 @@ type
         end;
       end;
 
-      if defined("DARWIN") then begin
-        var lCocoaTests := new CocoaModuleDiscovery().Filter;
-        result.Add(lCocoaTests)
-        //var lSwiftTests := new CocoaModuleDiscovery().Filter;
-        //result.Add(lSwiftTests)
-      end;
-
     end;
 
   end;

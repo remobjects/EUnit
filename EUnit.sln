@@ -7,7 +7,7 @@ Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (
 EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Island/Android)", "RemObjects.Elements.EUnit.Island.Android.elements", "{1E0A5BBA-9471-42C9-BEA1-D6660BD12988}"
 EndProject
-Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Island/Darwin)", "RemObjects.Elements.EUnit.Island.Darwin.elements", "{91849833-1653-4893-98CE-CCE5DC97D32A}"
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Island/Darwin/macOS)", "RemObjects.Elements.EUnit.Island.Darwin.macOS.elements", "{91849833-1653-4893-98CE-CCE5DC97D32A}"
 EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Island/Linux)", "RemObjects.Elements.EUnit.Island.Linux.elements", "{0CAD688B-CD37-4FC1-B3DD-039BE70440A2}"
 EndProject
