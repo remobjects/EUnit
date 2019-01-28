@@ -13,12 +13,15 @@ implementation
 constructor MethodAction;
 begin
   inherited constructor(ctx -> begin
-                          ArgumentNilException.RaiseIfNil(ctx.Method, "Method");
-                          ArgumentNilException.RaiseIfNil(ctx.Instance, "Instance");
+    ArgumentNilException.RaiseIfNil(ctx.Method, "Method");
+    ArgumentNilException.RaiseIfNil(ctx.Instance, "Instance");
 
-                          ctx.Method.Invoke(ctx.Instance);
-                          exit new TestResultNode(ctx.Test, TestState.Succeeded, nil, "TEST-SUCCEEDED,,,"+ctx.Test.Name+",Test Succeeded.");
-                       end);
+    ctx.Method.Invoke(ctx.Instance);
+    if TestNode(ctx.Test):IntermediateTestResults:Any(t -> t.State ≠ TestState.Succeeded) then
+      result := new TestResultNode(ctx.Test, TestState.Succeeded, nil, "TEST-FAILED,,,"+ctx.Test.Name+",Test Failed some checks.")
+    else
+      result := new TestResultNode(ctx.Test, TestState.Succeeded, nil, "TEST-SUCCEEDED,,,"+ctx.Test.Name+",Test Succeeded.");
+  end);
 end;
 
 end.

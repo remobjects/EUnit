@@ -3,7 +3,7 @@
 interface
 
 type
-  Assert = public partial static class
+  BaseAsserts = public partial abstract class
   public
     method AreEqual(Actual, Expected : Integer; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
     method AreNotEqual(Actual, Expected: Integer; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
@@ -22,62 +22,62 @@ type
 
 implementation
 
-method Assert.AreNotEqual(Actual: Integer; Expected: Integer; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+method BaseAsserts.AreNotEqual(Actual: Integer; Expected: Integer; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   FailComparisonIfNot(Actual <> Expected, Actual, Expected, coalesce(Message, AssertMessages.Equal), aFile, aLine, aClass, aMethod);
 end;
 
-method Assert.AreEqual(Actual: Integer; Expected: Integer; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+method BaseAsserts.AreEqual(Actual: Integer; Expected: Integer; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   FailComparisonIfNot(Actual = Expected, Actual, Expected, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
 end;
 
-method Assert.Greater(Actual: Integer; Expected: Integer; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+method BaseAsserts.Greater(Actual: Integer; Expected: Integer; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   FailComparisonIfNot(Actual > Expected, Actual, Expected, coalesce(Message, AssertMessages.GreaterExpected), aFile, aLine, aClass, aMethod);
 end;
 
-method Assert.GreaterOrEquals(Actual: Integer; Expected: Integer; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+method BaseAsserts.GreaterOrEquals(Actual: Integer; Expected: Integer; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   FailComparisonIfNot(Actual >= Expected, Actual, Expected, coalesce(Message, AssertMessages.GreaterOrEqualExpected), aFile, aLine, aClass, aMethod);
 end;
 
-method Assert.Less(Actual: Integer; Expected: Integer; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+method BaseAsserts.Less(Actual: Integer; Expected: Integer; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   FailComparisonIfNot(Actual < Expected, Actual, Expected, coalesce(Message, AssertMessages.LessExpected), aFile, aLine, aClass, aMethod);
 end;
 
-method Assert.LessOrEquals(Actual: Integer; Expected: Integer; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+method BaseAsserts.LessOrEquals(Actual: Integer; Expected: Integer; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   FailComparisonIfNot(Actual <= Expected, Actual, Expected, coalesce(Message, AssertMessages.LessOrEqualExpected), aFile, aLine, aClass, aMethod);
 end;
 
-method Assert.AreEqual(Actual: Int64; Expected: Int64; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+method BaseAsserts.AreEqual(Actual: Int64; Expected: Int64; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   FailComparisonIfNot(Actual = Expected, Actual, Expected, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
 end;
 
-method Assert.AreNotEqual(Actual: Int64; Expected: Int64; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+method BaseAsserts.AreNotEqual(Actual: Int64; Expected: Int64; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   FailComparisonIfNot(Actual <> Expected, Actual, Expected, coalesce(Message, AssertMessages.Equal), aFile, aLine, aClass, aMethod);
 end;
 
-method Assert.Greater(Actual: Int64; Expected: Int64; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+method BaseAsserts.Greater(Actual: Int64; Expected: Int64; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   FailComparisonIfNot(Actual > Expected, Actual, Expected, coalesce(Message, AssertMessages.GreaterExpected), aFile, aLine, aClass, aMethod);
 end;
 
-method Assert.GreaterOrEquals(Actual: Int64; Expected: Int64; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+method BaseAsserts.GreaterOrEquals(Actual: Int64; Expected: Int64; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   FailComparisonIfNot(Actual >= Expected, Actual, Expected, coalesce(Message, AssertMessages.GreaterOrEqualExpected), aFile, aLine, aClass, aMethod);
 end;
 
-method Assert.Less(Actual: Int64; Expected: Int64; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+method BaseAsserts.Less(Actual: Int64; Expected: Int64; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   FailComparisonIfNot(Actual < Expected, Actual, Expected, coalesce(Message, AssertMessages.LessExpected), aFile, aLine, aClass, aMethod);
 end;
 
-method Assert.LessOrEquals(Actual: Int64; Expected: Int64; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+method BaseAsserts.LessOrEquals(Actual: Int64; Expected: Int64; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
   FailComparisonIfNot(Actual <= Expected, Actual, Expected, coalesce(Message, AssertMessages.LessOrEqualExpected), aFile, aLine, aClass, aMethod);
 end;

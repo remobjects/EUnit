@@ -7,6 +7,8 @@ uses
 
 type
   TestNode = assembly abstract class (ITest)
+  private
+    fIntermediateTestResults: List<TestResultNode>;
   public
     constructor(aName: String);
 
@@ -21,6 +23,15 @@ type
     property &Type: NativeType read nil; virtual;
     property &Method: NativeMethod read nil; virtual;
     property Children: sequence of ITest read; virtual; abstract;
+
+    property IntermediateTestResults: ImmutableList<TestResultNode> read fIntermediateTestResults;
+
+    method AddIntermediateTestResult(aResult: TestResultNode);
+    begin
+      if not assigned(fIntermediateTestResults) then
+        fIntermediateTestResults := new List<TestResultNode>;
+      fIntermediateTestResults.Add(aResult);
+    end;
   end;
 
 implementation

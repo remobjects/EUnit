@@ -22,10 +22,19 @@ type
     property &Method: MethodReference read write;
     property CurrentResult: ITestResult read write;
 
-    method AddIntermediateTestResult(aState: TestState; aMessage: String; aParsableMessage: String);
+    method AddIntermediateTestResult(aState: TestState; aException: BaseException);
     begin
-      new TestResultNode(Test, aState, aMessage, aParsableMessage);
-      writeLn("xxx "+aParsableMessage);
+      try
+        raise aException
+      except
+        on E: BaseException do begin
+          var lResult := new TestResultNode(Test, TestState.Failed, E.Message, E.ParsableMessage);
+          TestNode(Test):AddIntermediateTestResult(lResult);
+          if ConsoleTestListener.EmitParseableMessages then begin
+            writeLn(E.ParsableMessage);
+          end;
+        end;
+      end;
     end;
 
     class property CurrentContext: RunContext read assembly write;

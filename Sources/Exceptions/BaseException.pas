@@ -4,7 +4,7 @@ type
   BaseException = public class({$IF NOUGAT}Foundation.NSException{$ELSE}Exception{$ENDIF})
   public
 
-    constructor (aMessage: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
+    constructor (aMessage: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName(); aType: String := "TEST");
     begin
       var lPlainMessage := aMessage;
       if assigned(aFile) and (aLine > 0) then
@@ -14,7 +14,7 @@ type
       {$ELSE}
       inherited constructor(lPlainMessage);
       {$ENDIF}
-      ParsableMessage := String.Format("TEST-FAILED,{0},{1},{2}.{3},{4}", aFile, if aLine > 0 then aLine else "", aClass:Trim, aMethod:Trim, aMessage.Replace(#10,"\n").Replace(#13,"\r"));
+      ParsableMessage := String.Format("{0}-FAILED,{1},{2},{3}.{4},{5}", aType, aFile, if aLine > 0 then aLine else "", aClass:Trim, aMethod:Trim, aMessage.Replace(#10,"\n").Replace(#13,"\r"));
     end;
 
     {$IF NOUGAT}
