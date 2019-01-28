@@ -41,7 +41,7 @@
     <Reference Include="libElements" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sources\Discovery\Toffee\ModuleDiscovery.pas" />
+    <Compile Include="Sources\Discovery\Toffee\CocoaModuleDiscovery.pas" />
     <Compile Include="Sources\Discovery\Toffee\ToffeeDiscovery.pas" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Toffee.targets" />

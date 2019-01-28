@@ -47,7 +47,7 @@
   </PropertyGroup>
   <Import Project="RemObjects.Elements.EUnit.Shared.projitems" Label="Shared" />
   <ItemGroup>
-    <Compile Include="Sources\Discovery\Toffee\ModuleDiscovery.pas" />
+    <Compile Include="Sources\Discovery\Toffee\CocoaModuleDiscovery.pas" />
     <Compile Include="Sources\Discovery\Toffee\ToffeeDiscovery.pas" />
   </ItemGroup>
 </Project>

@@ -3,10 +3,11 @@
 interface
 
 uses
+  rtl,
   RemObjects.Elements.EUnit.Reflections;
 
 type
-  ModuleDiscovery = assembly class (BaseDiscovery)
+  CocoaModuleDiscovery = assembly class (BaseDiscovery)
   public
     constructor;
     method Filter: List<ITest>; override;
@@ -14,7 +15,7 @@ type
 
 implementation
 
-method ModuleDiscovery.Filter: List<ITest>;
+method CocoaModuleDiscovery.Filter: List<ITest>;
 begin
   result := new List<ITest>;
 
@@ -32,11 +33,16 @@ begin
     while Super <> nil do begin
 
       //inherits from Testcase
-      if Super = Test.class then begin
-        var Instance := Foundation.NSClassFromString(class_getName(lClass)).alloc.init;
-        var Abc := new InstanceDiscovery([Instance]);
-        result.Add(Abc.Filter);
-        break;
+      if defined("ISLAND") then begin
+        {$WARNING  need top implement for Island}
+      end
+      else begin
+        if (Super = Test.class) then begin
+          var Instance := Foundation.NSClassFromString(class_getName(lClass)).alloc.init;
+          var Abc := new InstanceDiscovery([Instance]);
+          result.Add(Abc.Filter);
+          break;
+        end;
       end;
 
       Super := class_getSuperclass(Super);
@@ -44,7 +50,7 @@ begin
   end;
 end;
 
-constructor ModuleDiscovery;
+constructor CocoaModuleDiscovery;
 begin
 end;
 

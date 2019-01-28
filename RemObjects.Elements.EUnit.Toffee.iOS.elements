@@ -41,7 +41,7 @@
     <Reference Include="libElements" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sources\Discovery\Toffee\ModuleDiscovery.pas" />
+    <Compile Include="Sources\Discovery\Toffee\CocoaModuleDiscovery.pas" />
     <Compile Include="Sources\Discovery\Toffee\ToffeeDiscovery.pas" />
     <Compile Include="Sources\iOS\TableViewTestListener.pas" />
   </ItemGroup>
