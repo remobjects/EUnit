@@ -123,7 +123,7 @@ end;
 
 {$IF ISLAND}
 type
-  ParamlessInstanceMethod = method(aSelf: OBject);
+  ParamlessInstanceMethod = method(aSelf: Object);
 {$ENDIF}
 
 method MethodReference.Invoke(anInstance: Object);

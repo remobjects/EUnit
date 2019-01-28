@@ -134,7 +134,7 @@ end;
 method TypeReference.GetIsAbstract: Boolean;
 begin
   {$IF COOPER}
-  exit java.lang.reflect.Modifier.isAbstract(Native.GetModifiers);
+  exit java.lang.reflect.Modifier.isAbstract(Native.getModifiers);
   {$ELSEIF NETFX_CORE}
   exit Native.GetTypeInfo.IsAbstract;
   {$ELSEIF ECHOES}

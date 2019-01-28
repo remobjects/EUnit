@@ -21,6 +21,8 @@ Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (
 EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (watchOS)", "RemObjects.Elements.EUnit.Toffee.watchOS.elements", "{77D6CD89-863F-441A-A7B3-12E3EC49DBA3}"
 EndProject
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit.Shared", "RemObjects.Elements.EUnit.Shared.elements", "{66B16487-C9BF-4BFD-B813-F882B2237802}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|AnyCPU = Debug|AnyCPU

@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
   <PropertyGroup>
     <RootNamespace>RemObjects.Elements.EUnit</RootNamespace>
-    <ProjectGuid>{77D6CD89-863F-441A-A7B3-12E3EC49DBA3}</ProjectGuid>
+    <ProjectGuid>{91849833-1653-4893-98ce-cce5dc97d32a}</ProjectGuid>
     <OutputType>StaticLibrary</OutputType>
     <AssemblyName>EUnit</AssemblyName>
     <AllowGlobals>False</AllowGlobals>
@@ -11,12 +11,10 @@
     <AllowLegacyCreate>False</AllowLegacyCreate>
     <AllowUnsafeCode>False</AllowUnsafeCode>
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
-    <SDK>watchOS</SDK>
-    <CreateHeaderFile>True</CreateHeaderFile>
-    <Name>RemObjects.Elements.EUnit (watchOS)</Name>
+    <Name>RemObjects.Elements.EUnit (Island/Darwin)</Name>
     <GenerateDebugInfo>True</GenerateDebugInfo>
     <MangleTypeNames>True</MangleTypeNames>
-    <DefaultUses>RemObjects.Elements.RTL;RemObjects.Elements.RTL.Linq</DefaultUses>
+    <DefaultUses>RemObjects.Elements.RTL</DefaultUses>
     <Platform Condition="'$(Platform)' == ''">AnyCPU</Platform>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
@@ -30,23 +28,22 @@
     <OutputPath>bin\Release\</OutputPath>
     <CaptureConsoleOutput>False</CaptureConsoleOutput>
     <WarnOnCaseMismatch>True</WarnOnCaseMismatch>
-    <GenerateBitcode>True</GenerateBitcode>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CoreGraphics" />
-    <Reference Include="Foundation" />
-    <Reference Include="UIKit" />
     <Reference Include="rtl" />
-    <Reference Include="libToffee" />
-    <Reference Include="libElements" />
+    <Reference Include="gc" />
+    <Reference Include="elements" />
+    <Reference Include="Island" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sources\Discovery\Toffee\ModuleDiscovery.pas" />
-    <Compile Include="Sources\Discovery\Toffee\ToffeeDiscovery.pas" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Toffee.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Island.Darwin.targets" />
   <PropertyGroup>
     <PreBuildEvent />
   </PropertyGroup>
   <Import Project="RemObjects.Elements.EUnit.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <Compile Include="Sources\Discovery\Island\IslandDiscovery.pas" />
+    <Compile Include="Sources\Discovery\Island\ModuleDiscovery.pas" />
+    <Compile Include="Sources\Discovery\Toffee\ModuleDiscovery.pas" />
+    <Compile Include="Sources\Discovery\Toffee\ToffeeDiscovery.pas" />
+  </ItemGroup>
 </Project>

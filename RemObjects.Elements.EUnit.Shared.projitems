@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{66B16487-C9BF-4BFD-B813-F882B2237802}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>RemObjects.Elements.EUnit.Shared.elements</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Asserts\Assert.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Asserts\BooleanAssert.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Asserts\DoubleAssert.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Asserts\ExceptionAssert.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Asserts\Helpers\ExceptionHelper.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Asserts\Helpers\SequenceHelper.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Asserts\IntegerAssert.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Asserts\ObjectAssert.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Asserts\SequenceAssert.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Asserts\StringAssert.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Discovery\BaseDiscovery.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Discovery\Discovery.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Discovery\InstanceDiscovery.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Discovery\TypeDiscovery.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Discovery\Validation\IValidator.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Discovery\Validation\Validator.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Discovery\Validation\ValidatorExtensions.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Discovery\Validators\MethodValidators.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Discovery\Validators\TypeValidators.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Exceptions\ArgumentException.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Exceptions\ArgumentNilException.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Exceptions\AssertException.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Exceptions\BaseException.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Exceptions\InvalidOperationException.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Exceptions\RunnerException.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Interfaces\Aliases.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Interfaces\Blocks.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Interfaces\Extensions.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Interfaces\IAsyncResult.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Interfaces\IAwaitToken.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Interfaces\ICancelationToken.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Interfaces\IDiscovery.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Interfaces\IEventListener.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Interfaces\ITest.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Interfaces\ITestResult.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Interfaces\TestKind.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Interfaces\TestState.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Internals\AsyncResult.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Internals\ErrorMessage.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Internals\Generator\Hasher.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Internals\Generator\IdGenerator.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Internals\RunContext.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Internals\TestNodes\TestcaseNode.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Internals\TestNodes\TestClassNode.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Internals\TestNodes\TestNode.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Internals\TestNodes\TestSuiteNode.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Internals\TestResultNode.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Reflections\Method.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Reflections\Type.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Runner\Actions\BaseAction.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Runner\Actions\BlockAction.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Runner\Actions\InitializeInstanceAction.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Runner\Actions\InitializeMethodAction.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Runner\Actions\InitializeTypeAction.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Runner\Actions\InstanceAction.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Runner\Actions\MethodAction.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Runner\Actions\ResultAction.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Runner\Actions\SetupAction.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Runner\Actions\TeardownAction.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Runner\Actions\TeardownTestAction.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Runner\Actions\SetupTestAction.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Runner\Actions\TryFinallyAction.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Runner\Runner.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Test.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Utils\ConsoleTestListener.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Utils\Tokens\AwaitToken.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Utils\Tokens\CancelationToken.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Utils\Tokens\TokenProvider.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Utils\Locks\AbstractLock.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Utils\Locks\ExceptionLock.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Utils\Locks\Lock.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Utils\Locks\ResultLock.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Writers\BaseWriter.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Writers\ConsoleWriter.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Writers\StringWriter.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Writers\Summary.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\Utils\DefaultListener.pas" />
+  </ItemGroup>
+</Project>
