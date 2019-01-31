@@ -179,9 +179,9 @@ end;
   ////Assert.Throws(Message);
 //end;
 
-method XCTFail(Message: String);
+method XCTFail(aMessage: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); public;
 begin
-  Assert.Fail(Message);
+  Assert.Fail(coalesce(aMessage, AssertMessages.XCFailed), aFile, aLine, aClass, aMethod);
 end;
 
 end.

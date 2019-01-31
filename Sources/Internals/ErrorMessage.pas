@@ -18,6 +18,7 @@ type
 
     const XCNotEqual = 'Expected "{1}" but got "{0}"';
     const XCEqual = 'Actual value expected to be different from "{1}"';
+    const XCFailed = 'Test Failed.';
 
     const LessExpected = 'EUNIT_REPLACE:Value expected to be less than "{1}" but was "{0}"';
     const LessOrEqualExpected = 'EUNIT_REPLACE:Value expected to be less than or equal to "{1}" but was "{0}"';
