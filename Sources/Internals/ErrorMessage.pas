@@ -16,6 +16,9 @@ type
     const NotEqual = 'EUNIT_REPLACE:Expected "{1}" but got "{0}"';
     const Equal = 'EUNIT_REPLACE:Actual value expected to be different from "{1}"';
 
+    const XCNotEqual = 'Expected "{1}" but got "{0}"';
+    const XCEqual = 'Actual value expected to be different from "{1}"';
+
     const LessExpected = 'EUNIT_REPLACE:Value expected to be less than "{1}" but was "{0}"';
     const LessOrEqualExpected = 'EUNIT_REPLACE:Value expected to be less than or equal to "{1}" but was "{0}"';
     const GreaterExpected = 'EUNIT_REPLACE:Value expected to be greater than "{1}", but was "{0}"';
@@ -28,6 +31,7 @@ type
     const DoesNotContains = 'EUNIT_REPLACE:{1} does not contains element: "{0}"';
 
     const ObjectIsNil = 'Object is nil';
+    const ObjectIsNotNil = 'Object is not nil';
     const ValueIsNaN = 'Value is NaN';
     const ValueIsNotNaN = 'EUNIT_REPLACE:Expected NaN but got "{0}"';
     const ValueIsInf = 'Value is infinity';

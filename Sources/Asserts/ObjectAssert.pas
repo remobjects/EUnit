@@ -36,7 +36,7 @@ end;
 
 method BaseAsserts.IsNil(Actual: Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  FailComparisonIfNot(Actual = nil, Actual, nil, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
+  FailComparisonIfNot(Actual = nil, Actual, nil, coalesce(Message, AssertMessages.ObjectIsNotNil), aFile, aLine, aClass, aMethod);
 end;
 
 method BaseAsserts.IsNotNil(Actual: Object; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
