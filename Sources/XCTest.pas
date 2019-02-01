@@ -47,15 +47,15 @@ begin
   Assert.IsNotNil(Expression, aMessage, aFile, aLine, aClass, aMethod);
 end;
 
-method XCTAssertNil(Expression: Pointer; aMessage: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); public;
-begin
-  Assert.IsTrue(not assigned(Expression), coalesce(aMessage, AssertMessages.ObjectIsNotNil), aFile, aLine, aClass, aMethod);
-end;
+//method XCTAssertNil(Expression: Pointer; aMessage: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); public;
+//begin
+  //Assert.IsTrue(not assigned(Expression), coalesce(aMessage, AssertMessages.ObjectIsNotNil), aFile, aLine, aClass, aMethod);
+//end;
 
-method XCTAssertNotNil(Expression: Pointer; aMessage: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); public;
-begin
-  Assert.IsTrue(assigned(Expression), coalesce(aMessage, AssertMessages.ObjectIsNil), aFile, aLine, aClass, aMethod);
-end;
+//method XCTAssertNotNil(Expression: Pointer; aMessage: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); public;
+//begin
+  //Assert.IsTrue(assigned(Expression), coalesce(aMessage, AssertMessages.ObjectIsNil), aFile, aLine, aClass, aMethod);
+//end;
 
 //
 // Equality

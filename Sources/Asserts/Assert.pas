@@ -46,13 +46,15 @@ type
         Success(Message, aFile, aLine, aClass, aMethod);
     end;
 
+  public
+
     method Fail(Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); abstract;
     method Success(aIgnoredMessage: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); abstract;
 
   end;
 
   Asserts = assembly partial class(BaseAsserts)
-  assembly
+  public
 
     method Fail(Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); override;
     begin
@@ -72,7 +74,7 @@ type
   end;
 
   Checks = assembly partial class(BaseAsserts)
-  assembly
+  public
 
     method Fail(Message: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); override;
     begin
