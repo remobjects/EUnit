@@ -58,7 +58,8 @@ begin
       dec(Offset, 2);
 
   if EmitParseableMessages then begin
-    Output(TestResult.ParsableMessage);
+    if (TestResult.State ≠ TestState.Succeeded) or ConsoleTestListener.EmitParseableSuccessMessages then
+      Output(TestResult.ParsableMessage);
   end
   else begin
     var Failed := "Failed";
