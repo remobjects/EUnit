@@ -17,19 +17,22 @@ type
     method RunFinished(TestResult: ITestResult); virtual;
 
     property UseAnsiColorOutput: Boolean;
-    class property EmitParseableMessages: Boolean; readonly;
-    class property EmitParseableSuccessMessages: Boolean; readonly;
+    class property EmitParseableMessages: Boolean := false; readonly;
+    class property EmitParseableSuccessMessages: Boolean := false; readonly;
+    class property EmitSuccessMessages: Boolean := false; readonly;
 
     class constructor;
     begin
       var lHasParsableMessageEnvironmentVar := length(Environment.EnvironmentVariable[Runner.EUNIT_PARSABLE_MESSAGES]) > 0;
       {$IF COCOA}
-      var lHasParsableMessageCommandlineSwitch := assigned(Foundation.NSProcessInfo.processInfo.arguments.Where(s -> s = "--"+Runner.EUNIT_PARSABLE_MESSAGES).FirstOrDefault);
+      var lHasParsableMessageCommandlineSwitch := Foundation.NSProcessInfo.processInfo.arguments.Where(s -> s = "--"+Runner.EUNIT_PARSABLE_MESSAGES).Any;
+      EmitSuccessMessages := Foundation.NSProcessInfo.processInfo.arguments.Where(s -> s = "--"+Runner.EUNIT_SUCCESS_MESSAGES).Any;
       {$ELSEIF ECHOES}
       var lHasParsableMessageCommandlineSwitch := System.Environment.CommandLine.Contains("--"+Runner.EUNIT_PARSABLE_MESSAGES);
+      EmitSuccessMessages := System.Environment.CommandLine.Contains("--"+Runner.EUNIT_SUCCESS_MESSAGES);
       {$ENDIF}
       EmitParseableMessages := lHasParsableMessageEnvironmentVar or {$IF COCOA OR ECHOES}lHasParsableMessageCommandlineSwitch{$ELSE}false{$ENDIF};
-      EmitParseableSuccessMessages := false; // for now
+      EmitParseableSuccessMessages := EmitSuccessMessages and EmitParseableMessages; // for now
     end;
 
   end;

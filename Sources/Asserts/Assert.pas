@@ -86,7 +86,7 @@ type
     method Success(aIgnoredMessage: String; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); override;
     begin
       {$IF NOT WINDOWS_PHONE AND NOT NETFX_CORE}
-      if ConsoleTestListener.EmitParseableMessages then begin
+      if ConsoleTestListener.EmitParseableSuccessMessages then begin
         writeLn(String.Format("CHECK-SUCCEEDED,{0},{1},{2}.{3},{4}", aFile, if aLine > 0 then aLine else "", aClass:Trim, aMethod:Trim, "Succeeded"));
       end;
       {$ENDIF}
