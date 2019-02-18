@@ -1,9 +1,11 @@
 ﻿namespace RemObjects.Elements.EUnit;
 
 uses
+  Foundation,
   UIKit;
 
 type
+  [Cocoa]
   TestsTableViewController = public class(UITableViewController)
   public
 
@@ -80,11 +82,12 @@ type
 
   end;
 
-  TableViewTestListener = public class (IEventListener, IEventListenerGUI)
+  [Cocoa]
+  TableViewTestListener = public class(IEventListener, IEventListenerGUI)
   public
 
-    property tests := new NSMutableArray<ITest>();
-    property testResults := new NSMutableDictionary<String, ITestResult>();
+    property tests := new Foundation.NSMutableArray<ITest>();
+    property testResults := new Foundation.NSMutableDictionary<String, ITestResult>();
     property runningTest: nullable ITest;
 
   private

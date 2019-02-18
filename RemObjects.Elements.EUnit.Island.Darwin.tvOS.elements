@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
   <PropertyGroup>
     <RootNamespace>RemObjects.Elements.EUnit</RootNamespace>
-    <ProjectGuid>{91849833-1653-4893-98ce-cce5dc97d32a}</ProjectGuid>
+    <ProjectGuid>{6217CBBF-FF04-4177-81F5-B2C1A6D1CD5D}</ProjectGuid>
     <OutputType>StaticLibrary</OutputType>
     <AssemblyName>EUnit</AssemblyName>
     <AllowGlobals>False</AllowGlobals>
@@ -11,12 +11,12 @@
     <AllowLegacyCreate>False</AllowLegacyCreate>
     <AllowUnsafeCode>False</AllowUnsafeCode>
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
-    <Name>RemObjects.Elements.EUnit (Island/Darwin/macOS)</Name>
+    <Name>RemObjects.Elements.EUnit (Island/Darwin/tvOS)</Name>
     <GenerateDebugInfo>True</GenerateDebugInfo>
     <MangleTypeNames>True</MangleTypeNames>
     <DefaultUses>RemObjects.Elements.RTL</DefaultUses>
     <Platform Condition="'$(Platform)' == ''">AnyCPU</Platform>
-    <SDK>macOS</SDK>
+    <SDK>tvOS</SDK>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <Optimize>False</Optimize>

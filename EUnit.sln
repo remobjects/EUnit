@@ -7,7 +7,13 @@ Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (
 EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Island/Android)", "RemObjects.Elements.EUnit.Island.Android.elements", "{1E0A5BBA-9471-42C9-BEA1-D6660BD12988}"
 EndProject
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Island/Darwin/iOS)", "RemObjects.Elements.EUnit.Island.Darwin.iOS.elements", "{CF7427BB-616B-469B-836C-70C083AE5074}"
+EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Island/Darwin/macOS)", "RemObjects.Elements.EUnit.Island.Darwin.macOS.elements", "{91849833-1653-4893-98CE-CCE5DC97D32A}"
+EndProject
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Island/Darwin/tvOS)", "RemObjects.Elements.EUnit.Island.Darwin.tvOS.elements", "{6217CBBF-FF04-4177-81F5-B2C1A6D1CD5D}"
+EndProject
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Island/Darwin/watchOS)", "RemObjects.Elements.EUnit.Island.Darwin.watchOS.elements", "{583E9360-56A0-4B9F-A0A5-01ABA4B6BEC7}"
 EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Island/Linux)", "RemObjects.Elements.EUnit.Island.Linux.elements", "{0CAD688B-CD37-4FC1-B3DD-039BE70440A2}"
 EndProject
@@ -43,10 +49,22 @@ Global
 		{1E0A5BBA-9471-42C9-BEA1-D6660BD12988}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
 		{1E0A5BBA-9471-42C9-BEA1-D6660BD12988}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
 		{1E0A5BBA-9471-42C9-BEA1-D6660BD12988}.Release|AnyCPU.Build.0 = Release|AnyCPU
+		{CF7427BB-616B-469B-836C-70C083AE5074}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
+		{CF7427BB-616B-469B-836C-70C083AE5074}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
+		{CF7427BB-616B-469B-836C-70C083AE5074}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
+		{CF7427BB-616B-469B-836C-70C083AE5074}.Release|AnyCPU.Build.0 = Release|AnyCPU
 		{91849833-1653-4893-98CE-CCE5DC97D32A}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
 		{91849833-1653-4893-98CE-CCE5DC97D32A}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
 		{91849833-1653-4893-98CE-CCE5DC97D32A}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
 		{91849833-1653-4893-98CE-CCE5DC97D32A}.Release|AnyCPU.Build.0 = Release|AnyCPU
+		{6217CBBF-FF04-4177-81F5-B2C1A6D1CD5D}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
+		{6217CBBF-FF04-4177-81F5-B2C1A6D1CD5D}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
+		{6217CBBF-FF04-4177-81F5-B2C1A6D1CD5D}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
+		{6217CBBF-FF04-4177-81F5-B2C1A6D1CD5D}.Release|AnyCPU.Build.0 = Release|AnyCPU
+		{583E9360-56A0-4B9F-A0A5-01ABA4B6BEC7}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
+		{583E9360-56A0-4B9F-A0A5-01ABA4B6BEC7}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
+		{583E9360-56A0-4B9F-A0A5-01ABA4B6BEC7}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
+		{583E9360-56A0-4B9F-A0A5-01ABA4B6BEC7}.Release|AnyCPU.Build.0 = Release|AnyCPU
 		{0CAD688B-CD37-4FC1-B3DD-039BE70440A2}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
 		{0CAD688B-CD37-4FC1-B3DD-039BE70440A2}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
 		{0CAD688B-CD37-4FC1-B3DD-039BE70440A2}.Release|AnyCPU.ActiveCfg = Release|AnyCPU

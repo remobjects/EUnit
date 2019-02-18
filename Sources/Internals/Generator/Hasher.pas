@@ -2,6 +2,8 @@
 
 interface
 
+{$CROSSPLATFORM ON}
+
 type
   Hasher = public static class
   assembly

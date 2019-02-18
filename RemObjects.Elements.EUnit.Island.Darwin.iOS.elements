@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
   <PropertyGroup>
     <RootNamespace>RemObjects.Elements.EUnit</RootNamespace>
-    <ProjectGuid>{91849833-1653-4893-98ce-cce5dc97d32a}</ProjectGuid>
+    <ProjectGuid>{CF7427BB-616B-469B-836C-70C083AE5074}</ProjectGuid>
     <OutputType>StaticLibrary</OutputType>
     <AssemblyName>EUnit</AssemblyName>
     <AllowGlobals>False</AllowGlobals>
@@ -11,12 +11,12 @@
     <AllowLegacyCreate>False</AllowLegacyCreate>
     <AllowUnsafeCode>False</AllowUnsafeCode>
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
-    <Name>RemObjects.Elements.EUnit (Island/Darwin/macOS)</Name>
+    <Name>RemObjects.Elements.EUnit (Island/Darwin/iOS)</Name>
     <GenerateDebugInfo>True</GenerateDebugInfo>
     <MangleTypeNames>True</MangleTypeNames>
     <DefaultUses>RemObjects.Elements.RTL</DefaultUses>
     <Platform Condition="'$(Platform)' == ''">AnyCPU</Platform>
-    <SDK>macOS</SDK>
+    <SDK>iOS</SDK>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <Optimize>False</Optimize>
@@ -33,8 +33,10 @@
   <ItemGroup>
     <Reference Include="rtl" />
     <Reference Include="gc" />
-    <Reference Include="Elements" />
+    <Reference Include="elements" />
     <Reference Include="Island" />
+    <Reference Include="UIKit" />
+    <Reference Include="Foundation" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Island.Darwin.targets" />
   <PropertyGroup>
@@ -44,5 +46,6 @@
   <ItemGroup>
     <Compile Include="Sources\Discovery\Island\IslandDiscovery.pas" />
     <Compile Include="Sources\Discovery\Island\IslandModuleDiscovery.pas" />
+    <Compile Include="Sources\iOS\TableViewTestListener.pas" />
   </ItemGroup>
 </Project>
