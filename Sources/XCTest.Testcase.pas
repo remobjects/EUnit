@@ -21,6 +21,9 @@ type
     begin
       for each b in fTearDownblocks do
         b();
+      for each e in fExpectations do begin
+        e.dispose();
+      end;
     end;
 
     method addTeardownBlock(aBlock: Block);
@@ -162,12 +165,18 @@ type
     method waitForExpectations(aExpectations: List<XCTestExpectation>) timeout(aTimeout: TimeInterval) enforceOrder(aEnforceOrder: Boolean);
     begin
       if aEnforceOrder then begin
-        for each e in aExpectations do
+        for each e in aExpectations do begin
           e.waitFor(aTimeout);
+          if not e.isFulfilled then
+            XCTFail($"Expectation '{e.expectationDescription}' was not fulfilled", nil, 0, nil, nil);
+        end;
       end
       else begin
-        for each parallel e  in aExpectations do
+        for each parallel e in aExpectations do begin
           e.waitFor(aTimeout);
+          if not e.isFulfilled then
+            XCTFail($"Expectation '{e.expectationDescription}' was not fulfilled", nil, 0, nil, nil);
+        end;
       end;
     end;
 

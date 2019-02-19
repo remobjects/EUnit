@@ -41,9 +41,9 @@ type
     method dofulfill(aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
     begin
       if inverted then
-        XCTFail($"Expectation {expectationDescription} was not expected to be fulfilled", aFile, aLine, aClass, aMethod);
+        XCTFail($"Expectation '{expectationDescription}' was not expected to be fulfilled", aFile, aLine, aClass, aMethod);
       if assertForOverFulfill and (fulfillmentCount ≥ expectedFulfillmentCount) then
-        XCTFail($"Expectation {expectationDescription} was fulfilled for than {fulfillmentCount}x", aFile, aLine, aClass, aMethod);
+        XCTFail($"Expectation '{expectationDescription}' was fulfilled for than {fulfillmentCount}x", aFile, aLine, aClass, aMethod);
       inc(fulfillmentCount);
       if fulfillmentCount ≥ expectedFulfillmentCount then
         fFulfillmentTrigger.Set();
