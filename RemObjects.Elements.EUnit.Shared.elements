@@ -2,8 +2,6 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="Globals">
     <ProjectGuid>{66B16487-C9BF-4BFD-B813-F882B2237802}</ProjectGuid>
-  </PropertyGroup>
-  <PropertyGroup>
     <RootNamespace>RemObjects.Elements.EUnit</RootNamespace>
   </PropertyGroup>
   <Import Project="RemObjects.Elements.EUnit.Shared.projitems" Label="Shared" />

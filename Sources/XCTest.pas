@@ -3,9 +3,6 @@
 uses
   RemObjects.Elements.EUnit;
 
-type
-  XCTestCase = public Test;
-
 //method FormatMessage(aMessage: String; params aParameters: array of Object): String; private;
 //begin
   //if length(aParameters) > 0 then

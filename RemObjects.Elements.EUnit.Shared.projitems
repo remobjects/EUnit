@@ -87,5 +87,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sources\Writers\Summary.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)Sources\Utils\DefaultListener.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)Sources\XCTest.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\XCTest.Testcase.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sources\XCTest.XCTestExpectation.pas" />
   </ItemGroup>
 </Project>
