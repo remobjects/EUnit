@@ -85,7 +85,7 @@ begin
   ArgumentNilException.RaiseIfNil(Value, "Value");
   result := 0;
 
-  for item in Value do
+  for nil in Value do
     inc(result);
 end;
 

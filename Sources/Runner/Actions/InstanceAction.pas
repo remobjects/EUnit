@@ -28,7 +28,7 @@ begin
 
   var Node := TestResultNode(Action(Item));
 
-  for child in  Item.Children do begin
+  for nil in Item.Children do begin
     var ChildNode := ForEach(Item, Action);
     if ChildNode <> nil then
       Node.Add(ChildNode);
