@@ -13,7 +13,7 @@ implementation
 constructor InstanceDiscovery(Instances: sequence of Object);
 begin
   ArgumentNilException.RaiseIfNil(Instances, "Instances");
-  var ObjectList := SequenceHelper.ToList(Instances);
+  var ObjectList := Instances.ToList();
   var Types := new NativeType[ObjectList.Count];
 
   for i: Integer := 0 to ObjectList.Count - 1 do
