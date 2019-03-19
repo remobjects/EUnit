@@ -14,7 +14,7 @@ type
       {$ELSE}
       inherited constructor(lPlainMessage);
       {$ENDIF}
-      ParsableMessage := String.Format("{0}-FAILED,{1},{2},{3}.{4},{5}", aType, aFile, if aLine > 0 then aLine else "", aClass:Trim, aMethod:Trim, aMessage.Replace(#10,"\n").Replace(#13,"\r").Replace(",","%2C"));
+      ParsableMessage := String.Format("{0}-FAILED,{1},{2},{3}.{4},{5}", aType, aFile, if aLine > 0 then aLine else "", aClass:Trim, aMethod:Trim, Url.AddPercentEncodingsToPath(aMessage.Replace(#10,"\n").Replace(#13,"\r")));
     end;
 
     {$IF NOUGAT}
