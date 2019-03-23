@@ -16,6 +16,9 @@ type
     property Children: sequence of ITest read []; override;
     property &Type: NativeType read TestMethod.Type.NativeType; override;
     property &Method: NativeMethod read TestMethod.NativeMethod; override;
+
+    property ClassName: String; readonly;
+    property MethodName: String; readonly;
   end;
 
 implementation
@@ -23,7 +26,9 @@ implementation
 constructor TestcaseNode(aMethod: MethodReference);
 begin
   ArgumentNilException.RaiseIfNil(aMethod, "Method");
-  inherited constructor (aMethod.Name);
+  inherited constructor(aMethod.Name);
+  ClassName := aMethod.Type.Name;
+  MethodName := aMethod.Name;
   TestMethod := aMethod;
   Id := IdGenerator.ForTestcase(self);
 end;
