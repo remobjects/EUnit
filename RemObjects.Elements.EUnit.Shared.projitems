@@ -89,5 +89,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sources\XCTest.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)Sources\XCTest.Testcase.pas" />
     <Compile Include="$(MSBuildThisFileDirectory)Sources\XCTest.XCTestExpectation.pas" />
+    <Compile Include="$(MSBuildThisFileDirectory)XCTest.XCTWaiter.pas" />
   </ItemGroup>
 </Project>

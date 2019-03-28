@@ -57,6 +57,7 @@
     </Reference>
     <Reference Include="Elements">
       <Private>True</Private>
+      <HintPath>..\..\RTL2\Source\bin\Debug\Elements.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Echoes.targets" />

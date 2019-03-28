@@ -89,17 +89,17 @@ type
 
     var fStartTimeNet: nullable DateTime; private;
 
-    method startMeasuring;
+    method startMeasuring(aIgnoreThisParameter: Boolean := false); // parameter keeps it from running as test
     begin
       fStartTimeNet := DateTime.UtcNow;
       writeLn("->");
     end;
 
-    method stopMeasuring;
+    method stopMeasuring(aIgnoreThisParameter: Boolean := false); // parameter keeps it from running as test;
     begin
       if assigned(fStartTimeNet) then begin
         var lDurationNet := (DateTime.UtcNow-fStartTimeNet).TotalMilliSeconds;
-        writeLn($"Code took {ConvertMilisecondsToTimeString(lDurationNet)}");
+        writeLn($"<- Code took {ConvertMilisecondsToTimeString(lDurationNet)}");
         fStartTimeNet := nil;
       end;
     end;
@@ -111,7 +111,7 @@ type
     [SwiftName("expectation(description:)")]
     method expectationWithDescription(aDescription: String): XCTestExpectation;
     begin
-      result := new XCTestManualExpectation withDescription(aDescription);
+      result := new XCTestExpectation withDescription(aDescription);
       if not assigned(fExpectations) then
         fExpectations := new List<XCTestExpectation>;
       fExpectations.Add(result);

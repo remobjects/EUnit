@@ -2,7 +2,7 @@
 
 type
   {$IF DARWIN}[Cocoa]{$ENDIF}
-  XCTestExpectation = public abstract class
+  XCTestExpectation = public class
 
     constructor withDescription(aDescription: String);
     begin
@@ -17,16 +17,18 @@ type
     //[SwiftName("isInverted")]
     property inverted: Boolean := false;
 
+  public
+
     method fulfill(aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); virtual;
     begin
-      XCTFail($"Expectation {expectationDescription} cannot be manually fulfilled", aFile, aLine, aClass, aMethod);
+      dofulfill;
     end;
 
   assembly or protected
 
-    method waitFor(aTimeout: TimeInterval); virtual;
+    method waitFor(aTimeout: TimeInterval): Boolean; virtual;
     begin
-      fFulfillmentTrigger.WaitFor(Int64(aTimeout)*1000); // Event.Timeout is in Miliseconds
+      result := fFulfillmentTrigger.WaitFor(Int64(aTimeout)*1000); // Event.Timeout is in Miliseconds
     end;
 
     method dispose; virtual;
@@ -55,15 +57,15 @@ type
 
   end;
 
-  XCTestManualExpectation = public class(XCTestExpectation)
-  public
+  //XCTestManualExpectation = public class(XCTestExpectation)
+  //public
 
-    method fulfill(aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); override;
-    begin
-      dofulfill;
-    end;
+    //method fulfill(aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName()); override;
+    //begin
+      //dofulfill;
+    //end;
 
-  end;
+  //end;
 
   XCTNSNotificationExpectation = public class(XCTestExpectation)
   assembly or protected
@@ -115,7 +117,7 @@ type
       end;
     end;
 
-    method waitFor(aTimeout: TimeInterval); override;
+    method waitFor(aTimeout: TimeInterval): Boolean; override;
     begin
       if fFulfilled then exit;
       inherited waitFor(aTimeout);
@@ -176,10 +178,10 @@ type
       fObject.addObserver(self) forKeyPath(aKeyPath) options(0) context(nil);
     end;
 
-    method waitFor(aTimeout: TimeInterval); override;
+    method waitFor(aTimeout: TimeInterval): Boolean; override;
     begin
       if fFulfilled then exit;
-      inherited waitFor(aTimeout);
+      result := inherited waitFor(aTimeout);
     end;
 
     property isFulfilled: Boolean read inherited isFulfilled or (fHasExpectedValue and valueMatches); override;
