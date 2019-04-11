@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
+  <PropertyGroup>
+    <RootNamespace>RemObjects.Elements.EUnit</RootNamespace>
+    <ProjectGuid>{64A033E6-0CFA-48EE-81E8-ECC092B53E4B}</ProjectGuid>
+    <OutputType>StaticLibrary</OutputType>
+    <AssemblyName>EUnit</AssemblyName>
+    <AllowGlobals>False</AllowGlobals>
+    <AllowLegacyWith>False</AllowLegacyWith>
+    <AllowLegacyOutParams>False</AllowLegacyOutParams>
+    <AllowLegacyCreate>False</AllowLegacyCreate>
+    <AllowUnsafeCode>False</AllowUnsafeCode>
+    <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+    <Name>RemObjects.Elements.EUnit (Island/WebAssembly)</Name>
+    <GenerateDebugInfo>True</GenerateDebugInfo>
+    <MangleTypeNames>True</MangleTypeNames>
+    <DefaultUses>RemObjects.Elements.RTL</DefaultUses>
+    <Platform Condition="'$(Platform)' == ''">AnyCPU</Platform>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;</DefineConstants>
+    <CaptureConsoleOutput>False</CaptureConsoleOutput>
+    <XmlDocWarningLevel>WarningOnPublicMembers</XmlDocWarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <OutputPath>bin\Release\</OutputPath>
+    <CaptureConsoleOutput>False</CaptureConsoleOutput>
+    <WarnOnCaseMismatch>True</WarnOnCaseMismatch>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="elements" />
+    <Reference Include="Island" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Island.WebAssembly.targets" />
+  <PropertyGroup>
+    <PreBuildEvent />
+  </PropertyGroup>
+  <Import Project="RemObjects.Elements.EUnit.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <Compile Include="Sources\Discovery\Island\IslandDiscovery.pas" />
+    <Compile Include="Sources\Discovery\Island\IslandModuleDiscovery.pas" />
+  </ItemGroup>
+</Project>
