@@ -1,5 +1,6 @@
 ﻿namespace RemObjects.Elements.EUnit.XCTest;
 
+{$IF NOT WEBASSEMBLY}
 uses
   RemObjects.Elements.EUnit;
 
@@ -199,5 +200,7 @@ type
   TimeInterval = public Double;
 
   XCWaitCompletionHandler = public block(aError: nullable Exception);
+
+{$ENDIF}
 
 end.

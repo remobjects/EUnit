@@ -1,5 +1,6 @@
 ﻿namespace RemObjects.Elements.EUnit.XCTest;
 
+{$IF NOT WEBASSEMBLY}
 type
   {$IF DARWIN}[Cocoa]{$ENDIF}
   XCTestExpectation = public class
@@ -219,5 +220,6 @@ type
 
   Handler nested in XCTKVOExpectation = public block();
   {$ENDIF}
+{$ENDIF}
 
 end.

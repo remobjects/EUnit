@@ -1,5 +1,6 @@
 ﻿namespace RemObjects.Elements.EUnit.XCTest;
 
+{$IF NOT WEBASSEMBLY}
 type
   XCTWaiter = public class
   private
@@ -65,5 +66,7 @@ type
   );
 
   XCTWaiterResult = public XCTWaiter.Result;
+
+{$ENDIF}
 
 end.
