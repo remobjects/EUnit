@@ -17,6 +17,7 @@
     <DefaultUses>RemObjects.Elements.RTL</DefaultUses>
     <Platform Condition="'$(Platform)' == ''">AnyCPU</Platform>
     <SDK>macOS</SDK>
+    <DeploymentTargetVersion>10.6</DeploymentTargetVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <Optimize>False</Optimize>

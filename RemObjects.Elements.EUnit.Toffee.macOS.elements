@@ -18,6 +18,7 @@
     <MangleTypeNames>True</MangleTypeNames>
     <DefaultUses>RemObjects.Elements.RTL;RemObjects.Elements.RTL.Linq</DefaultUses>
     <Platform Condition="'$(Platform)' == ''">AnyCPU</Platform>
+    <DeploymentTargetVersion>10.6</DeploymentTargetVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <Optimize>False</Optimize>

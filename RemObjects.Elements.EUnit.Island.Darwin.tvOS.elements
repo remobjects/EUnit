@@ -17,6 +17,7 @@
     <DefaultUses>RemObjects.Elements.RTL</DefaultUses>
     <Platform Condition="'$(Platform)' == ''">AnyCPU</Platform>
     <SDK>tvOS</SDK>
+    <DeploymentTargetVersion>9.0</DeploymentTargetVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <Optimize>False</Optimize>
