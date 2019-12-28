@@ -61,5 +61,6 @@
     <Compile Include="Sources\Discovery\Cooper\PackageHelper.pas" />
     <Compile Include="Sources\Discovery\Android\AndroidDiscovery.pas" />
     <Compile Include="Sources\Discovery\Android\ContextDiscovery.pas" />
+    <Compile Include="Sources\Android\TestActivity.pas" />
   </ItemGroup>
 </Project>
