@@ -85,6 +85,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Main\Android\MainActivity.pas"/>
+        <Compile Include="Sources\Android\TestActivity.pas"/>
         <Compile Include="Sources\Asserts\Assert.pas"/>
         <Compile Include="Sources\Asserts\BooleanAssert.pas"/>
         <Compile Include="Sources\Asserts\DoubleAssert.pas"/>
