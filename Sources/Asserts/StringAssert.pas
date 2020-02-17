@@ -25,9 +25,8 @@ begin
     exit;
 
   if (Expected = nil) and (Actual <> nil) then
-    FailComparison(Actual, Expected, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
-
-  if IgnoreCase then
+    FailComparison(Actual, Expected, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod)
+  else if IgnoreCase then
     FailComparisonIfNot(Expected.EqualsIgnoringCase(Actual), Actual, Expected, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod)
   else
     FailComparisonIfNot(Expected.Equals(Actual), Actual, Expected, coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
@@ -35,13 +34,14 @@ end;
 
 method BaseAsserts.AreNotEqual(Actual: String; Expected: String; IgnoreCase: Boolean := false; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
 begin
-  if (Expected = nil) and (Actual = nil) then
-    FailComparison(Actual, Expected, coalesce(Message, AssertMessages.Equal), aFile, aLine, aClass, aMethod);
-
   if (Expected = nil) and (Actual <> nil) then
     exit;
+  if (Expected <> nil) and (Actual = nil) then
+    exit;
 
-  if IgnoreCase then
+  if (Expected = nil) and (Actual = nil) then
+    FailComparison(Actual, Expected, coalesce(Message, AssertMessages.Equal), aFile, aLine, aClass, aMethod)
+  else if IgnoreCase then
     FailComparisonIf(Expected.EqualsIgnoringCase(Actual), Actual, Expected, coalesce(Message, AssertMessages.Equal), aFile, aLine, aClass, aMethod)
   else
     FailComparisonIf(Expected.Equals(Actual), Actual, Expected, coalesce(Message, AssertMessages.Equal), aFile, aLine, aClass, aMethod);
