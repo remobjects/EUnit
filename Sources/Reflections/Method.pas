@@ -135,6 +135,8 @@ begin
   {$ELSEIF ECHOES}
   Native.Invoke(anInstance, nil);
   {$ELSEIF ISLAND}
+  if Native.Pointer = nil then
+    raise new Exception("Method not linked in executable");
   ParamlessInstanceMethod(Native.Pointer)(anInstance);
   {$ELSEIF NOUGAT}
   var MethodSelector := method_getName(self.Native);
