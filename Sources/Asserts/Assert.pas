@@ -99,7 +99,7 @@ type
 //property Assert: BaseAsserts := new Asserts; lazy;
 //property Check: BaseAsserts := new Checks; lazy;
 
-var Assert: BaseAsserts := new Asserts; readonly;
-var Check: BaseAsserts := new Checks; readonly;
+var Assert: BaseAsserts := new Asserts; public; readonly;
+var Check: BaseAsserts := new Checks; public; readonly;
 
 end.
