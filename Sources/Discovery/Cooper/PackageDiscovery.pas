@@ -28,8 +28,11 @@ begin
     if entry.Name.endsWith(".class") then //and entry.Name.startsWith(PackageName) {and (entry.Name.length > (PackageName.length + 1))}) then
       ClassName := entry.Name.replace("/", ".").replace("\\", ".").replace(".class", "");
 
-    if (ClassName <> nil) and (not ClassName.contains("$")) then
+    if (ClassName <> nil) and (not ClassName.contains("$")) then try
       List.Add(&Class.forName(ClassName));
+    except
+      on E: java.lang.ClassNotFoundException do;
+    end;
   end;
 
   exit List;
