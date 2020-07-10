@@ -26,8 +26,12 @@ begin
   var List := new List<NativeType>;
 
   for Item: String in Content do begin
-    if (Item <> nil) and (not Item.contains("%")) and (not Item.contains("$")) then
+    if (Item <> nil) and (not Item.contains("%")) and (not Item.contains("$")) then try
       List.Add(&Class.forName(Item));
+    except
+      on E: java.lang.ClassNotFoundException do;
+      on E: java.lang.NoClassDefFoundError do;
+    end;
   end;
 
   exit List.ToArray;
