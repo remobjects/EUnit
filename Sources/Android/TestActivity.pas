@@ -69,6 +69,7 @@ type
 
     const kRowNameId = 40000;
     const kRowDetailId = 40001;
+    const kRowMessageId = 40002;
 
     var context: Context;
     method CreateRow(ctx: Context): View;
@@ -85,7 +86,8 @@ type
   public
     var rowView: View;
     var nameTextView: TextView;
-    var detailTextView: TextView;
+    var resultStateTextView: TextView;
+    var messageTextView: TextView;
   end;
 
 implementation
@@ -99,6 +101,7 @@ begin
   listener.hostActivity := self;
 
   var lTests := Discovery.DiscoverTests(self);
+  Filter(lTests);
   Runner.RunTests(lTests) withListener(listener);
 end;
 
@@ -187,6 +190,17 @@ begin
   context := ctx;
 end;
 
+method filterFailedMessage(msg: String): String;
+begin
+  var startPathIndex := msg.lastIndexOf('(');
+  var endPathIndex := msg.lastIndexOf('\');
+  if endPathIndex = -1 then
+    endPathIndex := msg.lastIndexOf('/');
+  var filteredMsg := msg.substring(0, succ(startPathIndex)) + msg.substring(succ(endPathIndex));
+  filteredMsg := filteredMsg.replace(' line ', ': ');
+  exit filteredMsg;
+end;
+
 method TestAdapter.getView(position: Integer; convertView: View; parent: ViewGroup): View;
 begin
   var holder: TestRowViewHolder;
@@ -197,7 +211,8 @@ begin
     holder := new TestRowViewHolder;
     holder.rowView := convertView;
     holder.nameTextView := TextView(convertView.findViewById(kRowNameId));
-    holder.detailTextView := TextView(convertView.findViewById(kRowDetailId));
+    holder.resultStateTextView := TextView(convertView.findViewById(kRowDetailId));
+    holder.messageTextView := TextView(convertView.findViewById(kRowMessageId));
     convertView.Tag := holder;
   end
   else
@@ -206,34 +221,59 @@ begin
   var lTest := TestActivity.listener.tests[position];
 
   holder.nameTextView:Text := lTest.Name;
+
   if lTest = TestActivity.listener.runningTest then begin
-    holder.detailTextView:Text := 'Testing...';
+    holder.resultStateTextView:Text := 'Testing...';
     holder.rowView.BackgroundColor := kBlueColor;
   end
   else begin
     var lTestResult := TestActivity.listener.testResults[lTest.Id];
+
+    if lTestResult.Test.Kind = TestKind.Testcase then
+      holder.nameTextView:setTypeface(holder.nameTextView.Typeface, Typeface.NORMAL)
+    else
+      holder.nameTextView:setTypeface(holder.nameTextView.Typeface, Typeface.BOLD);
+
     if assigned(lTestResult) then begin
       case lTestResult.State of
         TestState.Failed: begin
-            holder.detailTextView:Text := 'Failed';
+            holder.resultStateTextView:Text := 'Failed';
             holder.rowView.BackgroundColor := kRedColor;
+            IF lTestResult.Test.Kind = TestKind.Testcase THEN
+            BEGIN
+              holder.messageTextView:Visibility := View.VISIBLE;
+              holder.messageTextView:Text := filterFailedMessage(lTestResult.Message);
+            END
+            ELSE
+            BEGIN
+              holder.messageTextView:Visibility := View.GONE;
+              holder.messageTextView:Text := '';
+            END;
           end;
         TestState.Skipped: begin
-            holder.detailTextView:Text := 'Skipped';
+            holder.resultStateTextView:Text := 'Skipped';
+            holder.messageTextView:Text := '';
+            holder.messageTextView:Visibility := View.GONE;
             holder.rowView.BackgroundColor := kYellowColor;
           end;
         TestState.Succeeded: begin
-            holder.detailTextView:Text := 'Succeeded';
+            holder.resultStateTextView:Text := 'Succeeded';
+            holder.messageTextView:Text := '';
+            holder.messageTextView:Visibility := View.GONE;
             holder.rowView.BackgroundColor := kGreenColor;
           end;
         TestState.Untested: begin
-            holder.detailTextView:Text := 'Untested';
+            holder.resultStateTextView:Text := 'Untested';
+            holder.messageTextView:Text := '';
+            holder.messageTextView:Visibility := View.GONE;
             holder.rowView.BackgroundColor := kWhiteColor;
           end;
       end;
     end
     else begin
-      holder.detailTextView:Text := 'Unknown';
+      holder.resultStateTextView:Text := 'Unknown';
+      holder.messageTextView:Text := '';
+      holder.messageTextView:Visibility := View.GONE;
       holder.rowView.BackgroundColor := kWhiteColor;
     end;
   end;
@@ -262,14 +302,15 @@ method TestAdapter.CreateRow(ctx: Context): View;
 begin
   var row := new RelativeLayout(ctx);
   row.LayoutParams := new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+  row.setPadding(36, 36, 36, 36);
 
   var lp := new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
   var nameView := new TextView(ctx);
   nameView.Id := kRowNameId;
   lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+  lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
   nameView.LayoutParams := lp;
-  nameView.setPadding(36, 36, 36, 36);
   nameView.TextSize := 18;
   nameView.TextColor := Color.BLACK;
 
@@ -278,13 +319,26 @@ begin
   var detailView := new TextView(ctx);
   detailView.Id := kRowDetailId;
   lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+  lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
   detailView.LayoutParams := lp;
-  detailView.setPadding(36, 36, 36, 36);
-  detailView.TextSize := 18;
+  detailView.TextSize := 16;
   detailView.TextColor := Color.GRAY;
+
+  lp := new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+  var messageView := new TextView(ctx);
+  messageView.Id := kRowMessageId;
+  lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+  lp.addRule(RelativeLayout.BELOW, kRowNameId);
+  messageView.LayoutParams := lp;
+  messageView.setPadding(0, 18, 0, 0);
+  messageView.TextSize := 14;
+  messageView.TextColor := Color.GRAY;
+  messageView.Visibility := View.GONE;
 
   row.addView(nameView);
   row.addView(detailView);
+  row.addView(messageView);
 
   exit row;
 end;
