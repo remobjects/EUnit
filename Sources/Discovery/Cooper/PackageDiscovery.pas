@@ -32,6 +32,7 @@ begin
       List.Add(&Class.forName(ClassName));
     except
       on E: java.lang.ClassNotFoundException do;
+      on E: java.lang.NoClassDefFoundError do;
     end;
   end;
 
