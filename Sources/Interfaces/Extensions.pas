@@ -2,11 +2,11 @@
 
 interface
 
-extension method ITestResult.ToSequence: sequence of ITestResult;
-extension method ITestResult.Where(Predicate: Predicate<ITestResult>): sequence of ITestResult;
-extension method sequence of ITestResult.First(Predicate: Predicate<ITestResult>): ITestResult;
-extension method sequence of ITestResult.All(Predicate: Predicate<ITestResult>): Boolean;
-extension method sequence of ITestResult.Any(Predicate: Predicate<ITestResult>): Boolean;
+extension method ITestResult.ToSequence: sequence of ITestResult; public;
+extension method ITestResult.Where(Predicate: Predicate<ITestResult>): sequence of ITestResult; public;
+extension method sequence of ITestResult.First(Predicate: Predicate<ITestResult>): ITestResult; public;
+extension method sequence of ITestResult.All(Predicate: Predicate<ITestResult>): Boolean; public;
+extension method sequence of ITestResult.Any(Predicate: Predicate<ITestResult>): Boolean; public;
 
 implementation
 
