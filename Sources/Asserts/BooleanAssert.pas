@@ -11,14 +11,19 @@ type
   public
     method AreEqual(Actual, Expected : Boolean; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
     begin
+      // = comparison fails if a True boolean has an integer value other than 1
+      Actual := if Actual then true else false;
+      Expected := if Expected then true else false;
       FailComparisonIfNot(Actual = Expected, BoolToString(Actual), BoolToString(Expected), coalesce(Message, AssertMessages.NotEqual), aFile, aLine, aClass, aMethod);
     end;
 
     method AreNotEqual(Actual, Expected: Boolean; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
     begin
+      // = comparison fails if a True boolean has an integer value other than 1
+      Actual := if Actual then true else false;
+      Expected := if Expected then true else false;
       FailComparisonIf(Actual = Expected, BoolToString(Actual), BoolToString(Expected), coalesce(Message, AssertMessages.Equal), aFile, aLine, aClass, aMethod);
     end;
-
 
     method IsTrue(Actual: Boolean; Message: String := nil; aFile: String := currentFileName(); aLine: Integer := currentLineNumber(); aClass: String := currentClassName(); aMethod: String := currentMethodName());
     begin
