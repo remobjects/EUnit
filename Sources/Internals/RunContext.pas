@@ -21,6 +21,7 @@ type
     property &Type: TypeReference read write;
     property &Method: MethodReference read write;
     property CurrentResult: ITestResult read write;
+    property HadFailedChecks: Boolean read assembly write;
 
     method AddIntermediateTestResult(aState: TestState; aException: BaseException);
     begin
@@ -33,6 +34,7 @@ type
           if ConsoleTestListener.EmitParseableMessages then begin
             writeLn(E.ParsableMessage);
           end;
+          HadFailedChecks := true;
         end;
       end;
     end;
