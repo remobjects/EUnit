@@ -41,5 +41,7 @@
   <ItemGroup>
     <Compile Include="Sources\Discovery\Island\IslandDiscovery.pas" />
     <Compile Include="Sources\Discovery\Island\IslandModuleDiscovery.pas" />
+    <Folder Include="Sources\WebAssembly" />
+    <Compile Include="Sources\WebAssembly\WebAssemblyListener.pas" />
   </ItemGroup>
 </Project>
