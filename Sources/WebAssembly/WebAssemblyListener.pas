@@ -21,7 +21,6 @@ type
 
     method TestStarted(aTest: ITest); virtual;
     begin
-      Log($"start {aTest.Name}");
       var lCurrentTestDiv := Browser.CreateElement("div") as HTMLDivElement;
       lCurrentTestDiv.innerHTML := $"{aTest.Name} is running...";
       lCurrentTestDiv.className := "running";
