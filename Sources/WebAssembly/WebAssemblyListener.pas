@@ -21,23 +21,24 @@ type
 
     method TestStarted(aTest: ITest); virtual;
     begin
-      fCurrentTestDiv := Browser.CreateElement("div") as HTMLDivElement;
-      fCurrentTestDiv.innerHTML := $"Running {aTest.Name}";
-      fCurrentTestDiv.className := "running";
-      //fCurrentTest := aTest;
-      fLogElement.appendChild(fCurrentTestDiv);
+      Log($"start {aTest.Name}");
+      var lCurrentTestDiv := Browser.CreateElement("div") as HTMLDivElement;
+      lCurrentTestDiv.innerHTML := $"{aTest.Name} is running...";
+      lCurrentTestDiv.className := "running";
+      fLogElement.appendChild(lCurrentTestDiv);
+      fTests.Push(new TestInfo(Test := aTest, &Div := lCurrentTestDiv));
     end;
 
     method TestFinished(aTestResult: ITestResult); virtual;
     begin
-      fCurrentTestDiv.className := case aTestResult.State of
+      var lTestInfo := fTests.Pop();
+      lTestInfo.Div.innerHTML := $"{lTestInfo.Test.Name}";
+      lTestInfo.Div.className := case aTestResult.State of
         TestState.Untested: "untested";
         TestState.Skipped: "skipped";
         TestState.Failed: "untested";
         TestState.Succeeded: "succeeded";
       end;
-      fCurrentTestDiv := nil;
-      //fCurrentTest := nil;
     end;
 
     method RunFinished(TestResult: ITestResult); virtual;
@@ -61,9 +62,13 @@ type
   private
 
     var fLogElement: HTMLDivElement;
-    var fCurrentTestDiv: HTMLDivElement;
-    //var fCurrentTest: ITest;
+    var fTests := new Stack<TestInfo>;
 
+  end;
+
+  TestInfo = unit class
+    property Test: ITest;
+    property &Div: HTMLDivElement;
   end;
 
 end.
