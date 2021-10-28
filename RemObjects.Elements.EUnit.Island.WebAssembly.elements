@@ -15,6 +15,7 @@
     <GenerateDebugInfo>True</GenerateDebugInfo>
     <MangleTypeNames>True</MangleTypeNames>
     <DefaultUses>RemObjects.Elements.RTL</DefaultUses>
+    <SupportWasmExceptions>True</SupportWasmExceptions>
     <Platform Condition="'$(Platform)' == ''">AnyCPU</Platform>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
