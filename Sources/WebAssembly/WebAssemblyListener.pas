@@ -39,8 +39,8 @@ type
         TestState.Failed: "failed";
         TestState.Succeeded: "succeeded";
       end;
-      if (TestResult.State ≠ TestState.Succeeded) or ConsoleTestListener.EmitParseableSuccessMessages then
-        writeLn(TestResult.ParsableMessage);
+      if (aTestResult.State ≠ TestState.Succeeded) or ConsoleTestListener.EmitParseableSuccessMessages then
+        writeLn(aTestResult.ParsableMessage);
     end;
 
     method RunFinished(TestResult: ITestResult); virtual;
