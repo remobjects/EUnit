@@ -9,6 +9,7 @@ type
 
     constructor(aLogElement: HTMLDivElement);
     begin
+      ConsoleTestListener.EmitParseableMessages := true;
       fLogElement := aLogElement;
     end;
 
@@ -35,9 +36,11 @@ type
       lTestInfo.Div.className := case aTestResult.State of
         TestState.Untested: "untested";
         TestState.Skipped: "skipped";
-        TestState.Failed: "untested";
+        TestState.Failed: "failed";
         TestState.Succeeded: "succeeded";
       end;
+      if (TestResult.State ≠ TestState.Succeeded) or ConsoleTestListener.EmitParseableSuccessMessages then
+        writeLn(TestResult.ParsableMessage);
     end;
 
     method RunFinished(TestResult: ITestResult); virtual;

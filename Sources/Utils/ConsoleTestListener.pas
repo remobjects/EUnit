@@ -17,9 +17,9 @@ type
     method RunFinished(TestResult: ITestResult); virtual;
 
     property UseAnsiColorOutput: Boolean;
-    class property EmitParseableMessages: Boolean := false; readonly;
-    class property EmitParseableSuccessMessages: Boolean := false; readonly;
-    class property EmitSuccessMessages: Boolean := false; readonly;
+    class property EmitParseableMessages: Boolean read assembly write := false;
+    class property EmitParseableSuccessMessages: Boolean read assembly write := false;
+    class property EmitSuccessMessages: Boolean read assembly write := false;
 
     class constructor;
     begin
