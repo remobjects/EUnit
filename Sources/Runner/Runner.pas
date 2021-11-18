@@ -95,14 +95,16 @@ begin
   ArgumentNilException.RaiseIfNil(Context, "Context");
   Context.Listener:TestStarted(Context.Test);
 
-  if Context.Test.Skip then
+  if Context.Test.Skip then begin
     result := new TestResultNode(Context.Test, TestState.Skipped, "Skipped", String.Format("TEST-SKIPPED,,,{0},Test Skipped", Context.Test.Name))
-  else
+  end
+  else begin
     case Context.Test.Kind of
       TestKind.Suite: result := RunSuite(Context);
       TestKind.Test: result := RunClass(Context);
       TestKind.Testcase: result := RunTestcase(Context);
     end;
+  end;
 
   Context.Listener:TestFinished(result);
 end;

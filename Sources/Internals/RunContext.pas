@@ -26,14 +26,13 @@ type
     method AddIntermediateTestResult(aState: TestState; aException: BaseException);
     begin
       try
-        raise aException
+        raise aException;
       except
         on E: BaseException do begin
           var lResult := new TestResultNode(Test, TestState.Failed, E.Message, E.ParsableMessage);
           TestNode(Test):AddIntermediateTestResult(lResult);
-          if ConsoleTestListener.EmitParseableMessages then begin
+          if ConsoleTestListener.EmitParseableMessages then
             writeLn(E.ParsableMessage);
-          end;
           HadFailedChecks := true;
         end;
       end;
