@@ -47,6 +47,5 @@
   <ItemGroup>
     <Compile Include="Sources\Discovery\Island\IslandDiscovery.pas" />
     <Compile Include="Sources\Discovery\Island\IslandModuleDiscovery.pas" />
-    <Compile Include="Sources\iOS\TableViewTestListener.pas" />
   </ItemGroup>
 </Project>
