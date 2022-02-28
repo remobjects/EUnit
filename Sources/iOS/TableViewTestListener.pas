@@ -28,7 +28,7 @@ type
 
     method tableView(tableView: UITableView) numberOfRowsInSection(section: Integer): Integer;
     begin
-      result := TableViewTestListenerAppDelegate.listener.tests.count;
+      result := TableViewTestListenerAppDelegate.listener.tests.Count;
     end;
 
     method tableView(tableView: UITableView) cellForRowAtIndexPath(indexPath: NSIndexPath): UITableViewCell;
@@ -86,8 +86,8 @@ type
   TableViewTestListener = public class(IEventListener, IEventListenerGUI)
   public
 
-    property tests := new Foundation.NSMutableArray<ITest>();
-    property testResults := new Foundation.NSMutableDictionary<String, ITestResult>();
+    property tests := new List<ITest>();
+    property testResults := new Dictionary<String, ITestResult>();
     property runningTest: nullable ITest;
 
   private
@@ -101,7 +101,7 @@ type
 
     method TestStarted(Test: ITest); virtual;
     begin
-      tests.addObject(Test);
+      tests.Add(Test);
       runningTest := Test;
       dispatch_async(dispatch_get_main_queue(), () -> TableViewTestListenerAppDelegate.tableViewController:reloadTests());
     end;
