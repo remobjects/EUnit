@@ -11,7 +11,7 @@ type
       if ConsoleTestListener.EmitParseableMessages then
         exit new ConsoleTestListener();
 
-      {$IF IOS AND NOT WATCHOS AND NOT TVOS and not ISLAND}
+      {$IF IOS AND NOT WATCHOS AND NOT TVOS}
       result := new TableViewTestListener();
       {$ELSE}
       result := new ConsoleTestListener();
