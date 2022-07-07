@@ -24,14 +24,16 @@ type
     class constructor;
     begin
       var lHasParsableMessageEnvironmentVar := length(Environment.EnvironmentVariable[Runner.EUNIT_PARSABLE_MESSAGES]) > 0;
-      {$IF COCOA}
-      var lHasParsableMessageCommandlineSwitch := Foundation.NSProcessInfo.processInfo.arguments.Where(s -> s = "--"+Runner.EUNIT_PARSABLE_MESSAGES).Any;
+      var lHasParsableMessageCommandlineSwitch := false;
+      {$IF DARWIN}
+      lHasParsableMessageCommandlineSwitch := Foundation.NSProcessInfo.processInfo.arguments.Where(s -> s = "--"+Runner.EUNIT_PARSABLE_MESSAGES).Any;
       EmitSuccessMessages := Foundation.NSProcessInfo.processInfo.arguments.Where(s -> s = "--"+Runner.EUNIT_SUCCESS_MESSAGES).Any;
       {$ELSEIF ECHOES}
-      var lHasParsableMessageCommandlineSwitch := System.Environment.CommandLine.Contains("--"+Runner.EUNIT_PARSABLE_MESSAGES);
+      lHasParsableMessageCommandlineSwitch := System.Environment.CommandLine.Contains("--"+Runner.EUNIT_PARSABLE_MESSAGES);
       EmitSuccessMessages := System.Environment.CommandLine.Contains("--"+Runner.EUNIT_SUCCESS_MESSAGES);
       {$ENDIF}
-      EmitParseableMessages := lHasParsableMessageEnvironmentVar or {$IF COCOA OR ECHOES}lHasParsableMessageCommandlineSwitch{$ELSE}false{$ENDIF};
+      EmitSuccessMessages := EmitSuccessMessages or (length(Environment.EnvironmentVariable[Runner.EUNIT_SUCCESS_MESSAGES]) > 0);
+      EmitParseableMessages := lHasParsableMessageEnvironmentVar or lHasParsableMessageCommandlineSwitch;
       EmitParseableSuccessMessages := EmitSuccessMessages and EmitParseableMessages; // for now
     end;
 
