@@ -3,6 +3,7 @@
 interface
 
 uses
+  {$IF ECHOES}System.RunTime.CompilerServices, System.Threading.Tasks,{$ENDIF}
   {$IF NETFX_CORE}System.Reflection,{$ENDIF}
   RemObjects.Elements.EUnit;
 
@@ -14,6 +15,7 @@ type
     method GetName: String;
     method GetHasParameters: Boolean;
     method GetIsVoid: Boolean;
+    method GetIsAsync: Boolean;
     {$IF COOPER}class method HasMethod(aMethod: NativeMethod; InType: NativeType): Boolean;{$ENDIF}
   public
     constructor(aType: TypeReference; &Method: NativeMethod);
@@ -27,6 +29,7 @@ type
     property IsOverriden: Boolean read write; readonly;
     property HasParameters: Boolean read GetHasParameters;
     property IsVoid: Boolean read GetIsVoid;
+    property IsAsync:Boolean read GetIsAsync;
     property &Type: TypeReference read write; readonly;
     property NativeMethod: NativeMethod read Native;
   end;
@@ -105,6 +108,15 @@ begin
   {$ENDIF}
 end;
 
+method MethodReference.GetIsAsync: Boolean;
+begin
+  {$IF ECHOES}
+  exit Native.ReturnType = typeOf(System.Threading.Tasks.Task);
+  {$ELSE}
+  exit false;
+  {$ENDIF}
+end;
+
 method MethodReference.GetIsVoid: Boolean;
 begin
   {$IF COOPER}
@@ -133,7 +145,11 @@ begin
   {$IF COOPER}
   Native.invoke(anInstance, nil);
   {$ELSEIF ECHOES}
-  Native.Invoke(anInstance, nil);
+  var obj := Native.Invoke(anInstance, nil);
+  if(assigned(obj) and (obj is Task)) then
+  begin
+    Task(obj).Wait;
+  end;
   {$ELSEIF ISLAND}
   if Native.Pointer = nil then
     raise new Exception("Method not linked in executable");
