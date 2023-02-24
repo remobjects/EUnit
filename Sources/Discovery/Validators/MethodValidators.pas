@@ -30,7 +30,7 @@ end;
 method MethodValidators.RegisterValidators;
 begin
   //Parameters
-  fValidator := new Validator<MethodReference>(item -> item.IsVoid);
+  fValidator := new Validator<MethodReference>(item -> item.IsVoid or item.IsAsync);
   //Overriden
   fValidator := fValidator.AndNot(item -> item.IsOverriden);
   //Void
