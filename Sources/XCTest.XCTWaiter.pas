@@ -63,7 +63,6 @@ type
     incorrectOrder = 2,
     invertedFulfillment = 3,
     interrupted = 4);
-  );
 
   XCTWaiterResult = public XCTWaiter.Result;
 
