@@ -23,9 +23,15 @@ type
     property DisplayName: String read write;
     property State: TestState read private write;
     property Message: String read private write;
+    property ChildMessages: ImmutableList<String> read private write;
     property ParsableMessage: String read private write;
     property Test: ITest read write; readonly;
     property Children: sequence of ITestResult read List.ToArray;
+
+    method AddChildMessages(aMessages: sequence of String);
+    begin
+      ChildMessages := aMessages.ToList;
+    end;
   end;
 
 implementation

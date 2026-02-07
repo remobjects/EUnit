@@ -18,10 +18,15 @@ begin
 
     aContext.HadFailedChecks := false;
     aContext.Method.Invoke(aContext.Instance);
-    if aContext.HadFailedChecks or TestNode(aContext.Test):IntermediateTestResults:Any(t -> t.State ≠ TestState.Succeeded) then
-      result := new TestResultNode(aContext.Test, TestState.Failed, nil, "TEST-FAILED,,,"+aContext.Test.Name+",Test Failed some checks.")
-    else
+    var lFaildIntermediateTestResults := TestNode(aContext.Test):IntermediateTestResults:&Where(t -> t.State ≠ TestState.Succeeded).ToList;;
+    if aContext.HadFailedChecks or (lFaildIntermediateTestResults:Count > 0) then begin
+      result := new TestResultNode(aContext.Test, TestState.Failed, "Test Failed some checks", "TEST-FAILED,,,"+aContext.Test.Name+",Test Failed some checks.");
+      if lFaildIntermediateTestResults:Count > 0 then
+        TestResultNode(result).AddChildMessages(lFaildIntermediateTestResults.Select(i -> i.Message));
+    end
+    else begin
       result := new TestResultNode(aContext.Test, TestState.Succeeded, nil, "TEST-SUCCEEDED,,,"+aContext.Test.Name+",Test Succeeded.");
+    end;
   end);
 end;
 

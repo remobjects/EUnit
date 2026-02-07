@@ -31,8 +31,8 @@ type
     const UnexpectedContains = 'EUNIT_REPLACE:{1} contains unexpected element: "{0}"';
     const DoesNotContains = 'EUNIT_REPLACE:{1} does not contains element: "{0}"';
 
-    const ObjectIsNil = 'Object is nil';
-    const ObjectIsNotNil = 'Object is not nil';
+    const ObjectIsNil = 'Value is nil';
+    const ObjectIsNotNil = 'Value is not nil';
     const ValueIsNaN = 'Value is NaN';
     const ValueIsNotNaN = 'EUNIT_REPLACE:Expected NaN but got "{0}"';
     const ValueIsInf = 'Value is infinity';

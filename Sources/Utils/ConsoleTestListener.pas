@@ -9,12 +9,12 @@ type
     method StringOffset: String;
     method StateToString(State: TestState): String;
   protected
-    method Output(Message: String); virtual;
+    method Output(aMessage: String); virtual;
   public
     method RunStarted(Test: ITest); virtual;
-    method TestStarted(Test: ITest); virtual;
-    method TestFinished(TestResult: ITestResult); virtual;
-    method RunFinished(TestResult: ITestResult); virtual;
+    method TestStarted(aTest: ITest); virtual;
+    method TestFinished(aTestResult: ITestResult); virtual;
+    method RunFinished(aTestResult: ITestResult); virtual;
 
     property UseAnsiColorOutput: Boolean;
     class property EmitParseableMessages: Boolean read assembly write := false;
@@ -51,33 +51,35 @@ begin
   end;
 end;
 
-method ConsoleTestListener.TestFinished(TestResult: ITestResult);
+method ConsoleTestListener.TestFinished(aTestResult: ITestResult);
 begin
-  if TestResult.State = TestState.Skipped then
+  if aTestResult.State = TestState.Skipped then
     exit;
 
-  if TestResult.Test.Kind <> TestKind.Testcase then
+  if aTestResult.Test.Kind <> TestKind.Testcase then
       dec(Offset, 2);
 
   if EmitParseableMessages then begin
-    if (TestResult.State ≠ TestState.Succeeded) or ConsoleTestListener.EmitParseableSuccessMessages then
-      Output(TestResult.ParsableMessage);
+    if (aTestResult.State ≠ TestState.Succeeded) or ConsoleTestListener.EmitParseableSuccessMessages then
+      Output(aTestResult.ParsableMessage);
   end
   else begin
-    var Failed := "Failed";
-    var Succeeded := "Succeeded";
+    var Failed := "failed";
+    var Succeeded := "succeeded";
 
     if UseAnsiColorOutput then begin
-      Failed := #27"[1m"#27"[31mFailed"#27"[0m";
-      Succeeded := #27"[32mSucceded"#27"[0m";
+      Failed := #27"[1m"#27"[31mfailed"#27"[0m";
+      Succeeded := #27"[32msucceded"#27"[0m";
     end;
 
-    var Message: String;
-    if TestResult.State = TestState.Failed then
-      Message := String.Format("{0}{1} finished. State: {2}. Message: {3}", StringOffset, TestResult.Name, Failed, TestResult.Message)
-    else
-      Message := String.Format("{0}{1} finished. State: {2}.", StringOffset, TestResult.Name, Succeeded);
-    Output(Message);
+    if aTestResult.State = TestState.Failed then begin
+      for each c in aTestResult.ChildMessages do
+        Output(#"{StringOffset}❌ Check {Failed}: {c}");
+      Output(#"{StringOffset}❌ Test {aTestResult.Name} {Failed}: {aTestResult.Message}");
+    end
+    else begin
+      Output(#"{StringOffset}✅ Test {aTestResult.Name} {Succeeded}.");
+    end;
   end;
 
 end;
@@ -87,35 +89,35 @@ begin
   Offset := 0;
 end;
 
-method ConsoleTestListener.RunFinished(TestResult: ITestResult);
+method ConsoleTestListener.RunFinished(aTestResult: ITestResult);
 begin
   if EmitParseableMessages then begin
   end
   else begin
     Output("======================================");
-    var S := new Summary(TestResult, item -> (item.Test.Kind = TestKind.Testcase));
+    var S := new Summary(aTestResult, item -> (item.Test.Kind = TestKind.Testcase));
     Output(String.Format("{0} succeeded, {1} failed, {2} skipped, {3} untested", S.Succeeded, S.Failed, S.Skipped, S.Untested));
   end;
 end;
 
-method ConsoleTestListener.Output(Message: String);
+method ConsoleTestListener.Output(aMessage: String);
 begin
-  if length(Message) > 0 then begin
+  if length(aMessage) > 0 then begin
     {$IFNDEF NETFX_CORE}
-    writeLn(Message);
+    writeLn(aMessage);
     {$ELSE}
     System.Diagnostics.Debug.WriteLine(Message);
     {$ENDIF}
   end;
 end;
 
-method ConsoleTestListener.TestStarted(Test: ITest);
+method ConsoleTestListener.TestStarted(aTest: ITest);
 begin
-  if (Test.Kind = TestKind.Testcase) or (Test.Skip) then
+  if (aTest.Kind = TestKind.Testcase) or (aTest.Skip) then
     exit;
 
   if not EmitParseableMessages then
-    Output(String.Format("{0}{1} started", StringOffset, Test.Name));
+    Output(String.Format("{0}{1} started", StringOffset, aTest.Name));
   inc(Offset, 2);
 end;
 
