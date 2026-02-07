@@ -12,16 +12,16 @@ implementation
 
 constructor MethodAction;
 begin
-  inherited constructor(ctx -> begin
-    ArgumentNilException.RaiseIfNil(ctx.Method, "Method");
-    ArgumentNilException.RaiseIfNil(ctx.Instance, "Instance");
+  inherited constructor(aContext -> begin
+    ArgumentNilException.RaiseIfNil(aContext.Method, "Method");
+    ArgumentNilException.RaiseIfNil(aContext.Instance, "Instance");
 
-    ctx.HadFailedChecks := false;
-    ctx.Method.Invoke(ctx.Instance);
-    if ctx.HadFailedChecks or TestNode(ctx.Test):IntermediateTestResults:Any(t -> t.State ≠ TestState.Succeeded) then
-      result := new TestResultNode(ctx.Test, TestState.Succeeded, nil, "TEST-FAILED,,,"+ctx.Test.Name+",Test Failed some checks.")
+    aContext.HadFailedChecks := false;
+    aContext.Method.Invoke(aContext.Instance);
+    if aContext.HadFailedChecks or TestNode(aContext.Test):IntermediateTestResults:Any(t -> t.State ≠ TestState.Succeeded) then
+      result := new TestResultNode(aContext.Test, TestState.Failed, nil, "TEST-FAILED,,,"+aContext.Test.Name+",Test Failed some checks.")
     else
-      result := new TestResultNode(ctx.Test, TestState.Succeeded, nil, "TEST-SUCCEEDED,,,"+ctx.Test.Name+",Test Succeeded.");
+      result := new TestResultNode(aContext.Test, TestState.Succeeded, nil, "TEST-SUCCEEDED,,,"+aContext.Test.Name+",Test Succeeded.");
   end);
 end;
 
