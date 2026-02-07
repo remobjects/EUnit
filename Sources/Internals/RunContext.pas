@@ -29,6 +29,7 @@ type
         raise aException;
       except
         on E: BaseException do begin
+          E := aException; // workaround for E27521: Island: Exception is nil in except block
           var lResult := new TestResultNode(Test, TestState.Failed, E.Message, E.ParsableMessage);
           TestNode(Test):AddIntermediateTestResult(lResult);
           if ConsoleTestListener.EmitParseableMessages then
