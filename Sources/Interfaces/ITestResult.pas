@@ -12,6 +12,8 @@ type
     property ParsableMessage: String read;
     property Test: ITest read;
     property Children: sequence of ITestResult read;
+
+    property ExitCode: Integer read if State = TestState.Succeeded then 0 else 1;
   end;
 
 implementation
