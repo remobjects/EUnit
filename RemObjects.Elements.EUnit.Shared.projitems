@@ -4,9 +4,8 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
     <SharedGUID>{66B16487-C9BF-4BFD-B813-F882B2237802}</SharedGUID>
-  </PropertyGroup>
-  <PropertyGroup Label="Configuration">
     <Import_RootNamespace>RemObjects.Elements.EUnit.Shared.elements</Import_RootNamespace>
+    <ProjectGuid>{66B16487-C9BF-4BFD-B813-F882B2237802}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Sources\Asserts\Assert.pas" />

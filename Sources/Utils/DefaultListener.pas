@@ -21,7 +21,7 @@ type
   public
 
     const EUNIT_PARSABLE_MESSAGES = "EUNIT_PARSABLE_MESSAGES";
-    const EUNIT_SUCCESS_MESSAGES = "EUNIT_SUCCESS_MESSAGES";
+    const EUNIT_SUCCESS_MESSAGES  = "EUNIT_PARSABLE_MESSAGES";
     class property DefaultListener: IEventListener read GetDefaultListener;
 
   end;

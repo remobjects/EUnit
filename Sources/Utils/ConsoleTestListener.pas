@@ -27,7 +27,7 @@ type
       var lHasParsableMessageCommandlineSwitch := false;
       {$IF DARWIN}
       lHasParsableMessageCommandlineSwitch := Foundation.NSProcessInfo.processInfo.arguments.Any(s -> s = "--"+Runner.EUNIT_PARSABLE_MESSAGES);
-      EmitSuccessMessages := Foundation.NSProcessInfo.processInfo.arguments.Where(s -> s = "--"+Runner.EUNIT_SUCCESS_MESSAGES).Any;
+      EmitSuccessMessages :=                  Foundation.NSProcessInfo.processInfo.arguments.Any(s -> s = "--"+Runner.EUNIT_SUCCESS_MESSAGES);
       {$ELSEIF ECHOES}
       lHasParsableMessageCommandlineSwitch := System.Environment.CommandLine.Contains("--"+Runner.EUNIT_PARSABLE_MESSAGES);
       EmitSuccessMessages := System.Environment.CommandLine.Contains("--"+Runner.EUNIT_SUCCESS_MESSAGES);
