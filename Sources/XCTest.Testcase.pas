@@ -7,7 +7,7 @@ uses
 type
   XCTPerformanceMetric = public String;
 
-  XCTestCase = public class(Test)
+  XCTestCase = public abstract class(Test)
   public
 
     //
