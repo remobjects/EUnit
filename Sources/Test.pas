@@ -12,5 +12,8 @@ type
     method Teardown; virtual; empty;
   end;
 
+  TestException = public class(Exception)
+  end;
+
 implementation
 end.
