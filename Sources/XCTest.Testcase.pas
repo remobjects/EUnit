@@ -2,6 +2,7 @@
 
 {$IF NOT WEBASSEMBLY}
 uses
+  RemObjects.Elements.RTL.Units,
   RemObjects.Elements.EUnit;
 
 type
@@ -42,7 +43,7 @@ type
     //
 
     // drop, use RTL2
-    method ConvertMilisecondsToTimeString(aMS: Double): String; private;
+    method ConvertMilisecondsToTimeString(aMS: Milliseconds): String; private;
     begin
       var lValue := aMS as Int64;
       var lMilliSeconds := lValue mod 1000;
