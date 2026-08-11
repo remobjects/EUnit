@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
+  <PropertyGroup>
+    <RootNamespace>RemObjects.Elements.EUnit</RootNamespace>
+    <ProjectGuid>{b882cd1b-2dd3-46a4-9f1d-7e9f924d3d91}</ProjectGuid>
+    <OutputType>StaticLibrary</OutputType>
+    <AssemblyName>EUnit</AssemblyName>
+    <AllowGlobals>False</AllowGlobals>
+    <AllowLegacyWith>False</AllowLegacyWith>
+    <AllowLegacyOutParams>False</AllowLegacyOutParams>
+    <AllowLegacyCreate>False</AllowLegacyCreate>
+    <AllowUnsafeCode>False</AllowUnsafeCode>
+    <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+    <Name>RemObjects.Elements.EUnit (Island/Fuchsia)</Name>
+    <GenerateDebugInfo>True</GenerateDebugInfo>
+    <MangleTypeNames>True</MangleTypeNames>
+    <DefaultUses>RemObjects.Elements.RTL</DefaultUses>
+    <Mode>Island</Mode>
+    <SubMode>Fuchsia</SubMode>
+    <Platform Condition="'$(Platform)' == ''">AnyCPU</Platform>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;</DefineConstants>
+    <CaptureConsoleOutput>False</CaptureConsoleOutput>
+    <XmlDocWarningLevel>WarningOnPublicMembers</XmlDocWarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <OutputPath>bin\Release\</OutputPath>
+    <CaptureConsoleOutput>False</CaptureConsoleOutput>
+    <WarnOnCaseMismatch>True</WarnOnCaseMismatch>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="rtl" />
+    <Reference Include="gc" />
+    <Reference Include="Island"></Reference>
+    <Reference Include="Elements"></Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.targets" />
+  <PropertyGroup>
+    <PreBuildEvent />
+  </PropertyGroup>
+  <Import Project="RemObjects.Elements.EUnit.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <Compile Include="Sources\Discovery\Island\IslandDiscovery.pas" />
+    <Compile Include="Sources\Discovery\Island\IslandModuleDiscovery.pas" />
+  </ItemGroup>
+</Project>

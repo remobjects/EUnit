@@ -17,6 +17,8 @@ Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (
 EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Island/Linux)", "RemObjects.Elements.EUnit.Island.Linux.elements", "{0CAD688B-CD37-4FC1-B3DD-039BE70440A2}"
 EndProject
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Island/Fuchsia)", "RemObjects.Elements.EUnit.Island.Fuchsia.elements", "{B882CD1B-2DD3-46A4-9F1D-7E9F924D3D91}"
+EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Island/WebAssembly)", "RemObjects.Elements.EUnit.Island.WebAssembly.elements", "{64A033E6-0CFA-48EE-81E8-ECC092B53E4B}"
 EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "RemObjects.Elements.EUnit (Island/Windows)", "RemObjects.Elements.EUnit.Island.Windows.elements", "{ACCD623B-6611-48BD-9892-4E65CEDB23B1}"
@@ -71,6 +73,10 @@ Global
 		{0CAD688B-CD37-4FC1-B3DD-039BE70440A2}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
 		{0CAD688B-CD37-4FC1-B3DD-039BE70440A2}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
 		{0CAD688B-CD37-4FC1-B3DD-039BE70440A2}.Release|AnyCPU.Build.0 = Release|AnyCPU
+		{B882CD1B-2DD3-46A4-9F1D-7E9F924D3D91}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
+		{B882CD1B-2DD3-46A4-9F1D-7E9F924D3D91}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
+		{B882CD1B-2DD3-46A4-9F1D-7E9F924D3D91}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
+		{B882CD1B-2DD3-46A4-9F1D-7E9F924D3D91}.Release|AnyCPU.Build.0 = Release|AnyCPU
 		{64A033E6-0CFA-48EE-81E8-ECC092B53E4B}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
 		{64A033E6-0CFA-48EE-81E8-ECC092B53E4B}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
 		{64A033E6-0CFA-48EE-81E8-ECC092B53E4B}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
