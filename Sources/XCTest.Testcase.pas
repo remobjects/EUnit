@@ -42,28 +42,6 @@ type
     //
     //
 
-    // drop, use RTL2
-    method ConvertMilisecondsToTimeString(aMS: Milliseconds): String; private;
-    begin
-      var lValue := aMS as Int64;
-      var lMilliSeconds := lValue mod 1000;
-      var lSeconds := lValue div 1000;
-      var lMinutes := lSeconds div 60;
-      lSeconds := lSeconds mod 60;
-      var lHours := lMinutes div 60;
-      lMinutes := lMinutes mod 60;
-      result := "";
-      if lHours > 0 then
-        result := result+lHours.ToString+":";
-      if lMinutes > 0 then begin
-        var lMinutesString := if length(result) > 0 then Convert.ToString(lMinutes).PadStart(2, '0') else lMinutes.ToString;
-        result := result+lMinutesString+":";
-      end;
-      var lSecondsString := if length(result) > 0 then Convert.ToString(lSeconds).PadStart(2, '0') else lSeconds.ToString;
-      result := result+lSecondsString+".";
-      result := result+Convert.ToString(lMilliSeconds).PadStart(3, '0');
-    end;
-
     property defaultPerformanceMetrics: List<XCTPerformanceMetric>;
 
     method measure(aBlock: block);
@@ -74,7 +52,7 @@ type
         aBlock();
       finally
         var lDurationNet := (DateTime.UtcNow-lStartTimeNet).TotalMilliSeconds;
-        writeLn($"<- Code took {ConvertMilisecondsToTimeString(lDurationNet)}");
+        writeLn($"<- Code took {Convert.MillisecondsToTimeString(lDurationNet)}");
       end;
     end;
 
@@ -101,7 +79,7 @@ type
     begin
       if assigned(fStartTimeNet) then begin
         var lDurationNet := (DateTime.UtcNow-fStartTimeNet).TotalMilliSeconds;
-        writeLn($"<- Code took {ConvertMilisecondsToTimeString(lDurationNet)}");
+        writeLn($"<- Code took {Convert.MillisecondsToTimeString(lDurationNet)}");
         fStartTimeNet := nil;
       end;
     end;
