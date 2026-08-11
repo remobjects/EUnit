@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ProductVersion>3.5</ProductVersion>
     <RootNamespace>RemObjects.Elements.EUnit</RootNamespace>
-    <ProjectGuid>{785cb531-318d-4def-80dc-23976103e3bf}</ProjectGuid>
+    <ProjectGuid>{785CB531-318D-4DEF-80DC-23976103E3BF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>RemObjects.Elements.EUnit</AssemblyName>
     <AllowGlobals>False</AllowGlobals>
@@ -57,7 +57,7 @@
     </Reference>
     <Reference Include="Elements">
       <Private>True</Private>
-      <HintPath>..\..\RTL2\Source\bin\Debug\Elements.dll</HintPath>
+      <HintPath>..\RTL2\Bin\Echoes\NET\Elements.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Echoes.targets" />

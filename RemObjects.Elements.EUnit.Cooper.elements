@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
   <PropertyGroup>
     <ProductVersion>3.5</ProductVersion>
-    <ProjectGuid>{b526c139-27d3-41e0-ba41-d858884841e4}</ProjectGuid>
+    <ProjectGuid>{B526C139-27D3-41E0-BA41-D858884841E4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
     <AllowLegacyCreate>False</AllowLegacyCreate>
@@ -48,6 +48,7 @@
     <Reference Include="rt" />
     <Reference Include="elements">
       <Private>True</Private>
+      <HintPath>..\RTL2\Bin\Cooper\Plain\elements.jar</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Cooper.targets" />
