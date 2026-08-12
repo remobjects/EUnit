@@ -122,7 +122,7 @@ begin
   {$ELSEIF ISLAND}
   exit Native.Instantiate();
   {$ELSEIF NOUGAT}
-  exit Foundation.NSClassFromString(class_getName(self.Native)).alloc.init;
+  exit Native.alloc.init;
   {$ENDIF}
 end;
 

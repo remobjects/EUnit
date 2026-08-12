@@ -38,9 +38,10 @@ begin
       end
       else begin
         if (Super = Test.class) then begin
-          var Instance := Foundation.NSClassFromString(class_getName(lClass)).alloc.init;
-          var Abc := new InstanceDiscovery([Instance]);
-          result.Add(Abc.Filter);
+          var lTypes := new List<NativeType>;
+          lTypes.Add(lClass);
+          var lDiscovery := new TypeDiscovery(lTypes);
+          result.Add(lDiscovery.Filter);
           break;
         end;
       end;
