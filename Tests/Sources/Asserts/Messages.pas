@@ -13,6 +13,7 @@ type
     method AssertMessage(Action: AssertAction; Message: String);
   public
     method &Default;
+    method ParsableMessagePreservesLineBreaks;
     method AreEqual;
     method AreNotEqual;
     method Catch;
@@ -32,6 +33,21 @@ type
   end;
 
 implementation
+
+method Messages.ParsableMessagePreservesLineBreaks;
+begin
+  var lMessage := 'Expected:' + #13#10 + #9 + 'literal \n, \r, %20, +, <tag>' + #10#10 + 'Actual:' + #13 + 'different';
+  var lException := new AssertException(lMessage, nil, 0, 'Sample', 'Check');
+  var lPrefix := 'TEST-FAILED,,,Sample.Check,';
+  Assert.StartsWith(lPrefix, lException.ParsableMessage);
+  var lPayload := lException.ParsableMessage.Substring(length(lPrefix));
+  Assert.DoesNotContains(String(#10), lPayload);
+  Assert.DoesNotContains(String(#13), lPayload);
+  Assert.DoesNotContains(String(','), lPayload);
+  Assert.Contains('%0A', lPayload);
+  Assert.Contains('%0D', lPayload);
+  Assert.AreEqual(RemObjects.Elements.RTL.Url.RemovePercentEncodingsFromPath(lPayload), lMessage);
+end;
 
 method Messages.AssertMessage(Action: AssertAction; Message: String);
 begin

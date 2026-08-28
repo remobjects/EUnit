@@ -74,9 +74,9 @@ begin
   end
   else begin
     var lParsableMessage := if Context.Test is TestcaseNode then
-      String.Format("{0}-FAILED,{1},{2},{3}.{4},{5}", "TEST", "", "", TestcaseNode(Context.Test).ClassName, TestcaseNode(Context.Test).MethodName, Url.AddPercentEncodingsToPath(Message.Replace(#10,"\n").Replace(#13,"\r")))
+      String.Format("{0}-FAILED,{1},{2},{3}.{4},{5}", "TEST", "", "", TestcaseNode(Context.Test).ClassName, TestcaseNode(Context.Test).MethodName, Url.AddPercentEncodingsToPath(Message))
     else
-      String.Format("{0}-FAILED,{1},{2},{3}.{4},{5}", "TEST", "", "", "", coalesce(Context.Test:Name, ""), Url.AddPercentEncodingsToPath(Message.Replace(#10,"\n").Replace(#13,"\r")));
+      String.Format("{0}-FAILED,{1},{2},{3}.{4},{5}", "TEST", "", "", "", coalesce(Context.Test:Name, ""), Url.AddPercentEncodingsToPath(Message));
     exit new TestResultNode(Context.Test, TestState.Failed, "["+ExceptionName+"]"+ if Message = "" then "" else ": " + Message, lParsableMessage);
   end;
 end;
