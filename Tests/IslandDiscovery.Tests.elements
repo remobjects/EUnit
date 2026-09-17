@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
+  <PropertyGroup>
+    <RootNamespace>EUnit.Tests</RootNamespace>
+    <ProjectGuid>{6386194C-C53D-46DF-9CE7-E1E01D317C6D}</ProjectGuid>
+    <OutputType>Executable</OutputType>
+    <BinaryName>IslandDiscovery.Tests</BinaryName>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <SDK>macOS</SDK>
+    <GenerateDebugInfo>True</GenerateDebugInfo>
+    <OutputPath>bin\$(Configuration)</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="rtl" />
+    <Reference Include="gc" />
+    <Reference Include="Island" />
+    <Reference Include="Elements" />
+    <ProjectReference Include="..\RemObjects.Elements.EUnit.Island.Darwin.macOS.elements">
+      <Name>RemObjects.Elements.EUnit.Island.Darwin.macOS</Name>
+      <Project>{91849833-1653-4893-98ce-cce5dc97d32a}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sources\IslandDiscovery.pas" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Island.Darwin.targets" />
+</Project>

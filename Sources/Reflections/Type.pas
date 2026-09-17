@@ -80,8 +80,10 @@ begin
   for lMethod in lMethods do
     result.Add(new MethodReference(self, lMethod));
   {$ELSEIF ISLAND}
+  // Island reflection includes private helpers and generated lambda methods.
   for each lMethod in Native.Methods do
-    result.Add(new MethodReference(self, lMethod));
+    if (lMethod.Access = MemberAccess.Public) and (not lMethod.IsStatic) then
+      result.Add(new MethodReference(self, lMethod));
   {$ELSEIF NOUGAT}
   var lMethodsCount: UInt32 := 0;
   self.Native.description(); //workaround for #70325
